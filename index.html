@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parth Patel - Web Developer & Designer Portfolio">
+    <title>PARTH PATEL | Developer & Designer</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.png">
+</head>
+<body>
+    <!-- Overlay for sidebar -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo-container">
+                <div class="logo" id="logo">
+                    <svg id="logoSVG" viewBox="0 0 400 400" width="300" height="300">
+                        <!-- Background circle -->
+                        <circle cx="200" cy="200" r="180" fill="#f8f8f8" stroke="#e0e0e0" stroke-width="2" />
+                        
+                        <!-- Main unified letterform -->
+                        <g>
+                            <!-- Vertical stem (P, A, R, T, H) -->
+                            <path class="stem" d="M150,100 L150,300" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                            
+                            <!-- Horizontal crossbar (A, H, E, T) -->
+                            <path class="crossbar" d="M110,180 L240,180" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                            
+                            <!-- Top loop (P, R, P) -->
+                            <path class="top-loop" d="M150,100 L200,100 C260,100 260,180 200,180" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round" />
+                            
+                            <!-- Bottom curve (P, P, E, L) -->
+                            <path class="bottom-curve" d="M150,240 L200,240 C260,240 260,300 200,300 L150,300" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round" />
+                            
+                            <!-- Diagonal (A, R) -->
+                            <path class="diagonal" d="M175,180 L225,240" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                        </g>
+                        
+                        <!-- Separate period/dot -->
+                        <circle class="period" cx="280" cy="280" r="12" fill="#FF4500" />
+                        
+                        <!-- Letter highlights -->
+                        <text class="letter-highlight" x="135" y="90" text-anchor="middle">P</text>
+                        <text class="letter-highlight" x="170" y="90" text-anchor="middle">A</text>
+                        <text class="letter-highlight" x="210" y="90" text-anchor="middle">R</text>
+                        <text class="letter-highlight" x="240" y="150" text-anchor="middle">T</text>
+                        <text class="letter-highlight" x="240" y="210" text-anchor="middle">H</text>
+                        <text class="letter-highlight" x="150" y="330" text-anchor="middle">P</text>
+                        <text class="letter-highlight" x="180" y="330" text-anchor="middle">A</text>
+                        <text class="letter-highlight" x="210" y="330" text-anchor="middle">T</text>
+                        <text class="letter-highlight" x="240" y="330" text-anchor="middle">E</text>
+                        <text class="letter-highlight" x="270" y="330" text-anchor="middle">L</text>
+                        <text class="letter-highlight" x="295" y="285" text-anchor="middle">.</text>
+                    </svg>
+                </div>
+                
+                <div class="name-reveal">PARTH PATEL.</div>
+            </div>
+            <div class="nav-links" id="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#blog" class="nav-link">Blog</a>
+                <a href="#resources" class="nav-link">Resources</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="resume.html" class="nav-link">Resume</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar for mobile -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn" aria-label="Close sidebar">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="sidebar-about">
+            <h3 class="title">PARTH PATEL</h3>
+            <p class="subtitle">Web Developer</p>
+        </div>
+        
+        <ul>
+            <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#about"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="#projects"><i class="fas fa-code"></i> Projects</a></li>
+            <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="#resources"><i class="fas fa-bookmark"></i> Resources</a></li>
+            <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="resume.html"><i class="fas fa-file-alt"></i> Resume</a></li>
+        </ul>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X"><i class="fab fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+        <div class="sidebar-footer">
+            &copy; 2025 PARTH PATEL
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home" data-backgrounds="https://assets.awwwards.com/awards/element/2023/06/647de6cdbf047872531292.mp4">
+        <div class="hero-content">
+            <h1>PARTH PATEL</h1>
+            <p id="typewriter">Creative Web Developer & UI/UX Designer</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="#contact" class="btn btn-outline">Contact Me</a>
+            </div>
+        </div>
+        <div class="hero-scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <!-- Profile card -->
+            <div class="profile-card-animated">
+                <svg>
+                    <rect x="0" y="0" width="100%" height="100%"></rect>
+                </svg>
+                <div class="profile-card-content">
+                    <div class="profile-image-container">
+                        <img src="Parth-Patel.jpeg" alt="PARTH PATEL" class="profile-image">
+                    </div>
+                    <h2 class="profile-name">PARTH PATEL</h2>
+                    <div class="profile-divider"></div>
+                    <p class="profile-title">WEB DEVELOPER</p>
+                    <div class="profile-social">
+                        <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.x.com/ParthPa41787942" aria-label="X"><i class="fab fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- About content -->
+            <div class="about-content">
+                <h1 class="about-heading">About Me</h1>
+                <p class="about-subheading">Front-end Developer with a passion for creating intuitive and engaging user experiences.</p>
+                <div class="about-buttons">
+                    <a href="resume.html" class="resume-btn-animated">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        View Resume
+                    </a>
+                     
+                </div>
+                <div class="about-text">
+                    <p>I'm a passionate web developer with over 5 years of experience in creating responsive and user-friendly websites and applications. I specialize in front-end development using modern frameworks and technologies.</p>
+                    <p>My approach combines clean code, responsive design principles, and a focus on accessibility to create exceptional digital experiences that work for everyone.</p>
+                    <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or sharing my knowledge through blog posts and tutorials.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <p class="section-subtitle">Some of my recent work and personal projects</p>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+                <button class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
+                <button class="filter-btn" data-filter="mobile" aria-pressed="false">Mobile</button>
+                <button class="filter-btn" data-filter="design" aria-pressed="false">Design</button>
+            </div>
+            
+            <div class="projects-container">
+                <!-- Project 1 -->
+                <div class="project-card-animated web">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="project-card-content">
+                        <div class="project-image">
+                            <img src="project1.jpg" alt="E-commerce Project">
+                        </div>
+                        <div class="card-content">
+                            <h3>E-commerce Platform</h3>
+                            <p>A fully responsive e-commerce solution with custom product filtering and shopping cart functionality.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">React</span>
+                                <span class="card-tag">Node.js</span>
+                                <span class="card-tag">MongoDB</span>
+                            </div>
+                            <a href="#" class="view-project">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card-animated design">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="project-card-content">
+                        <div class="project-image">
+                            <img src="project2.jpg" alt="Dashboard Project">
+                        </div>
+                        <div class="card-content">
+                            <h3>Analytics Dashboard</h3>
+                            <p>An interactive dashboard with real-time data visualization and customizable widgets.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">Vue.js</span>
+                                <span class="card-tag">D3.js</span>
+                                <span class="card-tag">Firebase</span>
+                            </div>
+                            <a href="#" class="view-project">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card-animated mobile">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="project-card-content">
+                        <div class="project-image">
+                            <img src="project3.jpg" alt="Mobile App">
+                        </div>
+                        <div class="card-content">
+                            <h3>Fitness Tracking App</h3>
+                            <p>A mobile application for tracking workouts, nutrition, and personal fitness goals.</p>
+                            <div class="card-tags">
+                                <span class="card-tag">React Native</span>
+                                <span class="card-tag">GraphQL</span>
+                                <span class="card-tag">AWS</span>
+                            </div>
+                            <a href="#" class="view-project">View Project <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section" id="blog">
+        <div class="container">
+            <h2 class="section-title">Latest Blog Posts</h2>
+            <p class="section-subtitle">Thoughts, insights, and tutorials on web development</p>
+            
+            <div class="blog-container">
+                <!-- Blog Post 1 -->
+                <div class="blog-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="blog-card-content">
+                        <div class="blog-img">
+                            <img src="blog1.jpg" alt="Blog Post 1">
+                        </div>
+                        <div class="blog-text">
+                            <span class="blog-date">March 15, 2025</span>
+                            <h3><a href="#">Mastering CSS Grid Layout</a></h3>
+                            <p>A comprehensive guide to using CSS Grid for modern web layouts with practical examples.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="blog-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="blog-card-content">
+                        <div class="blog-img">
+                            <img src="blog2.jpg" alt="Blog Post 2">
+                        </div>
+                        <div class="blog-text">
+                            <span class="blog-date">February 28, 2025</span>
+                            <h3><a href="#">JavaScript Performance Optimization</a></h3>
+                            <p>Tips and techniques for improving the performance of your JavaScript applications.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="blog-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="blog-card-content">
+                        <div class="blog-img">
+                            <img src="blog3.jpg" alt="Blog Post 3">
+                        </div>
+                        <div class="blog-text">
+                            <span class="blog-date">January 14, 2025</span>
+                            <h3><a href="#">Accessibility in Web Design</a></h3>
+                            <p>How to make your websites accessible to everyone, including users with disabilities.</p>
+                            <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="resources-section" id="resources">
+        <div class="container">
+            <h2 class="section-title">Resources</h2>
+            <p class="section-subtitle">Useful tools and resources for developers</p>
+            
+            <div class="resources-container">
+                <!-- Resource 1 -->
+                <div class="resource-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="resource-card-content">
+                        <h3><a href="#">Front-end Development Checklist</a></h3>
+                        <p>A comprehensive checklist for modern front-end development projects covering best practices in HTML, CSS, and JavaScript.</p>
+                        <span class="resource-tag">Guide</span>
+                        <div class="buttons has-addons">
+                            <a href="#" class="button" title="Download PDF"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="#" class="button" title="View Online"><i class="fas fa-globe"></i> Web</a>
+                            <a href="#" class="button" title="GitHub Repository"><i class="fab fa-github"></i> Repo</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Resource 2 -->
+                <div class="resource-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="resource-card-content">
+                        <h3><a href="#">UI Design Principles</a></h3>
+                        <p>An overview of essential UI design principles for creating intuitive and aesthetically pleasing user interfaces.</p>
+                        <span class="resource-tag">Design</span>
+                        <div class="buttons has-addons">
+                            <a href="#" class="button" title="Download PDF"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="#" class="button" title="View Online"><i class="fas fa-globe"></i> Web</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Resource 3 -->
+                <div class="resource-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="resource-card-content">
+                        <h3><a href="#">Web Performance Toolkit</a></h3>
+                        <p>A collection of tools and resources for measuring and improving web application performance.</p>
+                        <span class="resource-tag">Tools</span>
+                        <div class="buttons has-addons">
+                            <a href="#" class="button" title="Download ZIP"><i class="fas fa-file-archive"></i> ZIP</a>
+                            <a href="#" class="button" title="GitHub Repository"><i class="fab fa-github"></i> Repo</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Resource 4 -->
+                <div class="resource-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="resource-card-content">
+                        <h3><a href="#">Responsive Design Patterns</a></h3>
+                        <p>Common responsive design patterns with code examples and implementation guidelines.</p>
+                        <span class="resource-tag">Code</span>
+                        <div class="buttons has-addons">
+                            <a href="#" class="button" title="Download Code"><i class="fas fa-code"></i> Code</a>
+                            <a href="#" class="button" title="View Demo"><i class="fas fa-desktop"></i> Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resource 5 -->
+                <div class="resource-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="resource-card-content">
+                        <h3><a href="resource1.html">iOS Ethical Hacking & Security Research</a></h3>
+                        <p>A comprehensive guide to iOS security architecture, jailbreaking techniques, penetration testing, and ethical disclosure for security researchers.</p>
+                        <span class="resource-tag">Security</span>
+                        <div class="buttons has-addons">
+                            <a href="resource1.html" class="button" title="View Guide"><i class="fas fa-globe"></i> Guide</a>
+                            <a href="#" class="button" title="Download PDF"><i class="fas fa-file-pdf"></i> PDF</a>
+                            <a href="#" class="button" title="GitHub Resources"><i class="fab fa-github"></i> Repo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+<section class="contact-section" id="contact">
+    <div class="container">
+        <h2 class="section-title">Contact Me</h2>
+        <p class="section-subtitle">Get in touch for collaborations or inquiries</p>
+    
+        <!-- Contact Information Grid -->
+        <div class="contact-info-container">
+            <div class="contact-info-grid">
+                <div class="contact-item-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="contact-item-content">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <h3>Email</h3>
+                        <p>parth459.a@gmail.com</p>
+                        <a href="mailto:parth459.a@gmail.com" class="contact-link">Send Email</a>
+                    </div>
+                </div>
+            
+                <div class="contact-item-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="contact-item-content">
+                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <h3>Phone</h3>
+                        <p>+1 (774) 223-8113</p>
+                        <a href="tel:+17742238113" class="contact-link">Call Now</a>
+                    </div>
+                </div>
+            
+                <div class="contact-item-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="contact-item-content">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <h3>Location</h3>
+                        <p>Canton, MA</p>
+                        <a href="https://maps.google.com/?q=Canton,+MA" target="_blank" class="contact-link">View Map</a>
+                    </div>
+                </div>
+            
+                <div class="contact-item-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="contact-item-content">
+                        <i class="fas fa-share-alt contact-icon"></i>
+                        <h3>Social Media</h3>
+                        <div class="contact-social">
+                            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.x.com/ParthPa41787942" aria-label="X (formerly Twitter)">
+                                <i class="fab fa-brands fa-x-twitter"></i>
+                            </a>
+                            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form with Formspree -->
+<div class="contact-form">
+    <form action="https://formspree.io/f/2vkuybnd1" method="POST" id="contact-form" novalidate aria-live="polite">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="name" class="form-label">Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" class="form-input" required autocomplete="name">
+                <!-- Validation icon will be inserted by JS -->
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="form-label">Email <span class="required">*</span></label>
+                <input type="email" id="email" name="email" class="form-input" required autocomplete="email">
+                <!-- Validation icon will be inserted by JS -->
+            </div>
+            
+            <div class="form-group full-width">
+                <label for="subject" class="form-label">Subject</label>
+                <input type="text" id="subject" name="subject" class="form-input" autocomplete="off">
+                <!-- Validation icon will be inserted by JS -->
+            </div>
+            
+            <div class="form-group full-width">
+                <label for="message" class="form-label">Message <span class="required">*</span></label>
+                <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
+                <!-- Validation icon will be inserted by JS -->
+            </div>
+            
+            <div class="form-group full-width">
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </div>
+        </div>
+    </form>
+    <!-- Success message will be dynamically inserted here -->
+</div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Parth Patel</h3>
+                    <p>Web Developer & Designer</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#blog">Blog</a></li>
+                            <li><a href="#resources">Resources</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#">Web Development</a></li>
+                            <li><a href="#">UI/UX Design</a></li>
+                            <li><a href="#">Mobile Apps</a></li>
+                            <li><a href="#">Consulting</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-links-column">
+                        <h4>Legal</h4>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 Parth Patel. All Rights Reserved.
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.x.com/ParthPa41787942" aria-label="X"><i class="fab fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                
+                <div class="back-to-top">
+                    <a href="#home" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bottom Scroll Bar -->
+    <div class="bottom-scrollbar-container">
+        <div class="scroll-indicator" id="scroll-indicator"></div>
+        <div class="scroll-nav">
+            <button class="scroll-nav-item" data-target="#home">Home</button>
+            <button class="scroll-nav-item" data-target="#about">About</button>
+            <button class="scroll-nav-item" data-target="#projects">Projects</button>
+            <button class="scroll-nav-item" data-target="#resources">Resources</button>
+            <button class="scroll-nav-item" data-target="#blog">Blog</button>
+            <button class="scroll-nav-item" data-target="#contact">Contact</button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Logo Animation Controls (for development, can be removed in production) -->
+    <div class="controls" style="position:fixed; bottom:20px; left:20px; z-index:100; display:none;">
+        <button onclick="showLetters()">Show Letter Mapping</button>
+        <button onclick="animateLogo()">Animate Logo</button>
+    </div>
+
+    <!-- Main Script -->
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parth Patel - Computer Science Student Resume">
+    <title>PARTH PATEL | Resume</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="resume-styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.png">
+</head>
+<body>
+    <!-- Overlay for mobile sidebar -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <!-- Logo -->
+            <div class="logo-container">
+                <div class="logo" id="logo">
+                    <svg id="logoSVG" viewBox="0 0 400 400" width="300" height="300">
+                        <!-- Background circle -->
+                        <circle cx="200" cy="200" r="180" fill="#f8f8f8" stroke="#e0e0e0" stroke-width="2" />
+                        
+                        <!-- Main unified letterform -->
+                        <g>
+                            <!-- Vertical stem (P, A, R, T, H) -->
+                            <path class="stem" d="M150,100 L150,300" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                            
+                            <!-- Horizontal crossbar (A, H, E, T) -->
+                            <path class="crossbar" d="M110,180 L240,180" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                            
+                            <!-- Top loop (P, R, P) -->
+                            <path class="top-loop" d="M150,100 L200,100 C260,100 260,180 200,180" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round" />
+                            
+                            <!-- Bottom curve (P, P, E, L) -->
+                            <path class="bottom-curve" d="M150,240 L200,240 C260,240 260,300 200,300 L150,300" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round" />
+                            
+                            <!-- Diagonal (A, R) -->
+                            <path class="diagonal" d="M175,180 L225,240" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                        </g>
+                        
+                        <!-- Separate period/dot -->
+                        <circle class="period" cx="280" cy="280" r="12" fill="#FF4500" />
+                    </svg>
+                </div>
+                
+                <div class="name-reveal">PARTH PATEL</div>
+            </div>
+            
+            <!-- Desktop navigation links -->
+            <div class="nav-links" id="nav-links">
+                <a href="#profile" class="nav-link active">Profile</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="index.html" class="nav-link">Portfolio</a>
+                
+                <!-- Theme toggle button -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <!-- Mobile menu toggle -->
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile sidebar navigation -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn" aria-label="Close sidebar">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="sidebar-about">
+            <h3 class="title">PARTH PATEL</h3>
+            <p class="subtitle">Computer Science Student</p>
+        </div>
+        
+        <!-- Sidebar navigation links -->
+        <ul>
+            <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+            <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
+            <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+            <li><a href="index.html"><i class="fas fa-home"></i> Portfolio</a></li>
+        </ul>
+        
+        <!-- Sidebar social links -->
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X"><i class="fab fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+        <div class="sidebar-footer">
+            &copy; 2025 PARTH PATEL
+        </div>
+    </div>
+
+    <!-- Main Content Sections -->
+    
+    <!-- Profile Section with Knuford-style layout -->
+    <section class="profile-section" id="profile">
+        <div class="container">
+            <div class="knuford-profile-container">
+                <!-- Profile image - diagonal split layout -->
+                <div class="profile-image-area">
+                    <!-- Replace this img src with your new professional image path -->
+                    <img src="Parth Patel Profile image.heic" alt="Parth Patel">
+                    <div class="overlay-gradient"></div>
+                </div>
+                
+                <div class="profile-content">
+                    <h1 class="profile-name">PARTH PATEL</h1>
+                    <p class="profile-title">Computer Science Student</p>
+                    <div class="profile-objective">
+                        <h2>Objective</h2>
+                        <p>Enthusiastic Computer Science student with a strong passion for web development and a keen interest in creating interactive and responsive websites. Good in HTML, CSS, JavaScript, with basic knowledge of front-end frameworks and web design principles.</p>
+                        <p>Currently expanding my knowledge in backend development, database integration, and modern web technologies. Seeking a Web Development Internship to apply my technical skills and contribute to impactful projects.</p>
+                    </div>
+                    <div class="profile-contact">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:parthpatel.78614a@yahoo.com">parthpatel.78614a@yahoo.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+17742238113">+1 (774) 223-8113</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section" id="education">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="education-card-animated">
+                <svg>
+                    <rect x="0" y="0" width="100%" height="100%"></rect>
+                </svg>
+                <div class="education-card-content">
+                    <div class="education-details">
+                        <h3>Bachelor of Computer Science</h3>
+                        <h4>University of Massachusetts Boston</h4>
+                        <p class="education-period">Present</p>
+                        <p class="education-location">Boston, U.S.A.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section" id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Skills</h2>
+            
+            <div class="skills-container">
+                <!-- CS Languages Skills Card -->
+                <div class="skills-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="skills-card-content">
+                        <h3>CS Languages</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">HTML</span>
+                            <span class="skill-tag">CSS</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">TypeScript</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">C/C++</span>
+                            <span class="skill-tag">C#</span>
+                            <span class="skill-tag">three.js</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">SQL</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tools Skills Card -->
+                <div class="skills-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="skills-card-content">
+                        <h3>Tools</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Git</span>
+                            <span class="skill-tag">Linux</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">VM VirtualBox</span>
+                            <span class="skill-tag">VMware</span>
+                            <span class="skill-tag">WebGL</span>
+                            <span class="skill-tag">Overleaf / LATEX</span>
+                            <span class="skill-tag">GitHub</span>
+                            <span class="skill-tag">GitLab</span>
+                            <span class="skill-tag">Unity</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Arduino</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Languages Skills Card -->
+                <div class="skills-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="skills-card-content">
+                        <h3>Languages</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">English</span>
+                            <span class="skill-tag">Gujarati</span>
+                            <span class="skill-tag">Hindi</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hobbies Skills Card -->
+                <div class="skills-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="skills-card-content">
+                        <h3>Hobbies</h3>
+                        <div class="skills-list">
+                            <span class="skill-tag">Cricket</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section" id="projects">
+        <div class="container">
+            <h2 class="section-title">Academic Projects</h2>
+            
+            <div class="project-card-animated">
+                <svg>
+                    <rect x="0" y="0" width="100%" height="100%"></rect>
+                </svg>
+                <div class="project-card-content">
+                    <h3>HourWork</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                    </div>
+                    <div class="project-details">
+                        <p>Collaborated with colleagues to develop a web-based project called HourWork for study Assistant.</p>
+                        <p>To develop HourWork we are using JavaScript, HTML, CSS.</p>
+                        <p>HourWork is study tool for students and learner alike.</p>
+                    </div>
+                    <a href="https://github.com/kylehackett99/HourWork" class="project-link" target="_blank">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section" id="experience">
+        <div class="container">
+            <h2 class="section-title">Work Experience</h2>
+            
+            <div class="experience-card-animated">
+                <svg>
+                    <rect x="0" y="0" width="100%" height="100%"></rect>
+                </svg>
+                <div class="experience-card-content">
+                    <h3>Warehouse Associate</h3>
+                    <h4>Amazon Delivery Station</h4>
+                    
+                    <div class="experience-tags">
+                        <span class="experience-tag">Fast-Paced Environment</span>
+                        <span class="experience-tag">Sorting</span>
+                        <span class="experience-tag">Inducting</span>
+                        <span class="experience-tag">Picking-Stage</span>
+                        <span class="experience-tag">Package Handling</span>
+                        <span class="experience-tag">Quality Control</span>
+                        <span class="experience-tag">Team Collaboration</span>
+                    </div>
+                    
+                    <div class="responsibilities">
+                        <ul>
+                            <li><strong>Sorting:</strong> Organize and categorize incoming and outgoing packages to ensure accurate delivery.</li>
+                            <li><strong>Inducting:</strong> Scan and place packages onto conveyors or designated areas for processing.</li>
+                            <li><strong>Picking & Stagie:</strong> Retrieve and prepare customer orders for shipment, ensuring accuracy & efficiency.</li>
+                            <li><strong>Package Handling:</strong> Lift, Move, and load/unload packages safely while following workplace safety protocols.</li>
+                            <li><strong>Quality Control:</strong> Inspect Packages for damages or errors before shipment.</li>
+                            <li><strong>Team collaboration:</strong> Work alongside co-workers and supervisors to meet daily operational targets.</li>
+                            <li><strong>Fast-Paced Environment:</strong> Maintain high productivity while adhering to safety and company guidelines.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="experience-summary">
+                <p>Motivated and detail-oriented Warehouse Associate with hands-on experience in sorting, inducting, and picking-staging at Amazon Delivery Station. Adept at handling high-volume package processing, ensuring efficiency, accuracy, and compliance with safety standards. Strong ability to work in fast-paced environments, collaborate with team members, and contribute to seamless logistics operations. Passionate about optimizing workflow and maintaining high productivity to enhance customer satisfaction.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <section class="download-section">
+        <div class="container">
+            <a href="ParthPatelCV.pdf" class="download-btn" download>
+                <i class="fas fa-download"></i> Download Resume PDF
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Parth Patel</h3>
+                    <p>Computer Science Student</p>
+                </div>
+                
+                <div class="footer-links">
+                    <!-- Navigation links -->
+                    <div class="footer-links-column">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="#profile">Profile</a></li>
+                            <li><a href="#education">Education</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#experience">Experience</a></li>
+                            <li><a href="index.html">Portfolio</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact links -->
+                    <div class="footer-links-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:parthpatel.78614a@yahoo.com">Email Me</a></li>
+                            <li><a href="tel:+17742238113">Call Me</a></li>
+                            <li><a href="https://github.com/Parth-Patel459">GitHub</a></li>
+                            <li><a href="https://www.linkedin.com/in/parth-patel-b48290353/">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer bottom section -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 Parth Patel. All Rights Reserved.
+                </div>
+                
+                <!-- Footer social links -->
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.x.com/ParthPa41787942" aria-label="X"><i class="fab fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                
+                <div class="back-to-top">
+                    <a href="#profile" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Navigation Components -->
+    
+    <!-- Bottom Scroll Bar -->
+    <div class="bottom-scrollbar-container">
+        <div class="scroll-indicator" id="scroll-indicator"></div>
+        <div class="scroll-nav">
+            <button class="scroll-nav-item" data-target="#profile">Profile</button>
+            <button class="scroll-nav-item" data-target="#education">Education</button>
+            <button class="scroll-nav-item" data-target="#skills">Skills</button>
+            <button class="scroll-nav-item" data-target="#projects">Projects</button>
+            <button class="scroll-nav-item" data-target="#experience">Experience</button>
+            <button class="scroll-nav-item" data-target="index.html">Portfolio</button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Main Script -->
+    <script src="resume-script.js"></script>
+</body>
+</html>
