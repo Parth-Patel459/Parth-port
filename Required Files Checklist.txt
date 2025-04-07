@@ -1,0 +1,70 @@
+# Required Files Checklist
+
+Use this checklist to ensure you have all the necessary files for your GitHub Pages website:
+
+## HTML Files
+- [x] `index.html` - Main homepage
+- [x] `resume.html` - Resume/CV page
+- [x] `resource1.html` - iOS security resource page
+- [ ] `404.html` - Custom error page (recommended)
+- [ ] `thanks.html` - Form submission confirmation page (recommended)
+
+## CSS Files
+- [x] `styles.css` - Main stylesheet
+- [x] `resume-styles.css` - Resume page specific styles
+
+## JavaScript Files
+- [x] `script.js` - Main JavaScript file
+- [x] `resume-script.js` - Resume page specific scripts
+
+## Assets
+- [ ] `/assets/` directory - Containing all media files:
+  - [ ] Profile images (`Parth-Patel.jpeg`, `Parth-Patel-Profile-image.jpg`)
+  - [ ] Background images (`background1.jpg`, `background2.jpg`, `background3.jpg`)
+  - [ ] Project images (`project1.jpg`, `project2.jpg`, `project3.jpg`)
+  - [ ] Blog images (`blog1.jpg`, `blog2.jpg`, `blog3.jpg`)
+  - [ ] Resume PDF (`ParthPatelCV.pdf`)
+  - [ ] Favicon (`favicon.png`)
+
+## Additional Files
+- [ ] `.nojekyll` - Empty file to disable Jekyll processing
+- [ ] `CNAME` - For custom domain (if applicable)
+- [ ] `robots.txt` - Search engine instructions (optional)
+- [ ] `sitemap.xml` - Site structure for search engines (optional)
+
+## GitHub Specific Files
+- [ ] `.github/workflows/deploy.yml` - For automated deployments (optional)
+- [ ] `README.md` - Repository documentation
+
+## Directory Structure
+Ensure your files follow this structure:
+```
+├── index.html
+├── resume.html
+├── resource1.html
+├── 404.html
+├── thanks.html
+├── styles.css
+├── resume-styles.css
+├── script.js
+├── resume-script.js
+├── .nojekyll
+├── favicon.png
+├── README.md
+├── assets/
+│   ├── images
+│   ├── documents
+│   └── other media files
+└── .github/
+    └── workflows/
+        └── deploy.yml
+```
+
+## Before Deployment
+- [ ] Verify all file paths are relative (starting with `./`)
+- [ ] Ensure all links between pages work correctly
+- [ ] Check that all external resources use HTTPS
+- [ ] Validate HTML and CSS code
+- [ ] Test website on multiple browsers
+- [ ] Test website on mobile devices
+- [ ] Optimize images and other assets for web
