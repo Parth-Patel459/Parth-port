@@ -2,6 +2,18 @@
 .DS_Store
 Thumbs.db
 
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
 # JPEG
 *.jpg
 *.jpeg
@@ -9,6 +21,11 @@ Thumbs.db
 *.jif
 *.jfif
 *.jfi
+*.heic
+*.bak
+*.tmp
+*.o
+*~
 
 # JPEG 2000
 *.jp2
