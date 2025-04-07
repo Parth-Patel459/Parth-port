@@ -1199,7 +1199,8 @@ body.dark-mode .resources-section {
   border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  height: 100%;
+  width: 100%;  /* Adjust to your preferred size */
+  height: auto; /* Maintain aspect ratio */
 }
 
 body.dark-mode .resource-card-animated {
