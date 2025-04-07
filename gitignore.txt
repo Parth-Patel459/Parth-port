@@ -35,7 +35,7 @@ node_modules/
 
 # Graphics Interchange Format
 *.gif
-
+*.mp4
 # RAW
 *.raw
 
