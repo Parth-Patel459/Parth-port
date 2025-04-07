@@ -27,6 +27,13 @@ Thumbs.db
 *.o
 *~
 
+# Then make exceptions for specific files or folders
+!assets/images/*.png
+!hacking_image1/*.jpg
+!Parth Patel Profile image/*.jpeg
+!Parth Patel Profile image/*.heic
+!assets/videos/*.mp4
+
 # JPEG 2000
 *.jp2
 *.j2k
