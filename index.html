@@ -9,12 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Main stylesheet -->
     <link rel="stylesheet" href="styles.css">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.png">
-    <img src="Parth-Patel.jpeg" alt="Test JPEG">
-    <img src="project1.jpg" alt="Test JPG">
-    <img src="favicon.png" alt="Test PNG">
-    <img src="background.mp4" alt="Test MP4" width="320" height="240" controls>
+    <!-- Favicon - Make sure this file exists in your root directory -->
+    <link rel="shortcut icon" href="./favicon.png">
 </head>
 <body>
     <!-- Overlay for sidebar -->
@@ -144,7 +140,7 @@
     <section class="hero" id="home">
         <!-- Changed from data-backgrounds to a proper video element -->
         <video autoplay muted loop id="hero-video" class="hero-background">
-            <source src="/background.mp4" type="video/mp4">
+            <source src="./background.mp4" type="video/mp4">
         </video>
         <div class="hero-content">
             <h1>PARTH PATEL</h1>
@@ -169,7 +165,8 @@
                 </svg>
                 <div class="profile-card-content">
                     <div class="profile-image-container">
-                        <img src="/Parth-Patel.jpeg" alt="PARTH PATEL" class="profile-image">
+                        <!-- Fixed image path with ./ prefix -->
+                        <img src="./Parth-Patel.jpeg" alt="PARTH PATEL" class="profile-image">
                     </div>
                     <h2 class="profile-name">PARTH PATEL</h2>
                     <div class="profile-divider"></div>
@@ -226,7 +223,8 @@
                     </svg>
                     <div class="project-card-content">
                         <div class="project-image">
-                            <img src="project1.jpg" alt="E-commerce Project">
+                            <!-- Fixed image path with ./ prefix -->
+                            <img src="./project1.jpg" alt="E-commerce Project">
                         </div>
                         <div class="card-content">
                             <h3>E-commerce Platform</h3>
@@ -248,7 +246,8 @@
                     </svg>
                     <div class="project-card-content">
                         <div class="project-image">
-                            <img src="project2.jpg" alt="Dashboard Project">
+                            <!-- Fixed image path with ./ prefix -->
+                            <img src="./project2.jpg" alt="Dashboard Project">
                         </div>
                         <div class="card-content">
                             <h3>Analytics Dashboard</h3>
@@ -270,7 +269,8 @@
                     </svg>
                     <div class="project-card-content">
                         <div class="project-image">
-                            <img src="project3.jpg" alt="Mobile App">
+                            <!-- Fixed image path with ./ prefix -->
+                            <img src="./project3.jpg" alt="Mobile App">
                         </div>
                         <div class="card-content">
                             <h3>Fitness Tracking App</h3>
@@ -302,7 +302,8 @@
                     </svg>
                     <div class="blog-card-content">
                         <div class="blog-img">
-                            <img src="blog1.jpg" alt="Blog Post 1">
+                            <!-- Fixed image path with ./ prefix -->
+                            <img src="./blog1.jpg" alt="Blog Post 1">
                         </div>
                         <div class="blog-text">
                             <span class="blog-date">March 15, 2025</span>
@@ -320,7 +321,8 @@
                     </svg>
                     <div class="blog-card-content">
                         <div class="blog-img">
-                            <img src="blog2.jpg" alt="Blog Post 2">
+                            <!-- Fixed image path with ./ prefix -->
+                            <img src="./blog2.jpg" alt="Blog Post 2">
                         </div>
                         <div class="blog-text">
                             <span class="blog-date">February 28, 2025</span>
@@ -338,7 +340,8 @@
                     </svg>
                     <div class="blog-card-content">
                         <div class="blog-img">
-                            <img src="blog3.jpg" alt="Blog Post 3">
+                            <!-- Fixed image path with ./ prefix -->
+                            <img src="./blog3.jpg" alt="Blog Post 3">
                         </div>
                         <div class="blog-text">
                             <span class="blog-date">January 14, 2025</span>
@@ -424,7 +427,7 @@
                     </div>
                 </div>
 
-                <!-- Resource 5 -->
+                <!-- Resource 5 - Fixed the div that was using an image name as a class -->
                 <div class="resource-card-animated">
                     <svg>
                         <rect x="0" y="0" width="100%" height="100%"></rect>
