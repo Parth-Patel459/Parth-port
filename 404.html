@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Page not found - Parth Patel Portfolio">
+    <title>404 - Page Not Found | PARTH PATEL</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="./styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./favicon.png">
+    <!-- Custom 404 page styles -->
+    <style>
+        .error-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .error-code {
+            font-size: 10rem;
+            font-weight: 700;
+            margin: 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+        }
+        
+        .error-title {
+            font-size: 2rem;
+            margin: 0 0 1.5rem;
+        }
+        
+        .error-message {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+        }
+        
+        .error-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        /* Logo animation for 404 page */
+        .logo-animated {
+            margin-bottom: 2rem;
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+        
+        .error-icon {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            animation: rotate 6s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-10deg); }
+            100% { transform: rotate(0deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .error-code { font-size: 8rem; }
+            .error-title { font-size: 1.8rem; }
+        }
+        
+        @media (max-width: 576px) {
+            .error-code { font-size: 6rem; }
+            .error-title { font-size: 1.5rem; }
+            .error-message { font-size: 1rem; }
+            .error-actions { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="logo-animated">
+            <i class="fas fa-compass error-icon"></i>
+        </div>
+        <h1 class="error-code">404</h1>
+        <h2 class="error-title">Page Not Found</h2>
+        <p class="error-message">
+            Oops! The page you're looking for seems to have vanished into the digital void.
+            It might have been moved, deleted, or never existed in the first place.
+        </p>
+        <div class="error-actions">
+            <a href="./index.html" class="btn btn-primary">
+                <i class="fas fa-home"></i> Back to Home
+            </a>
+            <a href="./index.html#contact" class="btn btn-outline">
+                <i class="fas fa-envelope"></i> Contact Me
+            </a>
+        </div>
+    </div>
+    
+    <!-- Main Script -->
+    <script src="./script.js"></script>
+</body>
+</html>
