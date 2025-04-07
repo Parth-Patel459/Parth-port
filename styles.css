@@ -832,7 +832,7 @@ body.dark-mode .profile-image-container {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
   pointer-events: none;
   z-index: 1;
 }
@@ -844,6 +844,8 @@ body.dark-mode .profile-image-container {
   stroke-dashoffset: 800;
   transition: stroke-dashoffset var(--animation-speed-medium) var(--animation-curve);
   fill: transparent;
+  width: 100%;
+  height: auto;
 }
 
 .profile-card-animated:hover svg rect,
@@ -1199,14 +1201,9 @@ body.dark-mode .resources-section {
   border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
-  width: 100%;  /* Adjust to your preferred size */
-  height: auto; /* Maintain aspect ratio */
 }
 
-body.dark-mode .resource-card-animated {
-  background-color: var(--dark-background-color);
-  border-color: var(--dark-border-color);
-}
+
 
 .resource-card-animated:hover {
   transform: translateY(-10px);
@@ -1255,10 +1252,14 @@ body.dark-mode .resource-card-content p {
   border-radius: 20px;
   font-size: 0.8rem;
   margin-bottom: 15px;
+  width: 100%;
+  height: auto;
 }
 
 .resource-card-animated .buttons.has-addons {
   margin-top: auto;
+  width: 100%;
+  height: auto;
 }
 
 .resource-card-animated svg rect {
@@ -1268,6 +1269,8 @@ body.dark-mode .resource-card-content p {
   stroke-dashoffset: 600;
   transition: stroke-dashoffset var(--animation-speed-medium) var(--animation-curve);
   fill: transparent;
+  width: 100%;
+  height: auto;
 }
 
 /* ====== CONTACT SECTION ====== */
