@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="iOS Ethical Hacking & Security Research - Parth Patel">
     <title>PARTH PATEL | Developer & Designer</title>
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Main stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.png">
-    <script src="sidebar.js"></script>
+    <link rel="shortcut icon" href="./favicon.png">
 </head>
 <body>
     <!-- Overlay for Sidebar -->
@@ -87,12 +88,12 @@
             </div>
             
             <div class="nav-links" id="nav-links">
-                <a href="index.html#home" class="nav-link active">Home</a>
-                <a href="index.html#about" class="nav-link">About</a>
-                <a href="index.html#projects" class="nav-link">Projects</a>
-                <a href="index.html#blog" class="nav-link">Blog</a>
-                <a href="index.html#resources" class="nav-link">Resources</a>
-                <a href="index.html#contact" class="nav-link">Contact</a>
+                <a href="./index.html#home" class="nav-link active">Home</a>
+                <a href="./index.html#about" class="nav-link">About</a>
+                <a href="./index.html#projects" class="nav-link">Projects</a>
+                <a href="./index.html#blog" class="nav-link">Blog</a>
+                <a href="./index.html#resources" class="nav-link">Resources</a>
+                <a href="./index.html#contact" class="nav-link">Contact</a>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -115,16 +116,23 @@
         </div>
         
         <ul>
-            <li><a href="index.html#home"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="index.html#about"><i class="fas fa-user"></i> About</a></li>
-            <li><a href="index.html#projects"><i class="fas fa-code"></i> Projects</a></li>
-            <li><a href="index.html#blog"><i class="fas fa-blog"></i> Blog</a></li>
-            <li><a href="index.html#resources"><i class="fas fa-bookmark"></i> Resources</a></li>
-            <li><a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="./index.html#home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="./index.html#about"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="./index.html#projects"><i class="fas fa-code"></i> Projects</a></li>
+            <li><a href="./index.html#blog"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="./index.html#resources"><i class="fas fa-bookmark"></i> Resources</a></li>
+            <li><a href="./index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
         </ul>
         
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        </div>
+        
         <div class="sidebar-footer">
-            &copy; 2025 PARTH PATEL
+            &copy; <span id="current-year">2025</span> PARTH PATEL
         </div>
     </div>
 
@@ -219,7 +227,7 @@
             Apple offers rewards for ethical hackers who responsibly disclose vulnerabilities. High-value payouts 
             are offered for zero-click attacks, lockscreen bypasses, and iCloud account takeovers.
         </p>
-        <p>For more details, visit <a href="https://security.apple.com" target="_blank">Apple Security Bounty</a>.</p>
+        <p>For more details, visit <a href="https://security.apple.com" target="_blank" rel="noopener noreferrer">Apple Security Bounty</a>.</p>
     </section>
 
 
@@ -227,12 +235,12 @@
     <div class="bottom-scrollbar-container">
         <div class="scroll-indicator" id="scroll-indicator"></div>
         <div class="scroll-nav">
-            <button class="scroll-nav-item" data-target="index.html#home">Home</button>
-            <button class="scroll-nav-item" data-target="index.html#about">About</button>
-            <button class="scroll-nav-item" data-target="index.html#projects">Projects</button>
-            <button class="scroll-nav-item" data-target="index.html#resources">Resources</button>
-            <button class="scroll-nav-item" data-target="index.html#blog">Blog</button>
-            <button class="scroll-nav-item" data-target="index.html#contact">Contact</button>
+            <button class="scroll-nav-item" data-target="./index.html#home">Home</button>
+            <button class="scroll-nav-item" data-target="./index.html#about">About</button>
+            <button class="scroll-nav-item" data-target="./index.html#projects">Projects</button>
+            <button class="scroll-nav-item" data-target="./index.html#resources">Resources</button>
+            <button class="scroll-nav-item" data-target="./index.html#blog">Blog</button>
+            <button class="scroll-nav-item" data-target="./index.html#contact">Contact</button>
         </div>
     </div>
 
@@ -242,7 +250,19 @@
     </button>
 
     <!-- Main Script -->
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
+    
+    <!-- Current year script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update copyright year
+            const yearElements = document.querySelectorAll('#current-year');
+            const currentYear = new Date().getFullYear();
+            yearElements.forEach(element => {
+                element.textContent = currentYear;
+            });
+        });
+    </script>
 </body>
 </html>
 

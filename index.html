@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Parth Patel - Web Developer & Designer Portfolio">
     <title>PARTH PATEL | Developer & Designer</title>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <!-- Main stylesheet -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./styles.css">
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="./favicon.png">
 </head>
 <body>
     <!-- Overlay for sidebar -->
@@ -92,7 +93,7 @@
                 <a href="#blog" class="nav-link">Blog</a>
                 <a href="#resources" class="nav-link">Resources</a>
                 <a href="#contact" class="nav-link">Contact</a>
-                <a href="resume.html" class="nav-link">Resume</a>
+                <a href="./resume.html" class="nav-link">Resume</a>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
@@ -121,23 +122,23 @@
             <li><a href="#blog"><i class="fas fa-blog"></i> Blog</a></li>
             <li><a href="#resources"><i class="fas fa-bookmark"></i> Resources</a></li>
             <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            <li><a href="resume.html"><i class="fas fa-file-alt"></i> Resume</a></li>
+            <li><a href="./resume.html"><i class="fas fa-file-alt"></i> Resume</a></li>
         </ul>
         
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub"><i class="fab fa-github"></i></a>
-            <a href="https://www.x.com/ParthPa41787942" aria-label="X"><i class="fab fa-brands fa-x-twitter"></i></a>
-            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         </div>
         
         <div class="sidebar-footer">
-            &copy; 2025 PARTH PATEL
+            &copy; <span id="current-year">2025</span> PARTH PATEL
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="hero" id="home" data-backgrounds="https://assets.awwwards.com/awards/element/2023/06/647de6cdbf047872531292.mp4">
+    <section class="hero" id="home" data-backgrounds="./assets/background1.jpg,./assets/background2.jpg,./assets/background3.jpg">
         <div class="hero-content">
             <h1>PARTH PATEL</h1>
             <p id="typewriter">Creative Web Developer & UI/UX Designer</p>
@@ -161,16 +162,16 @@
                 </svg>
                 <div class="profile-card-content">
                     <div class="profile-image-container">
-                        <img src="Parth-Patel.jpeg" alt="PARTH PATEL" class="profile-image">
+                        <img src="./assets/Parth-Patel.jpeg" alt="PARTH PATEL" class="profile-image">
                     </div>
                     <h2 class="profile-name">PARTH PATEL</h2>
                     <div class="profile-divider"></div>
                     <p class="profile-title">WEB DEVELOPER</p>
                     <div class="profile-social">
-                        <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                        <a href="https://www.x.com/ParthPa41787942" aria-label="X"><i class="fab fa-brands fa-x-twitter"></i></a>
-                        <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -180,7 +181,7 @@
                 <h1 class="about-heading">About Me</h1>
                 <p class="about-subheading">Front-end Developer with a passion for creating intuitive and engaging user experiences.</p>
                 <div class="about-buttons">
-                    <a href="resume.html" class="resume-btn-animated">
+                    <a href="./resume.html" class="resume-btn-animated">
                         <svg>
                             <rect x="0" y="0" width="100%" height="100%"></rect>
                         </svg>
@@ -218,7 +219,7 @@
                     </svg>
                     <div class="project-card-content">
                         <div class="project-image">
-                            <img src="project1.jpg" alt="E-commerce Project">
+                            <img src="./assets/project1.jpg" alt="E-commerce Project">
                         </div>
                         <div class="card-content">
                             <h3>E-commerce Platform</h3>
@@ -240,7 +241,7 @@
                     </svg>
                     <div class="project-card-content">
                         <div class="project-image">
-                            <img src="project2.jpg" alt="Dashboard Project">
+                            <img src="./assets/project2.jpg" alt="Dashboard Project">
                         </div>
                         <div class="card-content">
                             <h3>Analytics Dashboard</h3>
@@ -262,7 +263,7 @@
                     </svg>
                     <div class="project-card-content">
                         <div class="project-image">
-                            <img src="project3.jpg" alt="Mobile App">
+                            <img src="./assets/project3.jpg" alt="Mobile App">
                         </div>
                         <div class="card-content">
                             <h3>Fitness Tracking App</h3>
@@ -294,7 +295,7 @@
                     </svg>
                     <div class="blog-card-content">
                         <div class="blog-img">
-                            <img src="blog1.jpg" alt="Blog Post 1">
+                            <img src="./assets/blog1.jpg" alt="Blog Post 1">
                         </div>
                         <div class="blog-text">
                             <span class="blog-date">March 15, 2025</span>
@@ -312,7 +313,7 @@
                     </svg>
                     <div class="blog-card-content">
                         <div class="blog-img">
-                            <img src="blog2.jpg" alt="Blog Post 2">
+                            <img src="./assets/blog2.jpg" alt="Blog Post 2">
                         </div>
                         <div class="blog-text">
                             <span class="blog-date">February 28, 2025</span>
@@ -330,7 +331,7 @@
                     </svg>
                     <div class="blog-card-content">
                         <div class="blog-img">
-                            <img src="blog3.jpg" alt="Blog Post 3">
+                            <img src="./assets/blog3.jpg" alt="Blog Post 3">
                         </div>
                         <div class="blog-text">
                             <span class="blog-date">January 14, 2025</span>
@@ -422,11 +423,11 @@
                         <rect x="0" y="0" width="100%" height="100%"></rect>
                     </svg>
                     <div class="resource-card-content">
-                        <h3><a href="resource1.html">iOS Ethical Hacking & Security Research</a></h3>
+                        <h3><a href="./resource1.html">iOS Ethical Hacking & Security Research</a></h3>
                         <p>A comprehensive guide to iOS security architecture, jailbreaking techniques, penetration testing, and ethical disclosure for security researchers.</p>
                         <span class="resource-tag">Security</span>
                         <div class="buttons has-addons">
-                            <a href="resource1.html" class="button" title="View Guide"><i class="fas fa-globe"></i> Guide</a>
+                            <a href="./resource1.html" class="button" title="View Guide"><i class="fas fa-globe"></i> Guide</a>
                             <a href="#" class="button" title="Download PDF"><i class="fas fa-file-pdf"></i> PDF</a>
                             <a href="#" class="button" title="GitHub Resources"><i class="fab fa-github"></i> Repo</a>
                         </div>
@@ -477,7 +478,7 @@
                         <i class="fas fa-map-marker-alt contact-icon"></i>
                         <h3>Location</h3>
                         <p>Canton, MA</p>
-                        <a href="https://maps.google.com/?q=Canton,+MA" target="_blank" class="contact-link">View Map</a>
+                        <a href="https://maps.google.com/?q=Canton,+MA" target="_blank" rel="noopener noreferrer" class="contact-link">View Map</a>
                     </div>
                 </div>
             
@@ -489,16 +490,16 @@
                         <i class="fas fa-share-alt contact-icon"></i>
                         <h3>Social Media</h3>
                         <div class="contact-social">
-                            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-linkedin"></i>
                             </a>
-                            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub">
+                            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-github"></i>
                             </a>
-                            <a href="https://www.x.com/ParthPa41787942" aria-label="X (formerly Twitter)">
+                            <a href="https://www.x.com/ParthPa41787942" aria-label="X (formerly Twitter)" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-brands fa-x-twitter"></i>
                             </a>
-                            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram">
+                            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-instagram"></i>
                             </a>
                         </div>
@@ -510,6 +511,12 @@
         <!-- Contact Form with Formspree -->
 <div class="contact-form">
     <form action="https://formspree.io/f/xpwpjewz" method="POST" id="contact-form" novalidate aria-live="polite">
+        <!-- Hidden honeypot field to prevent spam -->
+        <input type="text" name="_gotcha" style="display:none" />
+        
+        <!-- Add redirect URL -->
+        <input type="hidden" name="_next" value="https://parth-patel459.github.io/thanks.html" />
+        
         <div class="form-grid">
             <div class="form-group">
                 <label for="name" class="form-label">Name <span class="required">*</span></label>
@@ -590,14 +597,14 @@
             
             <div class="footer-bottom">
                 <div class="copyright">
-                    &copy; 2025 Parth Patel. All Rights Reserved.
+                    &copy; <span id="current-year">2025</span> Parth Patel. All Rights Reserved.
                 </div>
                 
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="https://www.x.com/ParthPa41787942" aria-label="X"><i class="fab fa-brands fa-x-twitter"></i></a>
-                    <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                 </div>
                 
                 <div class="back-to-top">
@@ -625,14 +632,20 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- Logo Animation Controls (for development, can be removed in production) -->
-    <div class="controls" style="position:fixed; bottom:20px; left:20px; z-index:100; display:none;">
-        <button onclick="showLetters()">Show Letter Mapping</button>
-        <button onclick="animateLogo()">Animate Logo</button>
-    </div>
-
     <!-- Main Script -->
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
+    
+    <!-- Current year script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update copyright year
+            const yearElements = document.querySelectorAll('#current-year');
+            const currentYear = new Date().getFullYear();
+            yearElements.forEach(element => {
+                element.textContent = currentYear;
+            });
+        });
+    </script>
 </body>
 </html>
 

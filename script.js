@@ -2,6 +2,7 @@
  * Enhanced Portfolio Site JavaScript
  * - Optimized for performance
  * - Improved accessibility
+ * - Cross-browser compatibility
  * - Clean, maintainable code structure
  */
 
@@ -10,10 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const elements = {
     sidebar: document.getElementById('sidebar'),
     overlay: document.querySelector('.overlay'),
-    darkModeToggle: document.getElementById('dark-mode-toggle'),
+    darkModeToggle: document.getElementById('theme-toggle'),
     typewriterEl: document.getElementById('typewriter'),
     filterButtons: document.querySelectorAll('.filter-btn'),
-    projects: document.querySelectorAll('.project-card'),
+    projects: document.querySelectorAll('.project-card-animated'),
     navLinks: document.querySelectorAll('.nav-links a'),
     heroSection: document.querySelector('.hero'),
     scrollIndicator: document.querySelector('.scroll-indicator'),
@@ -26,6 +27,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Utility functions
   const utils = {
+    // Detect browser features
+    supportsIntersectionObserver: 'IntersectionObserver' in window,
+    supportsTouchEvents: 'ontouchstart' in window || navigator.maxTouchPoints > 0,
+    
     // Throttle function for events that fire rapidly
     throttle: (func, wait = 100) => {
       let timer = null;
@@ -48,6 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
           func.apply(this, args);
         }, wait);
       };
+    },
+    
+    // Check if element is in viewport
+    isInViewport: (el) => {
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
     }
   };
 
@@ -112,7 +129,13 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle: () => {
       document.body.classList.toggle('dark-mode');
       const isDarkMode = document.body.classList.contains('dark-mode');
-      localStorage.setItem('dark-mode', isDarkMode);
+      
+      // Use localStorage with try-catch for better compatibility
+      try {
+        localStorage.setItem('dark-mode', isDarkMode);
+      } catch (e) {
+        console.error('Local storage is not available:', e);
+      }
       
       // Update ARIA attributes and icons
       const darkModeButtons = document.querySelectorAll('[data-theme-toggle], #dark-mode-toggle, #theme-toggle');
@@ -127,13 +150,32 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       // Dispatch theme change event
-      window.dispatchEvent(new CustomEvent('themeChanged', { 
-        detail: { isDarkMode } 
-      }));
+      try {
+        window.dispatchEvent(new CustomEvent('themeChanged', { 
+          detail: { isDarkMode } 
+        }));
+      } catch (e) {
+        // Fallback for IE
+        const themeChangeEvent = document.createEvent('CustomEvent');
+        themeChangeEvent.initCustomEvent('themeChanged', true, true, { isDarkMode });
+        window.dispatchEvent(themeChangeEvent);
+      }
     },
 
     init: () => {
-      const isDarkMode = localStorage.getItem('dark-mode') === 'true';
+      let isDarkMode = false;
+      
+      // Try to get dark mode preference from localStorage
+      try {
+        isDarkMode = localStorage.getItem('dark-mode') === 'true';
+      } catch (e) {
+        console.error('Local storage is not available:', e);
+        // Fallback to media query if localStorage is not available
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          isDarkMode = true;
+        }
+      }
+      
       if (isDarkMode) {
         document.body.classList.add('dark-mode');
         
@@ -154,6 +196,20 @@ document.addEventListener('DOMContentLoaded', () => {
           button.addEventListener('click', darkMode.toggle);
         }
       });
+      
+      // Listen for system preference changes
+      if (window.matchMedia) {
+        const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        if (colorSchemeQuery.addEventListener) {
+          colorSchemeQuery.addEventListener('change', e => {
+            if (e.matches && !document.body.classList.contains('dark-mode')) {
+              darkMode.toggle();
+            } else if (!e.matches && document.body.classList.contains('dark-mode')) {
+              darkMode.toggle();
+            }
+          });
+        }
+      }
     }
   };
 
@@ -253,6 +309,16 @@ document.addEventListener('DOMContentLoaded', () => {
       const startPosition = window.pageYOffset;
       const distance = targetPosition - startPosition - offset;
       
+      // Use native smooth scrolling if supported
+      if ('scrollBehavior' in document.documentElement.style) {
+        window.scrollTo({
+          top: targetPosition - offset,
+          behavior: 'smooth'
+        });
+        return;
+      }
+      
+      // Fallback for browsers that don't support smooth scrolling
       let startTime = null;
       const duration = 1000; // ms
       
@@ -353,10 +419,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Back to top button
       if (elements.scrollTopBtn) {
         elements.scrollTopBtn.addEventListener('click', () => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
+          scrolling.smoothScroll('#home');
         });
       }
     }
@@ -370,9 +433,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!elements.heroSection) return;
       
       // Get background images from data attribute or use defaults
-      const images = elements.heroSection.dataset.backgrounds ? 
-        elements.heroSection.dataset.backgrounds.split(',') : 
-        ["IMG_1.jpeg", "IMG_2.jpeg", "hero-bg.jpg"];
+      const imagesAttr = elements.heroSection.dataset.backgrounds || '';
+      const images = imagesAttr ? imagesAttr.split(',') : ["./assets/background1.jpg", "./assets/background2.jpg", "./assets/background3.jpg"];
       
       let bgIndex = 0;
       
@@ -383,6 +445,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       
       const changeBackground = () => {
+        // Check if element still exists (page changes, etc.)
+        if (!elements.heroSection) return;
+        
         // Prepare next image
         const nextIndex = (bgIndex + 1) % images.length;
         const nextImage = new Image();
@@ -396,7 +461,9 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Remove transition class after animation completes
         setTimeout(() => {
-          elements.heroSection.classList.remove('bg-transitioning');
+          if (elements.heroSection) {
+            elements.heroSection.classList.remove('bg-transitioning');
+          }
         }, 1000);
         
         bgIndex = nextIndex;
@@ -406,7 +473,12 @@ document.addEventListener('DOMContentLoaded', () => {
       changeBackground();
       
       // Set interval for rotation
-      setInterval(changeBackground, 10000);
+      const rotationInterval = setInterval(changeBackground, 10000);
+      
+      // Clean up interval on page change/unload
+      window.addEventListener('beforeunload', () => {
+        clearInterval(rotationInterval);
+      });
     }
   };
 
@@ -419,7 +491,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       if (!lazyImages.length) return;
       
-      if ('IntersectionObserver' in window) {
+      if (utils.supportsIntersectionObserver) {
         const imageObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -437,6 +509,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
               };
               
+              img.onerror = () => {
+                // Handle image loading error
+                console.warn('Failed to load image:', image.dataset.src);
+                image.src = './assets/image-placeholder.jpg'; // Fallback image
+                image.classList.add('error');
+                image.removeAttribute('data-src');
+              };
+              
               img.src = image.dataset.src;
               imageObserver.unobserve(image);
             }
@@ -450,11 +530,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       } else {
         // Fallback for browsers without IntersectionObserver
-        lazyImages.forEach(img => {
-          img.src = img.dataset.src;
-          img.classList.add('loaded');
-          img.removeAttribute('data-src');
-        });
+        const loadVisibleImages = () => {
+          lazyImages.forEach(img => {
+            if (img.dataset.src && utils.isInViewport(img)) {
+              img.src = img.dataset.src;
+              img.classList.add('loaded');
+              img.removeAttribute('data-src');
+            }
+          });
+        };
+        
+        // Initial load
+        loadVisibleImages();
+        
+        // Add scroll and resize event listeners with throttling
+        window.addEventListener('scroll', utils.throttle(loadVisibleImages, 200));
+        window.addEventListener('resize', utils.throttle(loadVisibleImages, 200));
       }
     }
   };
@@ -470,7 +561,7 @@ const formValidation = {
       form.setAttribute('novalidate', true);
       
       // Enhanced real-time validation
-      const formInputs = form.querySelectorAll('input:not([type="hidden"]), select, textarea');
+      const formInputs = form.querySelectorAll('input:not([type="hidden"]):not([type="_gotcha"]), select, textarea');
       formInputs.forEach(input => {
         // Add validation icon container
         const formGroup = input.closest('.form-group') || input.parentNode;
@@ -575,7 +666,7 @@ const formValidation = {
     // Check if form is valid
     if (!form.checkValidity()) {
       // Validate all inputs to show errors
-      form.querySelectorAll('input:not([type="hidden"]), select, textarea').forEach(input => {
+      form.querySelectorAll('input:not([type="hidden"]):not([type="_gotcha"]), select, textarea').forEach(input => {
         formValidation.validateInput(input, true);
       });
       return;
@@ -583,15 +674,17 @@ const formValidation = {
     
     // Show loading state
     const submitBtn = form.querySelector('button[type="submit"]');
-    const loadingSpinner = submitBtn.querySelector('.loading-spinner');
-    const originalText = submitBtn.childNodes[0].textContent.trim();
+    const loadingSpinner = submitBtn?.querySelector('.loading-spinner');
+    const originalText = submitBtn?.childNodes[0].textContent.trim() || 'Send Message';
     
-    submitBtn.disabled = true;
-    submitBtn.classList.add('loading');
-    if (loadingSpinner) {
-      loadingSpinner.style.display = 'inline-block';
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
+      if (loadingSpinner) {
+        loadingSpinner.style.display = 'inline-block';
+      }
+      submitBtn.childNodes[0].textContent = 'Sending...';
     }
-    submitBtn.childNodes[0].textContent = 'Sending...';
     
     // Get form data for sending
     const formData = new FormData(form);
@@ -605,20 +698,27 @@ const formValidation = {
       }
     })
     .then(response => {
-      console.log('Response status:', response.status);
+      if (!response.ok) {
+        throw new Error(`Form submission failed: ${response.status} ${response.statusText}`);
+      }
       return response.json();
     })
     .then(data => {
-      console.log('Response data:', data);
-      
       if (data.ok) { // Formspree uses "ok: true" for success
-        // Show success message
+        // Check if there's a redirect URL
+        const redirectInput = form.querySelector('input[name="_next"]');
+        if (redirectInput && redirectInput.value) {
+          window.location.href = redirectInput.value;
+          return;
+        }
+        
+        // Show success message if no redirect
         formValidation.showSuccessMessage(form);
         
         // Reset form
         form.reset();
         form.classList.remove('was-validated');
-        form.querySelectorAll('input:not([type="hidden"]), textarea').forEach(input => {
+        form.querySelectorAll('input:not([type="hidden"]):not([type="_gotcha"]), textarea').forEach(input => {
           input.classList.remove('input-valid');
           delete input.dataset.touched;
         });
@@ -675,11 +775,13 @@ const formValidation = {
     })
     .finally(() => {
       // Reset button state
-      submitBtn.disabled = false;
-      submitBtn.classList.remove('loading');
-      submitBtn.childNodes[0].textContent = originalText;
-      if (loadingSpinner) {
-        loadingSpinner.style.display = 'none';
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+        submitBtn.childNodes[0].textContent = originalText;
+        if (loadingSpinner) {
+          loadingSpinner.style.display = 'none';
+        }
       }
     });
   },
@@ -772,112 +874,41 @@ const formValidation = {
       
       if (!elementsToAnimate.length) return;
       
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            requestAnimationFrame(() => {
-              entry.target.classList.add('active');
-            });
-            observer.unobserve(entry.target);
-          }
+      if (utils.supportsIntersectionObserver) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              requestAnimationFrame(() => {
+                entry.target.classList.add('active');
+              });
+              observer.unobserve(entry.target);
+            }
+          });
+        }, {
+          threshold: 0.1,
+          rootMargin: '0px 0px -100px 0px'
         });
-      }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-      });
-      
-      elementsToAnimate.forEach(element => {
-        observer.observe(element);
-      });
-    }
-  };
-
-  /**
-   * Modal functionality
-   */
-  const modals = {
-    closeModal: (modal, previouslyFocused) => {
-      modal.classList.remove('show');
-      document.body.style.overflow = '';
-      
-      // Return focus to the element that had focus before modal was opened
-      if (previouslyFocused) {
-        previouslyFocused.focus();
+        
+        elementsToAnimate.forEach(element => {
+          observer.observe(element);
+        });
+      } else {
+        // Fallback for browsers without IntersectionObserver
+        const checkElementsInView = () => {
+          elementsToAnimate.forEach(element => {
+            if (utils.isInViewport(element) && !element.classList.contains('active')) {
+              element.classList.add('active');
+            }
+          });
+        };
+        
+        // Initial check
+        checkElementsInView();
+        
+        // Add event listeners with throttling
+        window.addEventListener('scroll', utils.throttle(checkElementsInView, 200));
+        window.addEventListener('resize', utils.throttle(checkElementsInView, 200));
       }
-    },
-
-    init: () => {
-      // Get all modal triggers
-      const modalTriggers = document.querySelectorAll('[data-modal]');
-      
-      if (!modalTriggers.length) return;
-      
-      modalTriggers.forEach(trigger => {
-        trigger.addEventListener('click', () => {
-          const modalId = trigger.getAttribute('data-modal');
-          const modal = document.getElementById(modalId);
-          
-          if (!modal) return;
-          
-          // Store the element that had focus before opening modal
-          const previouslyFocused = document.activeElement;
-          
-          // Open modal
-          modal.classList.add('show');
-          document.body.style.overflow = 'hidden'; // Prevent background scrolling
-          
-          // Set focus on first focusable element for accessibility
-          const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-          
-          if (focusableElements.length) {
-            focusableElements[0].focus();
-          }
-          
-          // Close button functionality
-          const closeBtn = modal.querySelector('.modal-close');
-          
-          if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-              modals.closeModal(modal, previouslyFocused);
-            });
-          }
-          
-          // Close on overlay click
-          modal.addEventListener('click', (event) => {
-            if (event.target === modal) {
-              modals.closeModal(modal, previouslyFocused);
-            }
-          });
-          
-          // Close on Escape key
-          const handleKeydown = (event) => {
-            if (event.key === 'Escape' && modal.classList.contains('show')) {
-              modals.closeModal(modal, previouslyFocused);
-              document.removeEventListener('keydown', handleKeydown);
-            }
-          };
-          
-          document.addEventListener('keydown', handleKeydown);
-          
-          // Trap focus inside modal for accessibility
-          modal.addEventListener('keydown', function (event) {
-            if (event.key === 'Tab') {
-              if (focusableElements.length === 0) return;
-              
-              const firstElement = focusableElements[0];
-              const lastElement = focusableElements[focusableElements.length - 1];
-              
-              if (event.shiftKey && document.activeElement === firstElement) {
-                event.preventDefault();
-                lastElement.focus();
-              } else if (!event.shiftKey && document.activeElement === lastElement) {
-                event.preventDefault();
-                firstElement.focus();
-              }
-            }
-          });
-        });
-      });
     }
   };
 
@@ -909,29 +940,40 @@ const formValidation = {
       // Force reflow
       void stem.offsetWidth;
       
-      // Animate each part sequentially
-      stem.style.animation = 'draw 1s forwards';
+      // Check if the browser supports animations
+      const supportsAnimations = typeof document.createElement('div').style.animation !== 'undefined';
       
-      setTimeout(() => {
-        crossbar.style.animation = 'draw 0.8s forwards';
-      }, 800);
-      
-      setTimeout(() => {
-        topLoop.style.animation = 'draw 0.8s forwards';
-      }, 1600);
-      
-      setTimeout(() => {
-        bottomCurve.style.animation = 'draw 0.8s forwards';
-      }, 2400);
-      
-      setTimeout(() => {
-        diagonal.style.animation = 'draw 0.8s forwards';
-      }, 3200);
-      
-      setTimeout(() => {
+      if (supportsAnimations) {
+        // Animate each part sequentially
+        stem.style.animation = 'draw 1s forwards';
+        
+        setTimeout(() => {
+          crossbar.style.animation = 'draw 0.8s forwards';
+        }, 800);
+        
+        setTimeout(() => {
+          topLoop.style.animation = 'draw 0.8s forwards';
+        }, 1600);
+        
+        setTimeout(() => {
+          bottomCurve.style.animation = 'draw 0.8s forwards';
+        }, 2400);
+        
+        setTimeout(() => {
+          diagonal.style.animation = 'draw 0.8s forwards';
+        }, 3200);
+        
+        setTimeout(() => {
+          period.style.opacity = '1';
+          period.style.animation = 'fadeIn 0.5s forwards';
+        }, 4000);
+      } else {
+        // Fallback for browsers that don't support animations
+        [stem, crossbar, topLoop, bottomCurve, diagonal].forEach(el => {
+          el.style.strokeDashoffset = '0';
+        });
         period.style.opacity = '1';
-        period.style.animation = 'fadeIn 0.5s forwards';
-      }, 4000);
+      }
     },
 
     showLetters: () => {
@@ -952,7 +994,7 @@ const formValidation = {
         const logoElement = document.querySelector('.logo');
         if (logoElement) {
           logoElement.addEventListener('click', (e) => {
-            if (e.target.closest('.logo') && e.currentTarget.getAttribute('href') === '#') {
+            if (e.target.closest('.logo')) {
               e.preventDefault();
               logo.animate();
             }
@@ -981,6 +1023,12 @@ const formValidation = {
           }
         }
         
+        @-webkit-keyframes draw {
+          to {
+            stroke-dashoffset: 0;
+          }
+        }
+        
         @keyframes fadeIn {
           from {
             opacity: 0;
@@ -989,6 +1037,17 @@ const formValidation = {
           to {
             opacity: 1;
             transform: scale(1);
+          }
+        }
+        
+        @-webkit-keyframes fadeIn {
+          from {
+            opacity: 0;
+            -webkit-transform: scale(0);
+          }
+          to {
+            opacity: 1;
+            -webkit-transform: scale(1);
           }
         }
       `;
@@ -1029,16 +1088,56 @@ const formValidation = {
       });
 
       // Check if we're on resource pages and handle back-to-top links
-      if (window.location.pathname.includes('resource')) {
+      const currentPath = window.location.pathname;
+      if (currentPath.includes('resource') || currentPath.includes('resume')) {
         document.querySelectorAll('.back-to-top a').forEach(link => {
-          link.setAttribute('href', 'index.html#home');
+          link.setAttribute('href', './index.html#home');
         });
+      }
+    }
+  };
+
+  /**
+   * Browser feature detection and fallbacks
+   */
+  const browserFallbacks = {
+    init: () => {
+      // Check for flex support and add fallback class if not supported
+      const flexSupport = typeof document.createElement('div').style.flexBasis !== 'undefined';
+      if (!flexSupport) {
+        document.body.classList.add('no-flexbox');
+      }
+      
+      // Check for grid support and add fallback class if not supported
+      const gridSupport = typeof document.createElement('div').style.grid !== 'undefined';
+      if (!gridSupport) {
+        document.body.classList.add('no-grid');
+      }
+      
+      // Add IE detection
+      const isIE = /*@cc_on!@*/false || !!document.documentMode;
+      if (isIE) {
+        document.body.classList.add('is-ie');
+        
+        // Add specific fixes for IE
+        const heroSection = document.querySelector('.hero');
+        if (heroSection) {
+          heroSection.style.height = '100vh';
+        }
+      }
+      
+      // Add touch device detection
+      if (utils.supportsTouchEvents) {
+        document.body.classList.add('is-touch-device');
       }
     }
   };
 
   // Initialize all components
   const init = () => {
+    // Browser compatibility checks and fallbacks
+    browserFallbacks.init();
+    
     // Add animation styles
     addLogoAnimationStyles();
     
@@ -1061,11 +1160,17 @@ const formValidation = {
     
     // UI enhancements
     animations.init();
-    modals.init();
     logo.init();
     
     // Navigation
     crossPageNavigation.init();
+    
+    // Update copyright year
+    const yearElements = document.querySelectorAll('#current-year');
+    const currentYear = new Date().getFullYear();
+    yearElements.forEach(element => {
+      element.textContent = currentYear;
+    });
   };
 
   // Call the init function
