@@ -1,0 +1,52 @@
+# _config.yml - GitHub Pages configuration file
+# This is optional but can provide additional configuration options
+
+# Site settings
+title: Parth Patel - Developer & Designer
+description: Personal portfolio website showcasing web development skills and projects
+url: https://parth-patel459.github.io
+baseurl: ""
+author: Parth Patel
+
+# Build settings
+markdown: kramdown
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+# GitHub Pages specific settings
+github:
+  is_project_page: true
+  repository_url: https://github.com/Parth-Patel459/Parth-Patel459.github.io
+  owner_name: Parth Patel
+  repository_name: Personal Website
+
+# Custom 404 page
+permalink: pretty
+page_404: /404.html
+
+# Exclude specific files from build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - LICENSE
+  - CI.txt
+  - gitignore.txt
+
+# Include these files/folders that are typically excluded by default
+include:
+  - .nojekyll
+  - .well-known
+
+# Custom variables
+social:
+  linkedin: https://www.linkedin.com/in/parth-patel-b48290353/
+  github: https://www.github.com/Parth-Patel459
+  twitter: https://www.x.com/ParthPa41787942
+  instagram: https://www.instagram.com/csmp_2025
