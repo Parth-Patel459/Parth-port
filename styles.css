@@ -1206,8 +1206,7 @@ body.dark-mode .resources-section {
 body.dark-mode .resource-card-animated {
   background-color: var(--dark-background-color);
   border-color: var(--dark-border-color);
-  width: 100%;
-  height: auto;
+  
 }
 
 /* Add styles for the image */
@@ -1271,14 +1270,12 @@ body.dark-mode .resource-card-content p {
   border-radius: 20px;
   font-size: 0.8rem;
   margin-bottom: 15px;
-  width: 100%;
-  height: auto;
+  
 }
 
 .resource-card-animated .buttons.has-addons {
   margin-top: auto;
-  width: 100%;
-  height: auto;
+ 
 }
 
 .resource-card-animated svg rect {
@@ -1288,8 +1285,7 @@ body.dark-mode .resource-card-content p {
   stroke-dashoffset: 600;
   transition: stroke-dashoffset var(--animation-speed-medium) var(--animation-curve);
   fill: transparent;
-  width: 100%;
-  height: auto;
+ 
 }
 
 /* ====== CONTACT SECTION ====== */
