@@ -1,0 +1,107 @@
+/* thanks.html */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Message sent successfully - Parth Patel Portfolio">
+    <title>Thank You | PARTH PATEL</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="./styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./favicon.png">
+    <style>
+        .thanks-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .thanks-card {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        body.dark-mode .thanks-card {
+            background-color: var(--dark-background-color);
+            border-color: var(--dark-border-color);
+        }
+        
+        .thanks-icon {
+            font-size: 5rem;
+            color: var(--success-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .thanks-card h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .thanks-card p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .thanks-card {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .thanks-card {
+                padding: 25px;
+                margin: 0 15px;
+            }
+            
+            .thanks-icon {
+                font-size: 4rem;
+            }
+            
+            .thanks-card h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="thanks-container">
+        <div class="thanks-card">
+            <i class="fas fa-check-circle thanks-icon"></i>
+            <h1>Thank You!</h1>
+            <p>Your message has been sent successfully. I'll get back to you as soon as possible.</p>
+            <a href="./index.html" class="btn btn-primary">Back to Homepage</a>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add dark mode support
+            const savedDarkMode = localStorage.getItem('dark-mode') === 'true';
+            if (savedDarkMode) {
+                document.body.classList.add('dark-mode');
+            }
+        });
+    </script>
+</body>
+</html>
