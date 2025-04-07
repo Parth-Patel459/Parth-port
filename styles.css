@@ -1203,7 +1203,26 @@ body.dark-mode .resources-section {
   flex-direction: column;
 }
 
+body.dark-mode .resource-card-animated {
+  background-color: var(--dark-background-color);
+  border-color: var(--dark-border-color);
+  width: 100%;
+  height: auto;
+}
 
+/* Add styles for the image */
+.resource-card-animated img.resource-image {
+    width: 100%;  /* Make the image take up the full width of the card */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: var(--border-radius);  /* Apply border radius if you have one */
+    object-fit: cover;  /* This ensures the image covers the area without distortion */
+    margin-bottom: 15px; /* Add some space between the image and the content */
+}
+
+/* Optionally, you can set a max height for the images to prevent them from being too tall */
+.resource-card-animated img.resource-image {
+    max-height: 250px; /* Adjust as needed */
+}
 
 .resource-card-animated:hover {
   transform: translateY(-10px);
