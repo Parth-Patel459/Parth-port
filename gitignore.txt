@@ -18,6 +18,7 @@ node_modules/
 *.jif
 *.jfif
 *.jfi
+*.heic
 
 # JPEG 2000
 *.jp2
