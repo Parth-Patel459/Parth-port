@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     forms: document.querySelectorAll('form'),
     logo: document.getElementById('logoSVG'),
     navToggle: document.getElementById('nav-toggle'),
-    closeBtn: document.getElementById('close-btn')
+    closeBtn: document.getElementById('close-btn'),
+    scrollNavItems: document.querySelectorAll('.scroll-nav-item')
   };
 
   // Utility functions
@@ -65,6 +66,36 @@ document.addEventListener('DOMContentLoaded', () => {
         rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
         rect.right <= (window.innerWidth || document.documentElement.clientWidth)
       );
+    },
+    
+    // Load image with fallback
+    loadImage: (url, callback) => {
+      const img = new Image();
+      img.onload = () => callback(null, img);
+      img.onerror = () => callback(new Error(`Failed to load image: ${url}`));
+      img.src = url;
+    },
+    
+    // Safely store and retrieve from localStorage
+    storage: {
+      set: (key, value) => {
+        try {
+          localStorage.setItem(key, JSON.stringify(value));
+          return true;
+        } catch (e) {
+          console.warn('localStorage is not available:', e);
+          return false;
+        }
+      },
+      get: (key, defaultValue = null) => {
+        try {
+          const value = localStorage.getItem(key);
+          return value ? JSON.parse(value) : defaultValue;
+        } catch (e) {
+          console.warn('localStorage is not available:', e);
+          return defaultValue;
+        }
+      }
     }
   };
 
@@ -83,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Update ARIA attributes
       const isExpanded = elements.sidebar.classList.contains('active');
-      document.querySelectorAll('.menu-btn').forEach(btn => {
+      document.querySelectorAll('[aria-expanded]').forEach(btn => {
         btn.setAttribute('aria-expanded', isExpanded);
       });
       
@@ -130,22 +161,20 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.toggle('dark-mode');
       const isDarkMode = document.body.classList.contains('dark-mode');
       
-      // Use localStorage with try-catch for better compatibility
-      try {
-        localStorage.setItem('dark-mode', isDarkMode);
-      } catch (e) {
-        console.error('Local storage is not available:', e);
-      }
+      // Save preference to localStorage
+      utils.storage.set('dark-mode', isDarkMode);
       
       // Update ARIA attributes and icons
       const darkModeButtons = document.querySelectorAll('[data-theme-toggle], #dark-mode-toggle, #theme-toggle');
       darkModeButtons.forEach(el => {
-        el.setAttribute('aria-pressed', isDarkMode);
+        if (!el) return;
+        
+        el.setAttribute('aria-pressed', String(isDarkMode));
         
         const icon = el.querySelector('i');
         if (icon) {
-          icon.classList.toggle('fa-moon', !isDarkMode);
-          icon.classList.toggle('fa-sun', isDarkMode);
+          icon.classList.remove('fa-moon', 'fa-sun');
+          icon.classList.add(isDarkMode ? 'fa-sun' : 'fa-moon');
         }
       });
       
@@ -163,24 +192,22 @@ document.addEventListener('DOMContentLoaded', () => {
     },
 
     init: () => {
-      let isDarkMode = false;
+      // Get dark mode preference from localStorage or system preference
+      let isDarkMode = utils.storage.get('dark-mode', null);
       
-      // Try to get dark mode preference from localStorage
-      try {
-        isDarkMode = localStorage.getItem('dark-mode') === 'true';
-      } catch (e) {
-        console.error('Local storage is not available:', e);
-        // Fallback to media query if localStorage is not available
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          isDarkMode = true;
-        }
+      // If no saved preference, check system preference
+      if (isDarkMode === null && window.matchMedia) {
+        isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
       }
       
+      // Apply dark mode if needed
       if (isDarkMode) {
         document.body.classList.add('dark-mode');
         
         // Update icons
         document.querySelectorAll('[data-theme-toggle], #dark-mode-toggle, #theme-toggle').forEach(el => {
+          if (!el) return;
+          
           el.setAttribute('aria-pressed', 'true');
           const icon = el.querySelector('i');
           if (icon) {
@@ -200,14 +227,23 @@ document.addEventListener('DOMContentLoaded', () => {
       // Listen for system preference changes
       if (window.matchMedia) {
         const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
-        if (colorSchemeQuery.addEventListener) {
-          colorSchemeQuery.addEventListener('change', e => {
+        const handleSchemeChange = (e) => {
+          // Only update if user hasn't set a preference
+          if (utils.storage.get('dark-mode', null) === null) {
             if (e.matches && !document.body.classList.contains('dark-mode')) {
               darkMode.toggle();
             } else if (!e.matches && document.body.classList.contains('dark-mode')) {
               darkMode.toggle();
             }
-          });
+          }
+        };
+        
+        // Use modern event listener if supported
+        if (typeof colorSchemeQuery.addEventListener === 'function') {
+          colorSchemeQuery.addEventListener('change', handleSchemeChange);
+        } else if (typeof colorSchemeQuery.addListener === 'function') {
+          // Fallback for older browsers
+          colorSchemeQuery.addListener(handleSchemeChange);
         }
       }
     }
@@ -240,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init: () => {
       if (elements.typewriterEl) {
-        typewriter.effect(elements.typewriterEl, "I am a Developer, Designer & AI Enthusiast.");
+        typewriter.effect(elements.typewriterEl, "Creative Web Developer & UI/UX Designer");
       }
     }
   };
@@ -302,17 +338,19 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const scrolling = {
     smoothScroll: (targetId, offset = 70) => {
-      const targetSection = document.querySelector(targetId);
-      if (!targetSection) return;
+      const targetElement = targetId.startsWith('#') 
+        ? document.querySelector(targetId)
+        : document.getElementById(targetId);
+        
+      if (!targetElement) return;
       
-      const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
-      const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition - offset;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = targetPosition - offset;
       
       // Use native smooth scrolling if supported
       if ('scrollBehavior' in document.documentElement.style) {
         window.scrollTo({
-          top: targetPosition - offset,
+          top: offsetPosition,
           behavior: 'smooth'
         });
         return;
@@ -321,6 +359,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Fallback for browsers that don't support smooth scrolling
       let startTime = null;
       const duration = 1000; // ms
+      const startPosition = window.pageYOffset;
+      const distance = offsetPosition - startPosition;
       
       const animateScroll = (currentTime) => {
         if (startTime === null) startTime = currentTime;
@@ -374,11 +414,19 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!elements.scrollIndicator) return;
       
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const docHeight = Math.max(
+        document.body.scrollHeight, 
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight, 
+        document.documentElement.offsetHeight,
+        document.body.clientHeight, 
+        document.documentElement.clientHeight
+      ) - window.innerHeight;
+      
       const scrollPercent = (scrollTop / docHeight) * 100;
       
       requestAnimationFrame(() => {
-        elements.scrollIndicator.style.width = scrollPercent + '%';
+        elements.scrollIndicator.style.width = Math.min(scrollPercent, 100) + '%';
       });
     },
 
@@ -391,7 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
     init: () => {
       // Use event delegation for nav links
       document.body.addEventListener('click', (event) => {
-        const link = event.target.closest('.nav-links a, .sidebar a, .sidebar ul a, .scroll-nav-item');
+        const link = event.target.closest('.nav-links a, .sidebar a, .sidebar ul a, .scroll-nav-item, .hero-scroll-indicator');
         if (!link) return;
         
         const href = link.getAttribute('href') || link.getAttribute('data-target');
@@ -418,10 +466,30 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Back to top button
       if (elements.scrollTopBtn) {
-        elements.scrollTopBtn.addEventListener('click', () => {
+        elements.scrollTopBtn.addEventListener('click', (e) => {
+          e.preventDefault();
           scrolling.smoothScroll('#home');
         });
       }
+      
+      // Handle scroll nav items
+      elements.scrollNavItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const targetPath = this.getAttribute('data-target');
+          if (targetPath) {
+            if (targetPath.includes('.html')) {
+              // Navigate to the page
+              window.location.href = targetPath;
+            } else {
+              // Scroll to the section
+              scrolling.smoothScroll(targetPath);
+            }
+          }
+        });
+      });
+      
+      // Initial scroll position update
+      handleScroll();
     }
   };
 
@@ -433,15 +501,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!elements.heroSection) return;
       
       // Get background images from data attribute or use defaults
-      const imagesAttr = elements.heroSection.dataset.backgrounds || '';
-      const images = imagesAttr ? imagesAttr.split(',') : ["./assets/background1.jpg", "./assets/background2.jpg", "./assets/background3.jpg"];
+      const imagesAttr = elements.heroSection.getAttribute('data-backgrounds') || '';
+      const images = imagesAttr ? imagesAttr.split(',') : [
+        "./assets/background1.jpg", 
+        "./assets/background2.jpg", 
+        "./assets/background3.jpg"
+      ];
+      
+      if (!images.length) {
+        console.warn('No background images specified for hero section');
+        return;
+      }
       
       let bgIndex = 0;
       
       // Preload images
       images.forEach(src => {
-        const img = new Image();
-        img.src = src;
+        utils.loadImage(src, (err) => {
+          if (err) console.warn(err.message);
+        });
       });
       
       const changeBackground = () => {
@@ -450,8 +528,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Prepare next image
         const nextIndex = (bgIndex + 1) % images.length;
-        const nextImage = new Image();
-        nextImage.src = images[nextIndex];
+        utils.loadImage(images[nextIndex], () => {});
         
         // Add transition class
         elements.heroSection.classList.add('bg-transitioning');
@@ -533,9 +610,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const loadVisibleImages = () => {
           lazyImages.forEach(img => {
             if (img.dataset.src && utils.isInViewport(img)) {
-              img.src = img.dataset.src;
-              img.classList.add('loaded');
-              img.removeAttribute('data-src');
+              const loadImage = new Image();
+              loadImage.onload = () => {
+                img.src = img.dataset.src;
+                img.classList.add('loaded');
+                img.removeAttribute('data-src');
+              };
+              loadImage.onerror = () => {
+                img.src = './assets/image-placeholder.jpg';
+                img.classList.add('error');
+                img.removeAttribute('data-src');
+              };
+              loadImage.src = img.dataset.src;
             }
           });
         };
@@ -558,6 +644,8 @@ const formValidation = {
     if (!elements.forms.length) return;
     
     elements.forms.forEach(form => {
+      if (!form) return;
+      
       form.setAttribute('novalidate', true);
       
       // Enhanced real-time validation
@@ -565,7 +653,7 @@ const formValidation = {
       formInputs.forEach(input => {
         // Add validation icon container
         const formGroup = input.closest('.form-group') || input.parentNode;
-        if (!formGroup.querySelector('.validation-icon')) {
+        if (formGroup && !formGroup.querySelector('.validation-icon')) {
           const validationIcon = document.createElement('span');
           validationIcon.className = 'validation-icon';
           formGroup.appendChild(validationIcon);
@@ -586,7 +674,7 @@ const formValidation = {
       if (form.id === 'contact-form') {
         // Create loading spinner element
         const submitBtn = form.querySelector('button[type="submit"]');
-        if (submitBtn) {
+        if (submitBtn && !submitBtn.querySelector('.loading-spinner')) {
           const loadingSpinner = document.createElement('span');
           loadingSpinner.className = 'loading-spinner';
           loadingSpinner.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
@@ -611,6 +699,8 @@ const formValidation = {
   },
   
   validateInput: (input, isBlur = false) => {
+    if (!input) return;
+    
     const formGroup = input.closest('.form-group') || input.parentNode;
     
     // Only show errors on blur or if the form has been submitted once
@@ -660,6 +750,8 @@ const formValidation = {
   },
   
   handleContactSubmit: (form) => {
+    if (!form) return;
+    
     // Mark form as validated for styling
     form.classList.add('was-validated');
     
@@ -762,9 +854,11 @@ const formValidation = {
       
       // Add event listener to close button
       const closeBtn = errorContainer.querySelector('.close-message');
-      closeBtn.addEventListener('click', () => {
-        errorContainer.remove();
-      });
+      if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+          errorContainer.remove();
+        });
+      }
       
       // Auto-remove after 8 seconds
       setTimeout(() => {
@@ -787,6 +881,8 @@ const formValidation = {
   },
   
   showSuccessMessage: (form) => {
+    if (!form) return;
+    
     // Find or create success message
     let successMessage = document.querySelector('.success-message');
     
@@ -851,6 +947,8 @@ const formValidation = {
   },
   
   handleStandardSubmit: (event, form) => {
+    if (!form) return;
+    
     if (!form.checkValidity()) {
       event.preventDefault();
       event.stopPropagation();
@@ -870,7 +968,7 @@ const formValidation = {
    */
   const animations = {
     init: () => {
-      const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-in, .reveal');
+      const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-in, .reveal, .profile-card-animated, .project-card-animated, .blog-card-animated, .contact-item-animated, .resource-card-animated');
       
       if (!elementsToAnimate.length) return;
       
@@ -1009,53 +1107,6 @@ const formValidation = {
   };
 
   /**
-   * Add CSS animations for logo
-   */
-  const addLogoAnimationStyles = () => {
-    // Add CSS animations if they don't exist
-    if (!document.querySelector('style#animation-styles')) {
-      const style = document.createElement('style');
-      style.id = 'animation-styles';
-      style.textContent = `
-        @keyframes draw {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-        
-        @-webkit-keyframes draw {
-          to {
-            stroke-dashoffset: 0;
-          }
-        }
-        
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        
-        @-webkit-keyframes fadeIn {
-          from {
-            opacity: 0;
-            -webkit-transform: scale(0);
-          }
-          to {
-            opacity: 1;
-            -webkit-transform: scale(1);
-          }
-        }
-      `;
-      document.head.appendChild(style);
-    }
-  };
-
-  /**
    * Navbar scroll behavior
    */
   const navbar = {
@@ -1065,34 +1116,6 @@ const formValidation = {
         window.addEventListener('scroll', utils.throttle(() => {
           navbarElement.classList.toggle('scrolled', window.scrollY > 100);
         }, 100));
-      }
-    }
-  };
-
-  /**
-   * Cross-page navigation fix
-   */
-  const crossPageNavigation = {
-    init: () => {
-      // Handle scroll nav items
-      document.querySelectorAll('.scroll-nav-item').forEach(item => {
-        item.addEventListener('click', function(e) {
-          const targetPath = this.getAttribute('data-target');
-          
-          // If it's a cross-page link (contains .html)
-          if (targetPath && targetPath.includes('.html')) {
-            // Navigate to the page
-            window.location.href = targetPath;
-          }
-        });
-      });
-
-      // Check if we're on resource pages and handle back-to-top links
-      const currentPath = window.location.pathname;
-      if (currentPath.includes('resource') || currentPath.includes('resume')) {
-        document.querySelectorAll('.back-to-top a').forEach(link => {
-          link.setAttribute('href', './index.html#home');
-        });
       }
     }
   };
@@ -1133,13 +1156,34 @@ const formValidation = {
     }
   };
 
+  /**
+   * Handle resource cards behavior
+   */
+  const resourceCards = {
+    init: () => {
+      const resourceCards = document.querySelectorAll('.resource-card-animated');
+      
+      // Ensure all resource cards have proper SVG animation
+      resourceCards.forEach(card => {
+        const svg = card.querySelector('svg');
+        const rect = svg?.querySelector('rect');
+        
+        if (rect) {
+          // Make sure the svg stroke dasharray and offset are properly set
+          rect.setAttribute('stroke-dasharray', '800');
+          rect.setAttribute('stroke-dashoffset', '800');
+        }
+      });
+    }
+  };
+
   // Initialize all components
   const init = () => {
+    // Check if we're in a browser environment
+    if (typeof window === 'undefined') return;
+    
     // Browser compatibility checks and fallbacks
     browserFallbacks.init();
-    
-    // Add animation styles
-    addLogoAnimationStyles();
     
     // Core UI components
     sidebar.init();
@@ -1161,18 +1205,20 @@ const formValidation = {
     // UI enhancements
     animations.init();
     logo.init();
-    
-    // Navigation
-    crossPageNavigation.init();
+    resourceCards.init();
     
     // Update copyright year
     const yearElements = document.querySelectorAll('#current-year');
     const currentYear = new Date().getFullYear();
     yearElements.forEach(element => {
-      element.textContent = currentYear;
+      if (element) element.textContent = currentYear.toString();
     });
   };
 
-  // Call the init function
-  init();
+  // Call the init function when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 });
