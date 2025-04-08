@@ -4,112 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="iOS Ethical Hacking & Security Research - Parth Patel">
-    <title>PARTH PATEL | Developer & Designer</title>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="./styles.css">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="./favicon.png">
-    <!-- Preload critical fonts -->
+    <meta name="description" content="Parth Patel - Computer Science Student Resume with skills in HTML, CSS, JavaScript, and other programming languages">
+    <meta name="keywords" content="Parth Patel, Computer Science, Resume, Web Development, HTML, CSS, JavaScript">
+    <meta name="author" content="Parth Patel">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Parth Patel | Resume">
+    <meta property="og:description" content="Computer Science Student specializing in Web Development">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://parth-patel459.github.io/Parth-port/resume.html">
+    
+    <title>PARTH PATEL | Resume</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
-    <!-- Syntax highlighting for code blocks -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
-    <style>
-        /* Additional styles specific to this page */
-        .content-section {
-            padding-top: 120px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .content-section h1 {
-            margin-bottom: 1.5rem;
-            color: var(--primary-color);
-            text-align: center;
-        }
-        
-        .content-section h2 {
-            margin-top: 2.5rem;
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-        }
-        
-        .content-section h3 {
-            margin-top: 1.5rem;
-            font-size: 1.3rem;
-        }
-        
-        .content-section pre {
-            background-color: #2d2d2d;
-            border-radius: 6px;
-            padding: 15px;
-            overflow-x: auto;
-            margin: 1rem 0;
-        }
-        
-        .content-section code {
-            font-family: var(--font-monospace);
-            font-size: 0.9rem;
-        }
-        
-        .content-section ul {
-            padding-left: 1.5rem;
-            margin: 1rem 0;
-        }
-        
-        .content-section li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .security-notice {
-            background-color: rgba(220, 53, 69, 0.1);
-            border: 1px solid var(--error-color);
-            border-radius: var(--border-radius);
-            padding: 15px;
-            margin: 1.5rem 0;
-        }
-        
-        .security-notice h4 {
-            color: var(--error-color);
-            margin-top: 0;
-        }
-        
-        body.dark-mode .security-notice {
-            background-color: rgba(220, 53, 69, 0.15);
-        }
-        
-        .related-resources {
-            margin-top: 3rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
-        }
-        
-        .resource-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 2rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--border-color);
-        }
-    </style>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="resume-styles.css">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.png">
 </head>
 <body>
-    <!-- Skip to content for accessibility -->
-    <a href="#main-content" class="skip-link">Skip to content</a>
+    <!-- Skip to content link for accessibility -->
+    <a href="#profile" class="skip-link">Skip to content</a>
     
-    <!-- Overlay for Sidebar -->
-    <div class="overlay" id="overlay"></div>
+    <!-- Overlay for mobile sidebar -->
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
 
-    <!-- Navbar -->
-    <nav class="navbar">
+    <!-- Navigation -->
+    <nav class="navbar" aria-label="Main navigation">
         <div class="container nav-container">
+            <!-- Logo -->
             <div class="logo-container">
                 <div class="logo" id="logo">
-                    <svg id="logoSVG" viewBox="0 0 400 400" width="300" height="300">
+                    <svg id="logoSVG" viewBox="0 0 400 400" width="300" height="300" aria-hidden="true">
                         <!-- Background circle -->
                         <circle cx="200" cy="200" r="180" fill="#f8f8f8" stroke="#e0e0e0" stroke-width="2" />
                         
@@ -155,66 +89,60 @@
                         
                         <!-- Separate period/dot -->
                         <circle class="period" cx="280" cy="280" r="12" fill="#FF4500" />
-                        
-                        <!-- Letter highlights -->
-                        <text class="letter-highlight" x="135" y="90" text-anchor="middle">P</text>
-                        <text class="letter-highlight" x="170" y="90" text-anchor="middle">A</text>
-                        <text class="letter-highlight" x="210" y="90" text-anchor="middle">R</text>
-                        <text class="letter-highlight" x="240" y="150" text-anchor="middle">T</text>
-                        <text class="letter-highlight" x="240" y="210" text-anchor="middle">H</text>
-                        <text class="letter-highlight" x="150" y="330" text-anchor="middle">P</text>
-                        <text class="letter-highlight" x="180" y="330" text-anchor="middle">A</text>
-                        <text class="letter-highlight" x="210" y="330" text-anchor="middle">T</text>
-                        <text class="letter-highlight" x="240" y="330" text-anchor="middle">E</text>
-                        <text class="letter-highlight" x="270" y="330" text-anchor="middle">L</text>
-                        <text class="letter-highlight" x="295" y="285" text-anchor="middle">.</text>
                     </svg>
                 </div>
                 
-                <div class="name-reveal">PARTH PATEL.</div>
+                <div class="name-reveal">PARTH PATEL</div>
             </div>
             
+            <!-- Desktop navigation links -->
             <div class="nav-links" id="nav-links">
-                <a href="./index.html#home" class="nav-link">Home</a>
-                <a href="./index.html#about" class="nav-link">About</a>
-                <a href="./index.html#projects" class="nav-link">Projects</a>
-                <a href="./index.html#blog" class="nav-link">Blog</a>
-                <a href="./index.html#resources" class="nav-link active">Resources</a>
-                <a href="./index.html#contact" class="nav-link">Contact</a>
+                <a href="#profile" class="nav-link active">Profile</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="./index.html" class="nav-link">Portfolio</a>
+                
+                <!-- Theme toggle button -->
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                
+                <!-- Mobile menu toggle -->
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
     </nav>
 
-    <!-- Sidebar for mobile -->
-    <div class="sidebar" id="sidebar">
+    <!-- Mobile sidebar navigation -->
+    <div class="sidebar" id="sidebar" aria-label="Mobile navigation" aria-hidden="true">
         <button class="close-btn" id="close-btn" aria-label="Close sidebar">
             <i class="fas fa-times"></i>
         </button>
         
         <div class="sidebar-about">
             <h3 class="title">PARTH PATEL</h3>
-            <p class="subtitle">Web Developer</p>
+            <p class="subtitle">Computer Science Student</p>
         </div>
         
+        <!-- Sidebar navigation links -->
         <ul>
-            <li><a href="./index.html#home"><i class="fas fa-home"></i> Home</a></li>
-            <li><a href="./index.html#about"><i class="fas fa-user"></i> About</a></li>
-            <li><a href="./index.html#projects"><i class="fas fa-code"></i> Projects</a></li>
-            <li><a href="./index.html#blog"><i class="fas fa-blog"></i> Blog</a></li>
-            <li><a href="./index.html#resources"><i class="fas fa-bookmark"></i> Resources</a></li>
-            <li><a href="./index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="#education"><i class="fas fa-graduation-cap"></i> Education</a></li>
+            <li><a href="#skills"><i class="fas fa-code"></i> Skills</a></li>
+            <li><a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
+            <li><a href="#experience"><i class="fas fa-briefcase"></i> Experience</a></li>
+            <li><a href="./index.html"><i class="fas fa-home"></i> Portfolio</a></li>
         </ul>
         
+        <!-- Sidebar social links -->
         <div class="social-links">
             <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
             <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
             <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         </div>
         
@@ -223,207 +151,332 @@
         </div>
     </div>
 
-    <!-- Content Section -->
-    <section id="ios-security" class="content-section" role="main" id="main-content">
-        <h1>iOS Ethical Hacking & Security Research</h1>
-        
-        <div class="security-notice">
-            <h4><i class="fas fa-shield-alt"></i> Ethical Research Notice</h4>
-            <p>
-                This resource is intended for educational purposes and ethical security research only. 
-                Always obtain proper authorization before conducting security tests on any system or device. 
-                Unauthorized testing may violate laws and terms of service.
-            </p>
-        </div>
-        
-        <p>
-            Ethical hacking of iPhones is primarily focused on identifying vulnerabilities, strengthening security,
-            and ensuring data protection without violating privacy laws. Below, we will explore advanced iOS security assessments.
-        </p>
-        
-        <h2>A. Advanced iOS Security Architecture</h2>
-        <h3>1. Bootchain & Secure Boot</h3>
-        <p>
-            Apple's security model consists of multiple layers to prevent unauthorized firmware installations. 
-            Features such as Boot ROM verification, iBoot integrity checks, and APFS Signed System Volume (SSV) 
-            contribute to a strong security foundation.
-        </p>
-        <h3>2. Secure Enclave & Hardware Security</h3>
-        <p>
-            The Secure Enclave Processor (SEP) is responsible for biometric authentication (Face ID & Touch ID), 
-            file encryption, and secure key management. It operates independently from the main processor, adding 
-            an extra layer of protection against unauthorized access.
-        </p>
-        
-        <h2>B. Jailbreaking Techniques for Research</h2>
-        <h3>1. Popular Jailbreaking Methods</h3>
-        <ul>
-            <li><b>Checkra1n:</b> Uses the Checkm8 exploit (A5-A11 devices), which is a hardware vulnerability that Apple cannot patch via software updates.</li>
-            <li><b>Unc0ver:</b> Software-based jailbreak that exploits kernel vulnerabilities (iOS 11-14.3).</li>
-            <li><b>Taurine:</b> A kernel exploit-based jailbreak (iOS 14-14.8), developed by the Odyssey team.</li>
-        </ul>
-        <h3>2. Setting Up a Jailbroken iPhone for Security Research</h3>
-        <p>
-            After jailbreaking, install essential security testing tools:
-        </p>
-        <pre><code class="language-bash">apt-get install openssh cydia</code></pre>
-        <p>
-            Additionally, tools like Frida, Objection, and Cycript allow deeper app penetration testing.
-        </p>
-        
-        <h2>C. Advanced Penetration Testing Techniques</h2>
-        <h3>1. Mobile App Security Testing (MAS)</h3>
-        <p>
-            Mobile application security testing involves assessing iOS apps for vulnerabilities using 
-            both static and dynamic analysis techniques.
-        </p>
-        <h3>2. Reverse Engineering iOS Apps</h3>
-        <ul>
-            <li>Extract IPA files and analyze app binaries.</li>
-            <li>Decompile applications using tools like Hopper, Ghidra, and class-dump-z.</li>
-            <li>Analyze cryptographic implementations to detect weak encryption.</li>
-            <li>Use Frida to manipulate running applications and test for security flaws.</li>
-        </ul>
-        <h3>3. Zero-Day Exploit Research & Vulnerability Testing</h3>
-        <p>
-            Security researchers focus on identifying unknown vulnerabilities before they are exploited by attackers. 
-            Techniques include fuzz testing, static analysis, and runtime manipulation to detect flaws in Apple's security layers.
-        </p>
-        <h3>4. Secure Coding Practices for iOS Developers</h3>
-        <ul>
-            <li>Enforcing App Transport Security (ATS) to require HTTPS connections.</li>
-            <li>Using Keychain for secure storage of sensitive user data.</li>
-            <li>Implementing proper cryptographic APIs for data encryption.</li>
-        </ul>
-        
-        <h2>D. iOS Forensics & Incident Response</h2>
-        <h3>1. Extracting iOS Logs</h3>
-        <p>Use forensic tools to analyze authentication failures, crash reports, and network logs.</p>
-        <pre><code class="language-bash">log stream --predicate 'subsystem contains "security"'</code></pre>
-        <h3>2. Recovering Deleted Data</h3>
-        <p>Forensic tools such as UFED or iLEAPP can help retrieve deleted files, messages, and application data.</p>
-        <pre><code class="language-bash">fls -r -m / /dev/disk0s1</code></pre>
-        
-        <h2>E. iOS Malware Analysis & Defense Strategies</h2>
-        <h3>1. Identifying and Analyzing iOS Malware</h3>
-        <p>iOS malware is rare but still exists, often targeting jailbroken devices. Analysis involves:</p>
-        <ul>
-            <li>Examining app permissions and background activities.</li>
-            <li>Using reverse engineering tools to decompile malicious apps.</li>
-            <li>Intercepting network traffic to detect unusual data transmissions.</li>
-            <li>Monitoring system calls and API usage for suspicious behavior patterns.</li>
-            <li>Analyzing battery and resource consumption for signs of background malicious activities.</li>
-        </ul>
-        <h3>2. Strengthening iOS Defenses</h3>
-        <ul>
-            <li>Enforcing strict sandboxing policies for app isolation.</li>
-            <li>Using runtime integrity checks to prevent unauthorized modifications.</li>
-            <li>Applying regular software updates to patch security vulnerabilities.</li>
-            <li>Implementing app notarization and signature verification processes.</li>
-            <li>Utilizing threat intelligence to identify and block known malicious domains.</li>
-        </ul>
-        
-        <h2>F. iOS Security Hardening Recommendations</h2>
-        <h3>1. User-Level Security Measures</h3>
-        <p>End users can take the following steps to improve iOS device security:</p>
-        <ul>
-            <li>Keep iOS updated to the latest version available for your device.</li>
-            <li>Enable automatic updates for both iOS and installed applications.</li>
-            <li>Use strong, unique alphanumeric passcodes (at least 6 characters).</li>
-            <li>Enable two-factor authentication for Apple ID.</li>
-            <li>Review app permissions regularly and restrict unnecessary access.</li>
-            <li>Only download apps from the official App Store.</li>
-            <li>Use a secure VPN when connecting to public Wi-Fi networks.</li>
-        </ul>
-        
-        <h3>2. Enterprise Security Configurations</h3>
-        <p>Organizations can implement the following measures to secure iOS devices in corporate environments:</p>
-        <ul>
-            <li>Use Mobile Device Management (MDM) solutions to enforce security policies.</li>
-            <li>Implement app allowlisting to control which apps can be installed.</li>
-            <li>Configure per-app VPN for secure access to corporate resources.</li>
-            <li>Enable device supervision for enhanced management capabilities.</li>
-            <li>Create separation between personal and work data using managed Apple IDs.</li>
-            <li>Perform regular security assessments and compliance checks.</li>
-        </ul>
-        
-        <h2>G. Apple Bug Bounty & Ethical Disclosure</h2>
-        <p>
-            Apple offers rewards for ethical hackers who responsibly disclose vulnerabilities. High-value payouts 
-            are offered for zero-click attacks, lockscreen bypasses, and iCloud account takeovers.
-        </p>
-        <p>The Apple Security Bounty program pays up to:</p>
-        <ul>
-            <li>$1,000,000 for zero-click kernel code execution with persistence and kernel PAC bypass.</li>
-            <li>$500,000 for network attack with zero-click kernel code execution.</li>
-            <li>$250,000 for user-installed app attacks with unauthorized access to sensitive data.</li>
-            <li>$100,000 for unauthorized access to sensitive data in sandboxed processes.</li>
-            <li>$100,000 for bypassing physical access protections like the lock screen.</li>
-        </ul>
-        <p>For more details, visit <a href="https://security.apple.com" target="_blank" rel="noopener noreferrer">Apple Security Bounty</a>.</p>
-        
-        <h2>H. Ethical Considerations and Legal Framework</h2>
-        <p>
-            When conducting iOS security research, always operate within ethical and legal boundaries:
-        </p>
-        <ul>
-            <li>Only test on devices you own or have explicit permission to test.</li>
-            <li>Follow responsible disclosure practices by reporting vulnerabilities to Apple before public disclosure.</li>
-            <li>Comply with local and international computer security laws.</li>
-            <li>Never access or extract private user data during research.</li>
-            <li>Document all testing methodologies and findings for transparency.</li>
-            <li>Consider the potential impact of your research on user privacy and security.</li>
-        </ul>
-        
-        <div class="related-resources">
-            <h2>Related Resources</h2>
-            <div class="resource-cards">
-                <div class="resource-card-animated">
-                    <svg>
-                        <rect x="0" y="0" width="100%" height="100%"></rect>
-                    </svg>
-                    <div class="resource-card-content">
-                        <h3><a href="./resource4.html">Responsive Design Patterns</a></h3>
-                        <p>Learn about modern responsive design patterns and principles for creating adaptable web interfaces.</p>
-                        <span class="resource-tag">Web Development</span>
-                        <div class="buttons has-addons">
-                            <a href="./resource4.html" class="button" title="View Guide"><i class="fas fa-globe"></i> Guide</a>
-                        </div>
+    <!-- Main Content Sections -->
+    <main>
+        <!-- Profile Section with Knuford-style layout -->
+        <section class="profile-section" id="profile">
+            <div class="container">
+                <div class="knuford-profile-container">
+                    <!-- Profile image - diagonal split layout -->
+                    <div class="profile-image-area">
+                        <img src="Parth-Patel.jpeg" alt="Parth Patel - Professional Portrait" loading="eager">
+                        <div class="overlay-gradient"></div>
                     </div>
-                </div>
-                
-                <div class="resource-card-animated">
-                    <svg>
-                        <rect x="0" y="0" width="100%" height="100%"></rect>
-                    </svg>
-                    <div class="resource-card-content">
-                        <h3><a href="./index.html#resources">More Resources</a></h3>
-                        <p>Explore the complete collection of resources for developers and security researchers.</p>
-                        <span class="resource-tag">Collection</span>
-                        <div class="buttons has-addons">
-                            <a href="./index.html#resources" class="button" title="View Resources"><i class="fas fa-bookmark"></i> Browse</a>
+                    
+                    <div class="profile-content">
+                        <h1 class="profile-name">PARTH PATEL</h1>
+                        <p class="profile-title">Computer Science Student</p>
+                        <div class="profile-objective">
+                            <h2>Objective</h2>
+                            <p>Enthusiastic Computer Science student with a strong passion for web development and a keen interest in creating interactive and responsive websites. Good in HTML, CSS, JavaScript, with basic knowledge of front-end frameworks and web design principles.</p>
+                            <p>Currently expanding my knowledge in backend development, database integration, and modern web technologies. Seeking a Web Development Internship to apply my technical skills and contribute to impactful projects.</p>
+                        </div>
+                        <div class="profile-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:parth459.a@gmail.com">parth459.a@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+17742238113">+1 (774) 223-8113</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Canton, MA</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="resource-navigation">
-            <a href="./index.html#resources" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Resources</a>
-            <a href="./resource4.html" class="btn btn-outline">Next Resource <i class="fas fa-arrow-right"></i></a>
-        </div>
-    </section>
+        </section>
 
+        <!-- Education Section -->
+        <section class="education-section" id="education">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-card-animated">
+                    <svg aria-hidden="true">
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="education-card-content">
+                        <div class="education-details">
+                            <h3>Bachelor of Computer Science</h3>
+                            <h4>University of Massachusetts Boston</h4>
+                            <p class="education-period">Present</p>
+                            <p class="education-location"><i class="fas fa-map-marker-alt"></i> Boston, U.S.A.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section" id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                
+                <div class="skills-container">
+                    <!-- CS Languages Skills Card -->
+                    <div class="skills-card-animated">
+                        <svg aria-hidden="true">
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="skills-card-content">
+                            <h3>CS Languages</h3>
+                            <div class="skills-list">
+                                <span class="skill-tag">HTML</span>
+                                <span class="skill-tag">CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">C/C++</span>
+                                <span class="skill-tag">C#</span>
+                                <span class="skill-tag">three.js</span>
+                                <span class="skill-tag">PHP</span>
+                                <span class="skill-tag">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tools Skills Card -->
+                    <div class="skills-card-animated">
+                        <svg aria-hidden="true">
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="skills-card-content">
+                            <h3>Tools</h3>
+                            <div class="skills-list">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">Linux</span>
+                                <span class="skill-tag">Figma</span>
+                                <span class="skill-tag">VM VirtualBox</span>
+                                <span class="skill-tag">VMware</span>
+                                <span class="skill-tag">WebGL</span>
+                                <span class="skill-tag">Overleaf / LATEX</span>
+                                <span class="skill-tag">GitHub</span>
+                                <span class="skill-tag">GitLab</span>
+                                <span class="skill-tag">Unity</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">Arduino</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Languages Skills Card -->
+                    <div class="skills-card-animated">
+                        <svg aria-hidden="true">
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="skills-card-content">
+                            <h3>Languages</h3>
+                            <div class="skills-list">
+                                <span class="skill-tag">English</span>
+                                <span class="skill-tag">Gujarati</span>
+                                <span class="skill-tag">Hindi</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hobbies Skills Card -->
+                    <div class="skills-card-animated">
+                        <svg aria-hidden="true">
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="skills-card-content">
+                            <h3>Hobbies</h3>
+                            <div class="skills-list">
+                                <span class="skill-tag">Cricket</span>
+                                <span class="skill-tag">Web Development</span>
+                                <span class="skill-tag">Game Development</span>
+                                <span class="skill-tag">Open Source</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects-section" id="projects">
+            <div class="container">
+                <h2 class="section-title">Academic Projects</h2>
+                
+                <div class="project-card-animated">
+                    <svg aria-hidden="true">
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="project-card-content">
+                        <h3>HourWork</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                        </div>
+                        <div class="project-details">
+                            <p>Collaborated with colleagues to develop a web-based project called HourWork for study assistance.</p>
+                            <p>To develop HourWork we are using JavaScript, HTML, CSS, focusing on creating an intuitive user interface with responsive design.</p>
+                            <p>HourWork is a study tool for students and learners alike, featuring productivity tracking, customizable study sessions, and progress analytics.</p>
+                        </div>
+                        <a href="https://github.com/kylehackett99/HourWork" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-card-animated">
+                    <svg aria-hidden="true">
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="project-card-content">
+                        <h3>Personal Portfolio Website</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Responsive Design</span>
+                        </div>
+                        <div class="project-details">
+                            <p>Designed and developed a personal portfolio website to showcase my skills, projects, and experience.</p>
+                            <p>Implemented responsive design principles to ensure optimal viewing experience across various devices and screen sizes.</p>
+                            <p>Features include dark mode support, animated UI elements, and accessible navigation.</p>
+                        </div>
+                        <a href="https://github.com/parth-patel459/Parth-port" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience-section" id="experience">
+            <div class="container">
+                <h2 class="section-title">Work Experience</h2>
+                
+                <div class="experience-card-animated">
+                    <svg aria-hidden="true">
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="experience-card-content">
+                        <h3>Warehouse Associate</h3>
+                        <h4>Amazon Delivery Station</h4>
+                        
+                        <div class="experience-tags">
+                            <span class="experience-tag">Fast-Paced Environment</span>
+                            <span class="experience-tag">Sorting</span>
+                            <span class="experience-tag">Inducting</span>
+                            <span class="experience-tag">Picking-Stage</span>
+                            <span class="experience-tag">Package Handling</span>
+                            <span class="experience-tag">Quality Control</span>
+                            <span class="experience-tag">Team Collaboration</span>
+                        </div>
+                        
+                        <div class="responsibilities">
+                            <ul>
+                                <li><strong>Sorting:</strong> Organize and categorize incoming and outgoing packages to ensure accurate delivery.</li>
+                                <li><strong>Inducting:</strong> Scan and place packages onto conveyors or designated areas for processing.</li>
+                                <li><strong>Picking & Staging:</strong> Retrieve and prepare customer orders for shipment, ensuring accuracy & efficiency.</li>
+                                <li><strong>Package Handling:</strong> Lift, move, and load/unload packages safely while following workplace safety protocols.</li>
+                                <li><strong>Quality Control:</strong> Inspect packages for damages or errors before shipment.</li>
+                                <li><strong>Team Collaboration:</strong> Work alongside co-workers and supervisors to meet daily operational targets.</li>
+                                <li><strong>Fast-Paced Environment:</strong> Maintain high productivity while adhering to safety and company guidelines.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-summary">
+                    <p>Motivated and detail-oriented Warehouse Associate with hands-on experience in sorting, inducting, and picking-staging at Amazon Delivery Station. Adept at handling high-volume package processing, ensuring efficiency, accuracy, and compliance with safety standards. Strong ability to work in fast-paced environments, collaborate with team members, and contribute to seamless logistics operations. Passionate about optimizing workflow and maintaining high productivity to enhance customer satisfaction.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download-section">
+            <div class="container">
+                <div class="download-actions">
+                    <a href="./assets/ParthPatelCV.pdf" class="download-btn" download id="download-resume">
+                        <i class="fas fa-download"></i> Download Resume PDF
+                    </a>
+                    <button onclick="window.print()" class="print-btn">
+                        <i class="fas fa-print"></i> Print Resume
+                    </button>
+                </div>
+                <p class="download-hint">Click to save a copy of my resume</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Parth Patel</h3>
+                    <p>Computer Science Student</p>
+                </div>
+                
+                <div class="footer-links">
+                    <!-- Navigation links -->
+                    <div class="footer-links-column">
+                        <h4>Navigation</h4>
+                        <ul>
+                            <li><a href="#profile">Profile</a></li>
+                            <li><a href="#education">Education</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#experience">Experience</a></li>
+                            <li><a href="./index.html">Portfolio</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact links -->
+                    <div class="footer-links-column">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:parth459.a@gmail.com">Email Me</a></li>
+                            <li><a href="tel:+17742238113">Call Me</a></li>
+                            <li><a href="https://github.com/Parth-Patel459" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                            <li><a href="https://www.linkedin.com/in/parth-patel-b48290353/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer bottom section -->
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; <span id="current-year">2025</span> Parth Patel. All Rights Reserved.
+                </div>
+                
+                <!-- Footer social links -->
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                </div>
+                
+                <div class="back-to-top">
+                    <a href="#profile" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Page Navigation Components -->
+    
     <!-- Bottom Scroll Bar -->
-    <div class="bottom-scrollbar-container">
+    <div class="bottom-scrollbar-container" aria-hidden="true">
         <div class="scroll-indicator" id="scroll-indicator"></div>
         <div class="scroll-nav">
-            <button class="scroll-nav-item" data-target="./index.html#home">Home</button>
-            <button class="scroll-nav-item" data-target="./index.html#about">About</button>
-            <button class="scroll-nav-item" data-target="./index.html#projects">Projects</button>
-            <button class="scroll-nav-item" data-target="./index.html#resources">Resources</button>
-            <button class="scroll-nav-item" data-target="./index.html#blog">Blog</button>
-            <button class="scroll-nav-item" data-target="./index.html#contact">Contact</button>
+            <button class="scroll-nav-item" data-target="#profile">Profile</button>
+            <button class="scroll-nav-item" data-target="#education">Education</button>
+            <button class="scroll-nav-item" data-target="#skills">Skills</button>
+            <button class="scroll-nav-item" data-target="#projects">Projects</button>
+            <button class="scroll-nav-item" data-target="#experience">Experience</button>
+            <button class="scroll-nav-item" data-target="./index.html">Portfolio</button>
         </div>
     </div>
 
@@ -433,28 +486,7 @@
     </button>
 
     <!-- Main Script -->
-    <script src="./script.js"></script>
-    
-    <!-- Prism.js for code highlighting -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
-    
-    <!-- Current year script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Update copyright year
-            const yearElements = document.querySelectorAll('#current-year');
-            const currentYear = new Date().getFullYear();
-            yearElements.forEach(element => {
-                if (element) element.textContent = currentYear.toString();
-            });
-            
-            // Initialize Prism.js for code highlighting
-            if (typeof Prism !== 'undefined') {
-                Prism.highlightAll();
-            }
-        });
-    </script>
+    <script src="./resume-script.js"></script>
 </body>
 </html>
 
