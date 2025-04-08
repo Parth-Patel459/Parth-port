@@ -12,8 +12,14 @@
     <link rel="stylesheet" href="./styles.css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="./favicon.png">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
     <!-- Overlay for Sidebar -->
     <div class="overlay" id="overlay"></div>
 
@@ -94,10 +100,10 @@
                 <a href="./index.html#blog" class="nav-link">Blog</a>
                 <a href="./index.html#resources" class="nav-link">Resources</a>
                 <a href="./index.html#contact" class="nav-link">Contact</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation">
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -127,7 +133,7 @@
         <div class="social-links">
             <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
             <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
             <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         </div>
         
@@ -137,13 +143,73 @@
     </div>
 
     <!-- Content Section -->
-<section id="ios-code" class="content-section">
-  <h1>Resource 4 - Responsive Design Patterns</h1>
-  <p>Learn more about responsive design patterns:</p>
-  <a href="https://ethanmarcotte.com/books/responsive-design-patterns-and-principles/full/chap01/" target="_blank">Visit Resource</a>
-</section>
-
-
+    <section id="responsive-design" class="content-section" role="main" id="main-content">
+        <div class="container">
+            <h1>Responsive Design Patterns</h1>
+            <div class="resource-content">
+                <p>Responsive web design is an approach to building websites that ensures they look and function well on a variety of devices and screen sizes. This resource provides comprehensive information about responsive design patterns and principles.</p>
+                
+                <div class="resource-cta">
+                    <a href="https://ethanmarcotte.com/books/responsive-design-patterns-and-principles/full/chap01/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                        Visit Full Resource <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    
+                    <div class="resource-info">
+                        <p><strong>Author:</strong> Ethan Marcotte</p>
+                        <p><strong>Format:</strong> Online Resource/Book</p>
+                    </div>
+                </div>
+                
+                <div class="resource-highlights">
+                    <h2>Key Topics Covered</h2>
+                    <ul>
+                        <li>Fluid Layouts and Proportional Thinking</li>
+                        <li>Responsive Navigation Patterns</li>
+                        <li>Media Queries and Breakpoints</li>
+                        <li>Mobile-First Design Approach</li>
+                        <li>Content Prioritization Techniques</li>
+                        <li>Responsive Images and Media</li>
+                        <li>Performance Optimization for Different Devices</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-preview">
+                    <h2>Why This Resource Is Valuable</h2>
+                    <p>Ethan Marcotte, who coined the term "responsive web design" in 2010, provides authoritative information about implementing responsive design in modern websites. This resource is beneficial for:</p>
+                    
+                    <ul>
+                        <li>Web developers looking to improve their responsive development skills</li>
+                        <li>Designers seeking to understand how layouts adapt across devices</li>
+                        <li>Anyone creating websites that need to work effectively on mobile, tablet, and desktop</li>
+                    </ul>
+                    
+                    <p>The principles and patterns covered in this resource remain fundamental to modern web development, even as new technologies emerge.</p>
+                </div>
+                
+                <div class="related-resources">
+                    <h2>Related Resources</h2>
+                    <div class="related-grid">
+                        <a href="./resource5.html" class="related-link">
+                            <div class="related-link-content">
+                                <h3>iOS Ethical Hacking Guide</h3>
+                                <p>Advanced techniques for iOS security research</p>
+                            </div>
+                        </a>
+                        <a href="./index.html#resources" class="related-link">
+                            <div class="related-link-content">
+                                <h3>All Resources</h3>
+                                <p>View complete resource collection</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="back-to-resources">
+                    <a href="./index.html#resources" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Resources</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Bottom Scroll Bar -->
     <div class="bottom-scrollbar-container">
@@ -173,7 +239,7 @@
             const yearElements = document.querySelectorAll('#current-year');
             const currentYear = new Date().getFullYear();
             yearElements.forEach(element => {
-                element.textContent = currentYear;
+                if (element) element.textContent = currentYear.toString();
             });
         });
     </script>
