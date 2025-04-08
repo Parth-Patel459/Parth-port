@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="./styles.css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="./favicon.png">
+    <!-- Preload critical fonts and resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
     <!-- Overlay for sidebar -->
@@ -97,7 +100,7 @@
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation">
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -128,7 +131,7 @@
         <div class="social-links">
             <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
             <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
             <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         </div>
         
@@ -138,7 +141,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero" id="home" data-backgrounds="./https://assets.awwwards.com/awards/element/2023/06/647de6cdbf047872531292.mp4">
+    <section class="hero" id="home" data-backgrounds="./assets/background1.jpg,./assets/background2.jpg,./assets/background3.jpg">
         <div class="hero-content">
             <h1>PARTH PATEL</h1>
             <p id="typewriter">Creative Web Developer & UI/UX Designer</p>
@@ -170,7 +173,7 @@
                     <div class="profile-social">
                         <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                         <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                        <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
                         <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
@@ -204,11 +207,11 @@
             <h2 class="section-title">My Projects</h2>
             <p class="section-subtitle">Some of my recent work and personal projects</p>
             
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
-                <button class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
-                <button class="filter-btn" data-filter="mobile" aria-pressed="false">Mobile</button>
-                <button class="filter-btn" data-filter="design" aria-pressed="false">Design</button>
+            <div class="filter-buttons" role="tablist">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true" role="tab">All</button>
+                <button class="filter-btn" data-filter="web" aria-pressed="false" role="tab">Web</button>
+                <button class="filter-btn" data-filter="mobile" aria-pressed="false" role="tab">Mobile</button>
+                <button class="filter-btn" data-filter="design" aria-pressed="false" role="tab">Design</button>
             </div>
             
             <div class="projects-container">
@@ -403,13 +406,11 @@
                 
                 <!-- Resource 4 -->
                 <div class="resource-card-animated">
-                    <!-- Image for the resource card -->
-                    <img src="resource4.png" alt="iOS Design Patterns" class="resource-image">
-
                     <svg>
                         <rect x="0" y="0" width="100%" height="100%"></rect>
                     </svg>
                     <div class="resource-card-content">
+                        <img src="./assets/resource4.png" alt="Responsive Design Patterns" class="resource-image">
                         <h3><a href="./resource4.html">Responsive Design Patterns</a></h3>
                         <p>Common responsive design patterns with code examples and implementation guidelines.</p>
                         <span class="resource-tag">e-BOOK</span>
@@ -423,13 +424,11 @@
 
                 <!-- Resource 5 -->
                 <div class="resource-card-animated">
-                    <!-- Image for the resource card -->
-                    <img src="hacking_image1.png" alt="iOS Ethical Hacking" class="resource-image">
-
                     <svg>
                         <rect x="0" y="0" width="100%" height="100%"></rect>
                     </svg>
                     <div class="resource-card-content">
+                        <img src="./assets/hacking_image1.png" alt="iOS Ethical Hacking" class="resource-image">
                         <h3><a href="./resource5.html">iOS Ethical Hacking & Security Research</a></h3>
                         <p>A comprehensive guide to iOS security architecture, jailbreaking techniques, penetration testing, and ethical disclosure for security researchers.</p>
                         <span class="resource-tag">Security</span>
@@ -504,7 +503,7 @@
                                 <i class="fab fa-github"></i>
                             </a>
                             <a href="https://www.x.com/ParthPa41787942" aria-label="X (formerly Twitter)" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-brands fa-x-twitter"></i>
+                                <i class="fab fa-x-twitter"></i>
                             </a>
                             <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-instagram"></i>
@@ -528,25 +527,25 @@
             <div class="form-group">
                 <label for="name" class="form-label">Name <span class="required">*</span></label>
                 <input type="text" id="name" name="name" class="form-input" required autocomplete="name">
-                <!-- Validation icon will be inserted by JS -->
+                <span class="validation-icon"></span>
             </div>
             
             <div class="form-group">
                 <label for="email" class="form-label">Email <span class="required">*</span></label>
                 <input type="email" id="email" name="email" class="form-input" required autocomplete="email">
-                <!-- Validation icon will be inserted by JS -->
+                <span class="validation-icon"></span>
             </div>
             
             <div class="form-group full-width">
                 <label for="subject" class="form-label">Subject</label>
                 <input type="text" id="subject" name="subject" class="form-input" autocomplete="off">
-                <!-- Validation icon will be inserted by JS -->
+                <span class="validation-icon"></span>
             </div>
             
             <div class="form-group full-width">
                 <label for="message" class="form-label">Message <span class="required">*</span></label>
                 <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
-                <!-- Validation icon will be inserted by JS -->
+                <span class="validation-icon"></span>
             </div>
             
             <div class="form-group full-width">
@@ -610,7 +609,7 @@
                 <div class="social-links">
                     <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
                     <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                    <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+                    <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
                     <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                 </div>
                 
