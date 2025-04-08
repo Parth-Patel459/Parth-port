@@ -497,22 +497,21 @@ body.dark-mode .menu-btn {
 }
 
 #foo {
+  width: 200px;
+  height: 200px;
+  background: #444;
   animation: corner 3s;
+  border-radius: 50%;
   animation-iteration-count: infinite;
   animation-timing-function: linear;
-  opacity: 0.6;
-}
-
-/* Make the logo text more prominent on the animated background */
-.stem, .crossbar, .top-loop, .bottom-curve, .diagonal {
-  stroke-width: 12;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
-}
-
-.period {
-  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  opacity: 0.7;
+  z-index: 0;
 }
 
 /* ====== SIDEBAR ====== */
