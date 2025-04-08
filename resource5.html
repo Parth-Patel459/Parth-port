@@ -12,8 +12,95 @@
     <link rel="stylesheet" href="./styles.css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="./favicon.png">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Syntax highlighting for code blocks -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        /* Additional styles specific to this page */
+        .content-section {
+            padding-top: 120px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .content-section h1 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+        
+        .content-section h2 {
+            margin-top: 2.5rem;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+        
+        .content-section h3 {
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .content-section pre {
+            background-color: #2d2d2d;
+            border-radius: 6px;
+            padding: 15px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        .content-section code {
+            font-family: var(--font-monospace);
+            font-size: 0.9rem;
+        }
+        
+        .content-section ul {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+        
+        .content-section li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .security-notice {
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid var(--error-color);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin: 1.5rem 0;
+        }
+        
+        .security-notice h4 {
+            color: var(--error-color);
+            margin-top: 0;
+        }
+        
+        body.dark-mode .security-notice {
+            background-color: rgba(220, 53, 69, 0.15);
+        }
+        
+        .related-resources {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .resource-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+    </style>
 </head>
 <body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
     <!-- Overlay for Sidebar -->
     <div class="overlay" id="overlay"></div>
 
@@ -88,16 +175,16 @@
             </div>
             
             <div class="nav-links" id="nav-links">
-                <a href="./index.html#home" class="nav-link active">Home</a>
+                <a href="./index.html#home" class="nav-link">Home</a>
                 <a href="./index.html#about" class="nav-link">About</a>
                 <a href="./index.html#projects" class="nav-link">Projects</a>
                 <a href="./index.html#blog" class="nav-link">Blog</a>
-                <a href="./index.html#resources" class="nav-link">Resources</a>
+                <a href="./index.html#resources" class="nav-link active">Resources</a>
                 <a href="./index.html#contact" class="nav-link">Contact</a>
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation">
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -127,7 +214,7 @@
         <div class="social-links">
             <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
             <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
             <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
         </div>
         
@@ -137,8 +224,18 @@
     </div>
 
     <!-- Content Section -->
-    <section id="ios-security" class="content-section">
+    <section id="ios-security" class="content-section" role="main" id="main-content">
         <h1>iOS Ethical Hacking & Security Research</h1>
+        
+        <div class="security-notice">
+            <h4><i class="fas fa-shield-alt"></i> Ethical Research Notice</h4>
+            <p>
+                This resource is intended for educational purposes and ethical security research only. 
+                Always obtain proper authorization before conducting security tests on any system or device. 
+                Unauthorized testing may violate laws and terms of service.
+            </p>
+        </div>
+        
         <p>
             Ethical hacking of iPhones is primarily focused on identifying vulnerabilities, strengthening security,
             and ensuring data protection without violating privacy laws. Below, we will explore advanced iOS security assessments.
@@ -169,7 +266,7 @@
         <p>
             After jailbreaking, install essential security testing tools:
         </p>
-        <pre><code>apt-get install openssh cydia</code></pre>
+        <pre><code class="language-bash">apt-get install openssh cydia</code></pre>
         <p>
             Additionally, tools like Frida, Objection, and Cycript allow deeper app penetration testing.
         </p>
@@ -202,10 +299,10 @@
         <h2>D. iOS Forensics & Incident Response</h2>
         <h3>1. Extracting iOS Logs</h3>
         <p>Use forensic tools to analyze authentication failures, crash reports, and network logs.</p>
-        <pre><code>log stream --predicate 'subsystem contains "security"'</code></pre>
+        <pre><code class="language-bash">log stream --predicate 'subsystem contains "security"'</code></pre>
         <h3>2. Recovering Deleted Data</h3>
         <p>Forensic tools such as UFED or iLEAPP can help retrieve deleted files, messages, and application data.</p>
-        <pre><code>fls -r -m / /dev/disk0s1</code></pre>
+        <pre><code class="language-bash">fls -r -m / /dev/disk0s1</code></pre>
         
         <h2>E. iOS Malware Analysis & Defense Strategies</h2>
         <h3>1. Identifying and Analyzing iOS Malware</h3>
@@ -214,22 +311,108 @@
             <li>Examining app permissions and background activities.</li>
             <li>Using reverse engineering tools to decompile malicious apps.</li>
             <li>Intercepting network traffic to detect unusual data transmissions.</li>
+            <li>Monitoring system calls and API usage for suspicious behavior patterns.</li>
+            <li>Analyzing battery and resource consumption for signs of background malicious activities.</li>
         </ul>
         <h3>2. Strengthening iOS Defenses</h3>
         <ul>
             <li>Enforcing strict sandboxing policies for app isolation.</li>
             <li>Using runtime integrity checks to prevent unauthorized modifications.</li>
             <li>Applying regular software updates to patch security vulnerabilities.</li>
+            <li>Implementing app notarization and signature verification processes.</li>
+            <li>Utilizing threat intelligence to identify and block known malicious domains.</li>
         </ul>
         
-        <h2>F. Apple Bug Bounty & Ethical Disclosure</h2>
+        <h2>F. iOS Security Hardening Recommendations</h2>
+        <h3>1. User-Level Security Measures</h3>
+        <p>End users can take the following steps to improve iOS device security:</p>
+        <ul>
+            <li>Keep iOS updated to the latest version available for your device.</li>
+            <li>Enable automatic updates for both iOS and installed applications.</li>
+            <li>Use strong, unique alphanumeric passcodes (at least 6 characters).</li>
+            <li>Enable two-factor authentication for Apple ID.</li>
+            <li>Review app permissions regularly and restrict unnecessary access.</li>
+            <li>Only download apps from the official App Store.</li>
+            <li>Use a secure VPN when connecting to public Wi-Fi networks.</li>
+        </ul>
+        
+        <h3>2. Enterprise Security Configurations</h3>
+        <p>Organizations can implement the following measures to secure iOS devices in corporate environments:</p>
+        <ul>
+            <li>Use Mobile Device Management (MDM) solutions to enforce security policies.</li>
+            <li>Implement app allowlisting to control which apps can be installed.</li>
+            <li>Configure per-app VPN for secure access to corporate resources.</li>
+            <li>Enable device supervision for enhanced management capabilities.</li>
+            <li>Create separation between personal and work data using managed Apple IDs.</li>
+            <li>Perform regular security assessments and compliance checks.</li>
+        </ul>
+        
+        <h2>G. Apple Bug Bounty & Ethical Disclosure</h2>
         <p>
             Apple offers rewards for ethical hackers who responsibly disclose vulnerabilities. High-value payouts 
             are offered for zero-click attacks, lockscreen bypasses, and iCloud account takeovers.
         </p>
+        <p>The Apple Security Bounty program pays up to:</p>
+        <ul>
+            <li>$1,000,000 for zero-click kernel code execution with persistence and kernel PAC bypass.</li>
+            <li>$500,000 for network attack with zero-click kernel code execution.</li>
+            <li>$250,000 for user-installed app attacks with unauthorized access to sensitive data.</li>
+            <li>$100,000 for unauthorized access to sensitive data in sandboxed processes.</li>
+            <li>$100,000 for bypassing physical access protections like the lock screen.</li>
+        </ul>
         <p>For more details, visit <a href="https://security.apple.com" target="_blank" rel="noopener noreferrer">Apple Security Bounty</a>.</p>
+        
+        <h2>H. Ethical Considerations and Legal Framework</h2>
+        <p>
+            When conducting iOS security research, always operate within ethical and legal boundaries:
+        </p>
+        <ul>
+            <li>Only test on devices you own or have explicit permission to test.</li>
+            <li>Follow responsible disclosure practices by reporting vulnerabilities to Apple before public disclosure.</li>
+            <li>Comply with local and international computer security laws.</li>
+            <li>Never access or extract private user data during research.</li>
+            <li>Document all testing methodologies and findings for transparency.</li>
+            <li>Consider the potential impact of your research on user privacy and security.</li>
+        </ul>
+        
+        <div class="related-resources">
+            <h2>Related Resources</h2>
+            <div class="resource-cards">
+                <div class="resource-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="resource-card-content">
+                        <h3><a href="./resource4.html">Responsive Design Patterns</a></h3>
+                        <p>Learn about modern responsive design patterns and principles for creating adaptable web interfaces.</p>
+                        <span class="resource-tag">Web Development</span>
+                        <div class="buttons has-addons">
+                            <a href="./resource4.html" class="button" title="View Guide"><i class="fas fa-globe"></i> Guide</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-card-animated">
+                    <svg>
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="resource-card-content">
+                        <h3><a href="./index.html#resources">More Resources</a></h3>
+                        <p>Explore the complete collection of resources for developers and security researchers.</p>
+                        <span class="resource-tag">Collection</span>
+                        <div class="buttons has-addons">
+                            <a href="./index.html#resources" class="button" title="View Resources"><i class="fas fa-bookmark"></i> Browse</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resource-navigation">
+            <a href="./index.html#resources" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Resources</a>
+            <a href="./resource4.html" class="btn btn-outline">Next Resource <i class="fas fa-arrow-right"></i></a>
+        </div>
     </section>
-
 
     <!-- Bottom Scroll Bar -->
     <div class="bottom-scrollbar-container">
@@ -252,6 +435,10 @@
     <!-- Main Script -->
     <script src="./script.js"></script>
     
+    <!-- Prism.js for code highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    
     <!-- Current year script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -259,8 +446,13 @@
             const yearElements = document.querySelectorAll('#current-year');
             const currentYear = new Date().getFullYear();
             yearElements.forEach(element => {
-                element.textContent = currentYear;
+                if (element) element.textContent = currentYear.toString();
             });
+            
+            // Initialize Prism.js for code highlighting
+            if (typeof Prism !== 'undefined') {
+                Prism.highlightAll();
+            }
         });
     </script>
 </body>
