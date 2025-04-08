@@ -12,8 +12,14 @@
     <link rel="stylesheet" href="./resume-styles.css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="./favicon.png">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 <body>
+    <!-- Skip to content for accessibility -->
+    <a href="#profile" class="skip-link">Skip to content</a>
+    
     <!-- Overlay for mobile sidebar -->
     <div class="overlay" id="overlay"></div>
 
@@ -85,12 +91,12 @@
                 <a href="./index.html" class="nav-link">Portfolio</a>
                 
                 <!-- Theme toggle button -->
-                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
                     <i class="fas fa-moon"></i>
                 </button>
                 
                 <!-- Mobile menu toggle -->
-                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation">
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -139,8 +145,7 @@
             <div class="knuford-profile-container">
                 <!-- Profile image - diagonal split layout -->
                 <div class="profile-image-area">
-                    <!-- Replace this img src with your new professional image path -->
-                    <img src="Parth Patel Profile image.jpeg" alt="Parth Patel">
+                    <img src="Parth-Patel.jpeg" alt="Parth Patel - Professional Portrait" loading="eager">
                     <div class="overlay-gradient"></div>
                 </div>
                 
@@ -155,7 +160,7 @@
                     <div class="profile-contact">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:parthpatel.78614a@yahoo.com">parthpatel.78614a@yahoo.com</a>
+                            <a href="mailto:parth459.a@gmail.com">parth459.a@gmail.com</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
@@ -180,7 +185,7 @@
                         <h3>Bachelor of Computer Science</h3>
                         <h4>University of Massachusetts Boston</h4>
                         <p class="education-period">Present</p>
-                        <p class="education-location">Boston, U.S.A.</p>
+                        <p class="education-location"><i class="fas fa-map-marker-alt"></i> Boston, U.S.A.</p>
                     </div>
                 </div>
             </div>
@@ -264,6 +269,8 @@
                         <h3>Hobbies</h3>
                         <div class="skills-list">
                             <span class="skill-tag">Cricket</span>
+                            <span class="skill-tag">Web Development</span>
+                            <span class="skill-tag">Game Development</span>
                         </div>
                     </div>
                 </div>
@@ -288,11 +295,34 @@
                         <span class="project-tag">CSS</span>
                     </div>
                     <div class="project-details">
-                        <p>Collaborated with colleagues to develop a web-based project called HourWork for study Assistant.</p>
-                        <p>To develop HourWork we are using JavaScript, HTML, CSS.</p>
-                        <p>HourWork is study tool for students and learner alike.</p>
+                        <p>Collaborated with colleagues to develop a web-based project called HourWork for study assistance.</p>
+                        <p>To develop HourWork we are using JavaScript, HTML, CSS, focusing on creating an intuitive user interface with responsive design.</p>
+                        <p>HourWork is a study tool for students and learners alike, featuring productivity tracking, customizable study sessions, and progress analytics.</p>
                     </div>
                     <a href="https://github.com/kylehackett99/HourWork" class="project-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </div>
+            </div>
+            
+            <div class="project-card-animated">
+                <svg>
+                    <rect x="0" y="0" width="100%" height="100%"></rect>
+                </svg>
+                <div class="project-card-content">
+                    <h3>Personal Portfolio Website</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">HTML</span>
+                        <span class="project-tag">CSS</span>
+                        <span class="project-tag">JavaScript</span>
+                        <span class="project-tag">Responsive Design</span>
+                    </div>
+                    <div class="project-details">
+                        <p>Designed and developed a personal portfolio website to showcase my skills, projects, and experience.</p>
+                        <p>Implemented responsive design principles to ensure optimal viewing experience across various devices and screen sizes.</p>
+                        <p>Features include dark mode support, animated UI elements, and accessible navigation.</p>
+                    </div>
+                    <a href="https://github.com/Parth-Patel459" class="project-link" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-github"></i> View on GitHub
                     </a>
                 </div>
@@ -327,10 +357,10 @@
                         <ul>
                             <li><strong>Sorting:</strong> Organize and categorize incoming and outgoing packages to ensure accurate delivery.</li>
                             <li><strong>Inducting:</strong> Scan and place packages onto conveyors or designated areas for processing.</li>
-                            <li><strong>Picking & Stagie:</strong> Retrieve and prepare customer orders for shipment, ensuring accuracy & efficiency.</li>
-                            <li><strong>Package Handling:</strong> Lift, Move, and load/unload packages safely while following workplace safety protocols.</li>
-                            <li><strong>Quality Control:</strong> Inspect Packages for damages or errors before shipment.</li>
-                            <li><strong>Team collaboration:</strong> Work alongside co-workers and supervisors to meet daily operational targets.</li>
+                            <li><strong>Picking & Staging:</strong> Retrieve and prepare customer orders for shipment, ensuring accuracy & efficiency.</li>
+                            <li><strong>Package Handling:</strong> Lift, move, and load/unload packages safely while following workplace safety protocols.</li>
+                            <li><strong>Quality Control:</strong> Inspect packages for damages or errors before shipment.</li>
+                            <li><strong>Team Collaboration:</strong> Work alongside co-workers and supervisors to meet daily operational targets.</li>
                             <li><strong>Fast-Paced Environment:</strong> Maintain high productivity while adhering to safety and company guidelines.</li>
                         </ul>
                     </div>
@@ -346,9 +376,10 @@
     <!-- Download Section -->
     <section class="download-section">
         <div class="container">
-            <a href="./assets/ParthPatelCV.pdf" class="download-btn" download>
+            <a href="./assets/ParthPatelCV.pdf" class="download-btn" download id="download-resume">
                 <i class="fas fa-download"></i> Download Resume PDF
             </a>
+            <p class="download-hint">Click to save a copy of my resume</p>
         </div>
     </section>
 
@@ -379,7 +410,7 @@
                     <div class="footer-links-column">
                         <h4>Contact</h4>
                         <ul>
-                            <li><a href="mailto:parthpatel.78614a@yahoo.com">Email Me</a></li>
+                            <li><a href="mailto:parth459.a@gmail.com">Email Me</a></li>
                             <li><a href="tel:+17742238113">Call Me</a></li>
                             <li><a href="https://github.com/Parth-Patel459" target="_blank" rel="noopener noreferrer">GitHub</a></li>
                             <li><a href="https://www.linkedin.com/in/parth-patel-b48290353/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
@@ -439,8 +470,24 @@
             const yearElements = document.querySelectorAll('#current-year');
             const currentYear = new Date().getFullYear();
             yearElements.forEach(element => {
-                element.textContent = currentYear;
+                if (element) element.textContent = currentYear.toString();
             });
+            
+            // Add download tracking
+            const downloadBtn = document.getElementById('download-resume');
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', function() {
+                    console.log('Resume download initiated');
+                    
+                    // Visual feedback
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                });
+            }
         });
     </script>
 </body>
