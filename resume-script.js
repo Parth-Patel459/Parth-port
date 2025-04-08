@@ -2,6 +2,7 @@
  * Resume Page JavaScript
  * - Handles interactive elements for the resume page
  * - Implements modular component pattern for better code organization
+ * - Improved performance and accessibility
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,7 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollTopBtn: document.getElementById('back-to-top'),
     logo: document.getElementById('logoSVG'),
     navToggle: document.getElementById('nav-toggle'),
-    closeBtn: document.getElementById('close-btn')
+    closeBtn: document.getElementById('close-btn'),
+    downloadBtn: document.querySelector('.download-btn'),
+    scrollNavItems: document.querySelectorAll('.scroll-nav-item'),
+    animatedElements: document.querySelectorAll('.skills-card-animated, .project-card-animated, .experience-card-animated, .education-card-animated')
   };
 
   // ====== UTILITY FUNCTIONS ======
@@ -31,7 +35,56 @@ document.addEventListener('DOMContentLoaded', () => {
           }, wait);
         }
       };
-    }
+    },
+    
+    // Debounce function (for resize events, etc.)
+    debounce: (func, wait = 100) => {
+      let timeout;
+      return function(...args) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          func.apply(this, args);
+        }, wait);
+      };
+    },
+    
+    // Local storage with error handling
+    storage: {
+      set: (key, value) => {
+        try {
+          localStorage.setItem(key, JSON.stringify(value));
+          return true;
+        } catch (e) {
+          console.warn('localStorage is not available:', e);
+          return false;
+        }
+      },
+      get: (key, defaultValue = null) => {
+        try {
+          const value = localStorage.getItem(key);
+          return value ? JSON.parse(value) : defaultValue;
+        } catch (e) {
+          console.warn('localStorage is not available:', e);
+          return defaultValue;
+        }
+      }
+    },
+    
+    // Check if element is in viewport
+    isInViewport: (el) => {
+      if (!el) return false;
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    },
+    
+    // Check for browser features
+    supportsIntersectionObserver: 'IntersectionObserver' in window,
+    supportsAnimations: 'animate' in document.createElement('div')
   };
 
   // ====== COMPONENT MODULES ======
@@ -71,9 +124,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     init: () => {
       // Attach event listeners for sidebar toggle
-      [elements.navToggle, elements.closeBtn, elements.overlay].forEach(element => {
-        if (element) element.addEventListener('click', sidebar.toggle);
-      });
+      if (elements.navToggle) {
+        elements.navToggle.addEventListener('click', sidebar.toggle);
+      }
+      
+      if (elements.closeBtn) {
+        elements.closeBtn.addEventListener('click', sidebar.toggle);
+      }
+      
+      if (elements.overlay) {
+        elements.overlay.addEventListener('click', sidebar.toggle);
+      }
+      
+      // Make global function available for onclick attributes
+      window.toggleSidebar = sidebar.toggle;
     }
   };
 
@@ -84,37 +148,95 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle: () => {
       document.body.classList.toggle('dark-mode');
       const isDarkMode = document.body.classList.contains('dark-mode');
-      localStorage.setItem('dark-mode', isDarkMode);
+      
+      // Save preference to localStorage with error handling
+      utils.storage.set('dark-mode', isDarkMode);
       
       // Update ARIA attributes and icons
-      elements.darkModeToggle.setAttribute('aria-pressed', isDarkMode);
+      if (elements.darkModeToggle) {
+        elements.darkModeToggle.setAttribute('aria-pressed', String(isDarkMode));
+        
+        const icon = elements.darkModeToggle.querySelector('i');
+        if (icon) {
+          icon.classList.remove('fa-moon', 'fa-sun');
+          icon.classList.add(isDarkMode ? 'fa-sun' : 'fa-moon');
+        }
+      }
       
-      const icon = elements.darkModeToggle.querySelector('i');
-      if (icon) {
-        icon.classList.toggle('fa-moon', !isDarkMode);
-        icon.classList.toggle('fa-sun', isDarkMode);
+      // Dispatch custom event for other components to react
+      try {
+        window.dispatchEvent(new CustomEvent('themeChanged', { 
+          detail: { isDarkMode } 
+        }));
+      } catch (e) {
+        // Fallback for older browsers
+        const themeEvent = document.createEvent('CustomEvent');
+        themeEvent.initCustomEvent('themeChanged', true, true, { isDarkMode });
+        window.dispatchEvent(themeEvent);
       }
     },
 
     init: () => {
       // Apply saved dark mode preference
-      const isDarkMode = localStorage.getItem('dark-mode') === 'true';
-      if (isDarkMode) {
+      const isDarkMode = utils.storage.get('dark-mode', null);
+      
+      // If no saved preference, check system preference
+      if (isDarkMode === null && window.matchMedia) {
+        const prefersColorScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        if (prefersColorScheme.matches) {
+          document.body.classList.add('dark-mode');
+          
+          // Update toggle button state
+          if (elements.darkModeToggle) {
+            elements.darkModeToggle.setAttribute('aria-pressed', 'true');
+            
+            const icon = elements.darkModeToggle.querySelector('i');
+            if (icon) {
+              icon.classList.remove('fa-moon');
+              icon.classList.add('fa-sun');
+            }
+          }
+        }
+      } else if (isDarkMode === true) {
+        // Apply saved preference
         document.body.classList.add('dark-mode');
         
-        // Update icon
-        const icon = elements.darkModeToggle.querySelector('i');
-        if (icon) {
-          icon.classList.remove('fa-moon');
-          icon.classList.add('fa-sun');
+        // Update toggle button state
+        if (elements.darkModeToggle) {
+          elements.darkModeToggle.setAttribute('aria-pressed', 'true');
+          
+          const icon = elements.darkModeToggle.querySelector('i');
+          if (icon) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+          }
         }
-        
-        elements.darkModeToggle.setAttribute('aria-pressed', 'true');
       }
       
       // Add event listener for dark mode toggle
       if (elements.darkModeToggle) {
         elements.darkModeToggle.addEventListener('click', darkMode.toggle);
+      }
+      
+      // Listen for system preference changes if no manual preference is set
+      if (window.matchMedia) {
+        const colorSchemeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        const handleColorSchemeChange = (e) => {
+          // Only update if user hasn't manually set a preference
+          if (utils.storage.get('dark-mode', null) === null) {
+            if (e.matches !== document.body.classList.contains('dark-mode')) {
+              darkMode.toggle();
+            }
+          }
+        };
+        
+        // Use modern API if supported
+        if (typeof colorSchemeQuery.addEventListener === 'function') {
+          colorSchemeQuery.addEventListener('change', handleColorSchemeChange);
+        } else if (typeof colorSchemeQuery.addListener === 'function') {
+          // Legacy API for older browsers
+          colorSchemeQuery.addListener(handleColorSchemeChange);
+        }
       }
     }
   };
@@ -124,15 +246,30 @@ document.addEventListener('DOMContentLoaded', () => {
    */
   const scrolling = {
     smoothScroll: (targetId, offset = 70) => {
-      const targetSection = document.querySelector(targetId);
-      if (!targetSection) return;
+      // Handle both # prefix and bare ID
+      const targetSelector = targetId.startsWith('#') ? targetId : `#${targetId}`;
+      const targetElement = document.querySelector(targetSelector);
       
-      const targetPosition = targetSection.getBoundingClientRect().top + window.pageYOffset;
+      if (!targetElement) return;
+      
+      // Get target position
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = targetPosition - offset;
+      
+      // Use native smooth scrolling if supported
+      if ('scrollBehavior' in document.documentElement.style) {
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        return;
+      }
+      
+      // Fallback smooth scrolling animation
       const startPosition = window.pageYOffset;
-      const distance = targetPosition - startPosition - offset;
-      
-      let startTime = null;
+      const distance = offsetPosition - startPosition;
       const duration = 1000; // ms
+      let startTime = null;
       
       const animateScroll = (currentTime) => {
         if (startTime === null) startTime = currentTime;
@@ -186,35 +323,35 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!elements.scrollIndicator) return;
       
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
+      const docHeight = Math.max(
+        document.body.scrollHeight, 
+        document.documentElement.scrollHeight,
+        document.body.offsetHeight, 
+        document.documentElement.offsetHeight,
+        document.body.clientHeight, 
+        document.documentElement.clientHeight
+      ) - window.innerHeight;
       
+      // Ensure we don't divide by zero
+      const scrollPercent = docHeight ? (scrollTop / docHeight) * 100 : 0;
+      
+      // Use requestAnimationFrame for better performance
       requestAnimationFrame(() => {
-        elements.scrollIndicator.style.width = scrollPercent + '%';
+        elements.scrollIndicator.style.width = Math.min(scrollPercent, 100) + '%';
       });
     },
 
     updateBackToTopButton: () => {
       if (!elements.scrollTopBtn) return;
       
-      elements.scrollTopBtn.classList.toggle('active', window.pageYOffset > 300);
-    },
-
-    handleScrollEvents: function() {
-      // Bundle scroll-related updates for better performance
-      const handleScroll = utils.throttle(() => {
-        this.updateScrollIndicator();
-        this.updateBackToTopButton();
-        this.updateActiveNavLink();
-      }, 100);
-      
-      window.addEventListener('scroll', handleScroll);
+      const threshold = 300; // Show after scrolling 300px
+      elements.scrollTopBtn.classList.toggle('active', window.pageYOffset > threshold);
     },
 
     init: () => {
       // Use event delegation for nav links
       document.body.addEventListener('click', (event) => {
-        const link = event.target.closest('.nav-links a, .sidebar ul a, .scroll-nav-item');
+        const link = event.target.closest('.nav-links a, .sidebar ul a, .scroll-nav-item, .back-to-top a');
         if (!link) return;
         
         const href = link.getAttribute('href') || link.getAttribute('data-target');
@@ -230,18 +367,40 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
       
-      // Initialize scroll event handlers
-      scrolling.handleScrollEvents();
+      // Scroll events with throttling for better performance
+      const handleScroll = utils.throttle(() => {
+        scrolling.updateScrollIndicator();
+        scrolling.updateBackToTopButton();
+        scrolling.updateActiveNavLink();
+      }, 100);
       
-      // Back to top button initialization
+      window.addEventListener('scroll', handleScroll);
+      
+      // Back to top button
       if (elements.scrollTopBtn) {
         elements.scrollTopBtn.addEventListener('click', () => {
-          window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-          });
+          scrolling.smoothScroll('#profile');
         });
       }
+      
+      // Handle scroll nav items
+      elements.scrollNavItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const targetPath = this.getAttribute('data-target');
+          if (targetPath) {
+            if (targetPath.includes('.html')) {
+              // Navigate to the page
+              window.location.href = targetPath;
+            } else {
+              // Scroll to the section
+              scrolling.smoothScroll(targetPath);
+            }
+          }
+        });
+      });
+      
+      // Initial scroll position update
+      handleScroll();
     }
   };
 
@@ -253,18 +412,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!elements.logo) return;
       
       // Get all logo elements
-      const logoElements = {
-        stem: document.querySelector('.stem'),
-        crossbar: document.querySelector('.crossbar'),
-        topLoop: document.querySelector('.top-loop'),
-        bottomCurve: document.querySelector('.bottom-curve'),
-        diagonal: document.querySelector('.diagonal'),
-        period: document.querySelector('.period')
-      };
+      const stem = document.querySelector('.stem');
+      const crossbar = document.querySelector('.crossbar');
+      const topLoop = document.querySelector('.top-loop');
+      const bottomCurve = document.querySelector('.bottom-curve');
+      const diagonal = document.querySelector('.diagonal');
+      const period = document.querySelector('.period');
       
-      const { stem, crossbar, topLoop, bottomCurve, diagonal, period } = logoElements;
-      
-      // Check if all required elements exist
+      // Check if all elements exist
       if (!stem || !crossbar || !topLoop || !bottomCurve || !diagonal || !period) return;
       
       // Reset animations
@@ -281,11 +436,11 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Animation sequence with delays
       const animations = [
-        { element: stem, delay: 0, duration: '1s' },
-        { element: crossbar, delay: 800, duration: '0.8s' },
-        { element: topLoop, delay: 1600, duration: '0.8s' },
-        { element: bottomCurve, delay: 2400, duration: '0.8s' },
-        { element: diagonal, delay: 3200, duration: '0.8s' },
+        { element: stem, delay: 0, duration: '1s', type: 'draw' },
+        { element: crossbar, delay: 800, duration: '0.8s', type: 'draw' },
+        { element: topLoop, delay: 1600, duration: '0.8s', type: 'draw' },
+        { element: bottomCurve, delay: 2400, duration: '0.8s', type: 'draw' },
+        { element: diagonal, delay: 3200, duration: '0.8s', type: 'draw' },
         { element: period, delay: 4000, duration: '0.5s', type: 'fadeIn' }
       ];
       
@@ -320,6 +475,9 @@ document.addEventListener('DOMContentLoaded', () => {
           });
         }
       }
+      
+      // Expose function globally for direct access
+      window.animateLogo = logo.animate;
     }
   };
 
@@ -330,6 +488,7 @@ document.addEventListener('DOMContentLoaded', () => {
     init: () => {
       const navbarElement = document.querySelector('.navbar');
       if (navbarElement) {
+        // Add scrolled class when page is scrolled
         window.addEventListener('scroll', utils.throttle(() => {
           navbarElement.classList.toggle('scrolled', window.scrollY > 100);
         }, 100));
@@ -338,104 +497,159 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /**
-   * Add CSS animations for logo
+   * Animation for cards and elements
    */
-  const addLogoAnimationStyles = () => {
-    // Add CSS animations if they don't exist
-    if (!document.querySelector('style#animation-styles')) {
+  const animations = {
+    initObserver: () => {
+      if (!utils.supportsIntersectionObserver || !elements.animatedElements.length) return;
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+      });
+      
+      elements.animatedElements.forEach(element => {
+        observer.observe(element);
+      });
+    },
+    
+    fallbackAnimation: () => {
+      // For browsers that don't support IntersectionObserver
+      if (utils.supportsIntersectionObserver) return;
+      
+      const handleScroll = utils.throttle(() => {
+        elements.animatedElements.forEach(element => {
+          if (utils.isInViewport(element)) {
+            element.classList.add('active');
+          }
+        });
+      }, 200);
+      
+      window.addEventListener('scroll', handleScroll);
+      // Initial check
+      handleScroll();
+    },
+    
+    init: () => {
+      animations.initObserver();
+      animations.fallbackAnimation();
+    }
+  };
+
+  /**
+   * Download button functionality
+   */
+  const downloadButton = {
+    init: () => {
+      if (!elements.downloadBtn) return;
+      
+      elements.downloadBtn.addEventListener('click', (e) => {
+        // Visual feedback for download
+        const originalText = elements.downloadBtn.innerHTML;
+        elements.downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting download...';
+        
+        // Reset button text after delay
+        setTimeout(() => {
+          elements.downloadBtn.innerHTML = originalText;
+        }, 2000);
+        
+        // Check if download attribute is supported
+        const isDownloadSupported = 'download' in document.createElement('a');
+        
+        if (!isDownloadSupported) {
+          e.preventDefault();
+          // Open in new tab as fallback
+          window.open(elements.downloadBtn.href, '_blank');
+          
+          // Show message to user
+          const message = document.createElement('div');
+          message.className = 'download-message';
+          message.textContent = 'Your browser doesn\'t support direct downloads. The PDF has opened in a new tab.';
+          message.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000;';
+          document.body.appendChild(message);
+          
+          // Remove message after a few seconds
+          setTimeout(() => {
+            if (message.parentNode) {
+              message.parentNode.removeChild(message);
+            }
+          }, 5000);
+        }
+      });
+      
+      // Add accessibility enhancements
+      elements.downloadBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          elements.downloadBtn.click();
+        }
+      });
+    }
+  };
+
+  /**
+   * Add animations CSS to document if not already present
+   */
+  const addAnimationStyles = () => {
+    if (!document.querySelector('#animation-styles')) {
       const style = document.createElement('style');
       style.id = 'animation-styles';
       style.textContent = `
         @keyframes draw {
-          to {
-            stroke-dashoffset: 0;
-          }
+          to { stroke-dashoffset: 0; }
         }
         
         @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: scale(0);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
+          from { opacity: 0; transform: scale(0); }
+          to { opacity: 1; transform: scale(1); }
+        }
+        
+        .fade-in {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        
+        .fade-in.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        
+        /* Additional animation for skills cards */
+        .skills-card-animated,
+        .project-card-animated,
+        .experience-card-animated,
+        .education-card-animated {
+          opacity: 0;
+          transform: translateY(30px);
+          transition: 
+            opacity 0.8s ease,
+            transform 0.8s ease,
+            box-shadow 0.3s ease;
+        }
+        
+        .skills-card-animated.active,
+        .project-card-animated.active,
+        .experience-card-animated.active,
+        .education-card-animated.active {
+          opacity: 1;
+          transform: translateY(0);
         }
       `;
       document.head.appendChild(style);
     }
   };
 
-  /**
- * Download Button Functionality
- * - Enhances user experience with feedback
- * - Tracks download attempts
- */
-document.addEventListener('DOMContentLoaded', () => {
-  const downloadBtn = document.querySelector('.download-btn');
-  
-  if (downloadBtn) {
-    // Add click event listener
-    downloadBtn.addEventListener('click', (e) => {
-      // Show visual feedback that download is starting
-      const originalText = downloadBtn.innerHTML;
-      downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Starting download...';
-      
-      // Reset the button text after a short delay
-      setTimeout(() => {
-        downloadBtn.innerHTML = originalText;
-      }, 2000);
-      
-      // Optional: Track download event (if you have analytics)
-      if (typeof gtag === 'function') {
-        gtag('event', 'download', {
-          'event_category': 'Resume',
-          'event_label': 'PDF Download'
-        });
-      }
-      
-      // Check if the download attribute is supported
-      // If not, provide a fallback method
-      const isDownloadSupported = 'download' in document.createElement('a');
-      
-      if (!isDownloadSupported) {
-        e.preventDefault();
-        
-        // Open the PDF in a new tab instead
-        window.open(downloadBtn.href, '_blank');
-        
-        // Show a message to the user
-        const message = document.createElement('div');
-        message.textContent = 'Your browser doesn\'t support direct downloads. The PDF has opened in a new tab.';
-        message.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--primary-color); color: white; padding: 10px 20px; border-radius: 5px; z-index: 1000;';
-        document.body.appendChild(message);
-        
-        // Remove the message after a few seconds
-        setTimeout(() => {
-          document.body.removeChild(message);
-        }, 5000);
-      }
-    });
-    
-    // Add hover and focus effects for better accessibility
-    downloadBtn.addEventListener('mouseenter', () => {
-      downloadBtn.setAttribute('title', 'Download Resume PDF');
-    });
-    
-    // Support keyboard navigation
-    downloadBtn.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        downloadBtn.click();
-      }
-    });
-  }
-});
-
   // ====== INITIALIZATION ======
   const init = () => {
     // Add animation styles
-    addLogoAnimationStyles();
+    addAnimationStyles();
     
     // Initialize all components
     sidebar.init();
@@ -443,6 +657,18 @@ document.addEventListener('DOMContentLoaded', () => {
     scrolling.init();
     logo.init();
     navbar.init();
+    animations.init();
+    downloadButton.init();
+    
+    // Update year in copyright notice
+    const yearElements = document.querySelectorAll('#current-year');
+    const currentYear = new Date().getFullYear();
+    yearElements.forEach(element => {
+      if (element) element.textContent = currentYear.toString();
+    });
+    
+    // Handle initial theme state
+    document.body.classList.remove('no-transition');
   };
 
   // Call the init function
