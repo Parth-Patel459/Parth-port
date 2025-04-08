@@ -1,7 +1,7 @@
 Parth Patel - Personal Portfolio Website
 A modern, responsive portfolio website showcasing Parth Patel's work, skills, and professional experience.
 Live Demo
-https://github.com/Parth-Patel459/Parth-port/
+http://parth-patel459.github.io/Parth-port/
 Description
 This portfolio website provides a comprehensive showcase of Parth Patel's skills, projects, resume, and resources. The website features a clean, modern design with smooth animations and a focus on accessibility and user experience.
 Technologies Used
