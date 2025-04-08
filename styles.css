@@ -452,6 +452,69 @@ body.dark-mode .menu-btn {
   transition: opacity 0.3s;
 }
 
+/* Animation for the background square */
+@keyframes corner {
+  0% {
+    border-top-left-radius: 1% 50%;
+  }
+  12.5% {
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%; 
+  }
+  25% {
+    border-top-right-radius: 1% 50%;
+  }
+  25.001% {
+    border-top-right-radius: 50% 1%;
+  }
+  37.5% {
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+  }
+  50% {
+    border-bottom-right-radius: 50% 1%;
+  }
+  50.001% {
+    border-bottom-right-radius: 1% 50%;
+  }
+  62.5% {
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
+  }
+  75% {
+    border-bottom-left-radius: 1% 50%;
+  }
+  75.001% {
+    border-bottom-left-radius: 50% 1%;
+  }
+  87.5% {
+    border-bottom-left-radius: 50%;
+    border-top-left-radius: 50%;
+  }
+  100% {
+    border-top-left-radius: 50% 1%;
+  }
+}
+
+#foo {
+  animation: corner 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  opacity: 0.6;
+}
+
+/* Make the logo text more prominent on the animated background */
+.stem, .crossbar, .top-loop, .bottom-curve, .diagonal {
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
+.period {
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
+}
+
 /* ====== SIDEBAR ====== */
 .sidebar {
   width: var(--sidebar-width);
