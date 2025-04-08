@@ -1348,6 +1348,49 @@ body.dark-mode .resource-card-content p {
   animation-play-state: paused;
 }
 
+/* 🛠️ FIXED Animated Gradient Border - Smooth and Clean */
+
+.resource-card-animated {
+  --border-angle: 0turn;
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #0d0d0d,
+    #1a1a1a 5%,
+    #1a1a1a 60%,
+    #0d0d0d 95%
+  );
+  --gradient-border: conic-gradient(
+    from var(--border-angle) at top left,  /* origin fix */
+    transparent 25%,
+    #08f,
+    #f03 99%,
+    transparent
+  );
+
+  border: solid 3px transparent;
+  border-radius: 12px; /* rounded border for smooth corners */
+  background:
+    var(--main-bg) padding-box,
+    var(--gradient-border) border-box,
+    var(--main-bg) border-box;
+
+  background-position: center center;
+  animation: bg-spin 4s linear infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+
 
 
 /* ====== CONTACT SECTION ====== */
