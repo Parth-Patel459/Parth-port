@@ -177,42 +177,142 @@ body.dark-mode a:hover {
 .grid-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-4 { grid-template-columns: repeat(4, 1fr); }
 
-/* Sections */
+/* Enhanced Sections */
 section {
   padding: var(--section-padding);
   scroll-margin-top: 80px; /* For smooth scrolling with fixed header */
+  position: relative;
+  overflow: hidden; /* Prevent potential layout issues */
+  transition: background-color 0.3s ease;
 }
 
+/* Section divider for better visual separation */
+section:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 15%;
+  width: 70%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-color) 20%, var(--border-color) 80%, transparent);
+  opacity: 0.6;
+}
+
+/* Enhanced section title */
 .section-title {
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   position: relative;
   display: inline-block;
   text-align: center;
   width: 100%;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transform: translateZ(0); /* Hardware acceleration for smoother rendering */
+  backface-visibility: hidden;
 }
 
+/* Improved underline effect */
 .section-title::after {
   content: '';
   position: absolute;
-  bottom: -10px;
+  bottom: -12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 70px;
-  height: 3px;
-  background-color: var(--primary-color);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--primary-color-hover));
+  border-radius: 4px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
+/* Active section indicator */
+section.active .section-title::after {
+  width: 140px;
+  height: 5px;
+  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+/* Enhanced subtitle styling */
 .section-subtitle {
   font-size: 1.1rem;
   color: var(--text-color-light);
   max-width: 700px;
-  margin: 0 auto 40px;
+  margin: 1.5rem auto 40px;
   text-align: center;
+  line-height: 1.6;
+  font-weight: 400;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover interactions for better UX */
+section:hover .section-subtitle {
+  opacity: 1;
+}
+
+section:hover .section-title::after {
+  width: 140px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+/* Dark mode adjustments with smoother transitions */
+body.dark-mode .section-title {
+  color: var(--dark-text-color);
 }
 
 body.dark-mode .section-subtitle {
   color: var(--dark-text-color-light);
+}
+
+body.dark-mode section:not(:last-child)::after {
+  background: linear-gradient(90deg, transparent, var(--dark-border-color) 20%, var(--dark-border-color) 80%, transparent);
+}
+
+/* Ensure proper spacing for section content */
+.section-content {
+  position: relative;
+  z-index: 1;
+  margin-top: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+section.visible .section-content {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.2rem;
+  }
+  
+  .section-title::after {
+    width: 80px;
+    height: 3px;
+  }
+  
+  section:hover .section-title::after,
+  section.active .section-title::after {
+    width: 120px;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+    margin: 1.2rem auto 30px;
+  }
+}
+
+/* For users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  section, .section-title, .section-title::after, .section-subtitle, .section-content {
+    transition: none !important;
+    transform: none !important;
+  }
 }
 
 /* ====== NAVIGATION ====== */
