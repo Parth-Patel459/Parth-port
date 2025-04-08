@@ -1,7 +1,7 @@
 Parth Patel - Personal Portfolio Website
 A modern, responsive portfolio website showcasing Parth Patel's work, skills, and professional experience.
 Live Demo
-https://ParthPatel-PersonalWebsite.github.io/
+https://github.com/Parth-Patel459/Parth-port/
 Description
 This portfolio website provides a comprehensive showcase of Parth Patel's skills, projects, resume, and resources. The website features a clean, modern design with smooth animations and a focus on accessibility and user experience.
 Technologies Used
@@ -60,10 +60,10 @@ Mobile browsers (iOS Safari, Chrome for Android)
 Setup and Installation
 
 Clone the repository
-Copygit clone https://github.com/ParthPatel-PersonalWebsite/ParthPatel-PersonalWebsite.github.io.git
+Copygit clone https://github.com/parth-patel459/Parth-port.git
 
 Navigate to the project directory
-Copycd ParthPatel-PersonalWebsite.github.io
+Copycd Parth-port
 
 Open index.html in your browser to view the website locally
 
