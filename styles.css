@@ -1221,7 +1221,7 @@ body.dark-mode .resource-card-animated {
 
 /* ====== HOVER EFFECT ====== */
 .resource-card-animated:hover {
-  transform: translateY(-10px);
+  transform: translateY(10px);
   box-shadow: var(--box-shadow-hover);
 }
 
@@ -1290,7 +1290,7 @@ body.dark-mode .resource-card-content p {
 /* ====== RESPONSIVE ADJUSTMENTS (Optional) ====== */
 @media (max-width: 480px) {
   .resources-section {
-    padding: 50px 20px;
+    padding: 100px 50px;
   }
 
   .resource-card-content h3 {
@@ -1301,6 +1301,53 @@ body.dark-mode .resource-card-content p {
     font-size: 0.75rem;
   }
 }
+
+/* ====== ANIMATED BORDER EFFECT FOR RESOURCE CARDS ====== */
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+.resource-card-animated {
+  --border-angle: 0turn;
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #213,
+    #112 5%,
+    #112 60%,
+    #213 95%
+  );
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    #08f,
+    #f03 99%,
+    transparent
+  );
+
+  border: solid 4px transparent;
+  background:
+    var(--main-bg) padding-box,
+    var(--gradient-border) border-box,
+    var(--main-bg) border-box;
+
+  background-position: center center;
+  animation: bg-spin 4s linear infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes bg-spin {
+  to {
+    --border-angle: 1turn;
+  }
+}
+
+.resource-card-animated:hover {
+  animation-play-state: paused;
+}
+
 
 
 /* ====== CONTACT SECTION ====== */
