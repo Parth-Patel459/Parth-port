@@ -1191,43 +1191,41 @@ body.dark-mode .resources-section {
   margin-top: 20px;
 }
 
+/* ====== RESOURCE CARD ====== */
 .resource-card-animated {
   background-color: var(--background-color);
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   padding: 25px;
   position: relative;
-  transition: all 0.3s;
   border: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 body.dark-mode .resource-card-animated {
   background-color: var(--dark-background-color);
   border-color: var(--dark-border-color);
-  
 }
 
-/* Add styles for the image */
+/* ====== IMAGE STYLES ====== */
 .resource-card-animated img.resource-image {
-    width: 100%;  /* Make the image take up the full width of the card */
-    height: auto; /* Maintain aspect ratio */
-    border-radius: var(--border-radius);  /* Apply border radius if you have one */
-    object-fit: cover;  /* This ensures the image covers the area without distortion */
-    margin-bottom: 15px; /* Add some space between the image and the content */
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: var(--border-radius);
+  margin-bottom: 15px;
 }
 
-/* Optionally, you can set a max height for the images to prevent them from being too tall */
-.resource-card-animated img.resource-image {
-    max-height: 250px; /* Adjust as needed */
-}
-
+/* ====== HOVER EFFECT ====== */
 .resource-card-animated:hover {
   transform: translateY(-10px);
   box-shadow: var(--box-shadow-hover);
 }
 
+/* ====== CARD CONTENT ====== */
 .resource-card-content {
   flex: 1;
   display: flex;
@@ -1241,7 +1239,8 @@ body.dark-mode .resource-card-animated {
 
 .resource-card-content h3 a {
   color: var(--text-color);
-  transition: color 0.3s;
+  text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .resource-card-content h3 a:hover {
@@ -1262,31 +1261,47 @@ body.dark-mode .resource-card-content p {
   color: var(--dark-text-color-light);
 }
 
+/* ====== RESOURCE TAG ====== */
 .resource-tag {
   display: inline-block;
   background-color: var(--primary-color);
-  color: white;
+  color: #fff;
   padding: 4px 12px;
   border-radius: 20px;
   font-size: 0.8rem;
   margin-bottom: 15px;
-  
 }
 
+/* ====== BUTTONS SECTION ====== */
 .resource-card-animated .buttons.has-addons {
   margin-top: auto;
- 
 }
 
+/* ====== SVG ANIMATION ====== */
 .resource-card-animated svg rect {
   stroke: var(--primary-color);
   stroke-width: var(--border-width-medium);
-  stroke-dasharray: 600, 600;
+  stroke-dasharray: 600;
   stroke-dashoffset: 600;
-  transition: stroke-dashoffset var(--animation-speed-medium) var(--animation-curve);
   fill: transparent;
- 
+  transition: stroke-dashoffset var(--animation-speed-medium) var(--animation-curve);
 }
+
+/* ====== RESPONSIVE ADJUSTMENTS (Optional) ====== */
+@media (max-width: 480px) {
+  .resources-section {
+    padding: 50px 20px;
+  }
+
+  .resource-card-content h3 {
+    font-size: 1rem;
+  }
+
+  .resource-tag {
+    font-size: 0.75rem;
+  }
+}
+
 
 /* ====== CONTACT SECTION ====== */
 .contact-section {
