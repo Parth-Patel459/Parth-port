@@ -4,32 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Parth Patel - Computer Science Student Resume">
+    <meta name="description" content="Parth Patel - Computer Science Student Resume with skills in HTML, CSS, JavaScript, and other programming languages">
+    <meta name="keywords" content="Parth Patel, Computer Science, Resume, Web Development, HTML, CSS, JavaScript">
+    <meta name="author" content="Parth Patel">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Parth Patel | Resume">
+    <meta property="og:description" content="Computer Science Student specializing in Web Development">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://parth-patel459.github.io/Parth-port/resume.html">
+    
     <title>PARTH PATEL | Resume</title>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="./resume-styles.css">
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="./favicon.png">
-    <!-- Preload critical fonts -->
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="resume-styles.css">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.png">
 </head>
 <body>
-    <!-- Skip to content for accessibility -->
+    <!-- Skip to content link for accessibility -->
     <a href="#profile" class="skip-link">Skip to content</a>
     
     <!-- Overlay for mobile sidebar -->
-    <div class="overlay" id="overlay"></div>
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
 
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" aria-label="Main navigation">
         <div class="container nav-container">
             <!-- Logo -->
             <div class="logo-container">
                 <div class="logo" id="logo">
-                    <svg id="logoSVG" viewBox="0 0 400 400" width="300" height="300">
+                    <svg id="logoSVG" viewBox="0 0 400 400" width="300" height="300" aria-hidden="true">
                         <!-- Background circle -->
                         <circle cx="200" cy="200" r="180" fill="#f8f8f8" stroke="#e0e0e0" stroke-width="2" />
                         
@@ -96,7 +110,7 @@
                 </button>
                 
                 <!-- Mobile menu toggle -->
-                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="sidebar">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -104,7 +118,7 @@
     </nav>
 
     <!-- Mobile sidebar navigation -->
-    <div class="sidebar" id="sidebar">
+    <div class="sidebar" id="sidebar" aria-label="Mobile navigation" aria-hidden="true">
         <button class="close-btn" id="close-btn" aria-label="Close sidebar">
             <i class="fas fa-times"></i>
         </button>
@@ -138,250 +152,261 @@
     </div>
 
     <!-- Main Content Sections -->
-    
-    <!-- Profile Section with Knuford-style layout -->
-    <section class="profile-section" id="profile">
-        <div class="container">
-            <div class="knuford-profile-container">
-                <!-- Profile image - diagonal split layout -->
-                <div class="profile-image-area">
-                    <img src="Parth-Patel.jpeg" alt="Parth Patel - Professional Portrait" loading="eager">
-                    <div class="overlay-gradient"></div>
-                </div>
-                
-                <div class="profile-content">
-                    <h1 class="profile-name">PARTH PATEL</h1>
-                    <p class="profile-title">Computer Science Student</p>
-                    <div class="profile-objective">
-                        <h2>Objective</h2>
-                        <p>Enthusiastic Computer Science student with a strong passion for web development and a keen interest in creating interactive and responsive websites. Good in HTML, CSS, JavaScript, with basic knowledge of front-end frameworks and web design principles.</p>
-                        <p>Currently expanding my knowledge in backend development, database integration, and modern web technologies. Seeking a Web Development Internship to apply my technical skills and contribute to impactful projects.</p>
-                    </div>
-                    <div class="profile-contact">
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:parth459.a@gmail.com">parth459.a@gmail.com</a>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+17742238113">+1 (774) 223-8113</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section class="education-section" id="education">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="education-card-animated">
-                <svg>
-                    <rect x="0" y="0" width="100%" height="100%"></rect>
-                </svg>
-                <div class="education-card-content">
-                    <div class="education-details">
-                        <h3>Bachelor of Computer Science</h3>
-                        <h4>University of Massachusetts Boston</h4>
-                        <p class="education-period">Present</p>
-                        <p class="education-location"><i class="fas fa-map-marker-alt"></i> Boston, U.S.A.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="skills-section" id="skills">
-        <div class="container">
-            <h2 class="section-title">Technical Skills</h2>
-            
-            <div class="skills-container">
-                <!-- CS Languages Skills Card -->
-                <div class="skills-card-animated">
-                    <svg>
-                        <rect x="0" y="0" width="100%" height="100%"></rect>
-                    </svg>
-                    <div class="skills-card-content">
-                        <h3>CS Languages</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">HTML</span>
-                            <span class="skill-tag">CSS</span>
-                            <span class="skill-tag">JavaScript</span>
-                            <span class="skill-tag">TypeScript</span>
-                            <span class="skill-tag">Python</span>
-                            <span class="skill-tag">Java</span>
-                            <span class="skill-tag">C/C++</span>
-                            <span class="skill-tag">C#</span>
-                            <span class="skill-tag">three.js</span>
-                            <span class="skill-tag">PHP</span>
-                            <span class="skill-tag">SQL</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Tools Skills Card -->
-                <div class="skills-card-animated">
-                    <svg>
-                        <rect x="0" y="0" width="100%" height="100%"></rect>
-                    </svg>
-                    <div class="skills-card-content">
-                        <h3>Tools</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">Git</span>
-                            <span class="skill-tag">Linux</span>
-                            <span class="skill-tag">Figma</span>
-                            <span class="skill-tag">VM VirtualBox</span>
-                            <span class="skill-tag">VMware</span>
-                            <span class="skill-tag">WebGL</span>
-                            <span class="skill-tag">Overleaf / LATEX</span>
-                            <span class="skill-tag">GitHub</span>
-                            <span class="skill-tag">GitLab</span>
-                            <span class="skill-tag">Unity</span>
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">Arduino</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Languages Skills Card -->
-                <div class="skills-card-animated">
-                    <svg>
-                        <rect x="0" y="0" width="100%" height="100%"></rect>
-                    </svg>
-                    <div class="skills-card-content">
-                        <h3>Languages</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">English</span>
-                            <span class="skill-tag">Gujarati</span>
-                            <span class="skill-tag">Hindi</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Hobbies Skills Card -->
-                <div class="skills-card-animated">
-                    <svg>
-                        <rect x="0" y="0" width="100%" height="100%"></rect>
-                    </svg>
-                    <div class="skills-card-content">
-                        <h3>Hobbies</h3>
-                        <div class="skills-list">
-                            <span class="skill-tag">Cricket</span>
-                            <span class="skill-tag">Web Development</span>
-                            <span class="skill-tag">Game Development</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects-section" id="projects">
-        <div class="container">
-            <h2 class="section-title">Academic Projects</h2>
-            
-            <div class="project-card-animated">
-                <svg>
-                    <rect x="0" y="0" width="100%" height="100%"></rect>
-                </svg>
-                <div class="project-card-content">
-                    <h3>HourWork</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">JavaScript</span>
-                        <span class="project-tag">HTML</span>
-                        <span class="project-tag">CSS</span>
-                    </div>
-                    <div class="project-details">
-                        <p>Collaborated with colleagues to develop a web-based project called HourWork for study assistance.</p>
-                        <p>To develop HourWork we are using JavaScript, HTML, CSS, focusing on creating an intuitive user interface with responsive design.</p>
-                        <p>HourWork is a study tool for students and learners alike, featuring productivity tracking, customizable study sessions, and progress analytics.</p>
-                    </div>
-                    <a href="https://github.com/kylehackett99/HourWork" class="project-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i> View on GitHub
-                    </a>
-                </div>
-            </div>
-            
-            <div class="project-card-animated">
-                <svg>
-                    <rect x="0" y="0" width="100%" height="100%"></rect>
-                </svg>
-                <div class="project-card-content">
-                    <h3>Personal Portfolio Website</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">HTML</span>
-                        <span class="project-tag">CSS</span>
-                        <span class="project-tag">JavaScript</span>
-                        <span class="project-tag">Responsive Design</span>
-                    </div>
-                    <div class="project-details">
-                        <p>Designed and developed a personal portfolio website to showcase my skills, projects, and experience.</p>
-                        <p>Implemented responsive design principles to ensure optimal viewing experience across various devices and screen sizes.</p>
-                        <p>Features include dark mode support, animated UI elements, and accessible navigation.</p>
-                    </div>
-                    <a href="https://github.com/Parth-Patel459" class="project-link" target="_blank" rel="noopener noreferrer">
-                        <i class="fab fa-github"></i> View on GitHub
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section class="experience-section" id="experience">
-        <div class="container">
-            <h2 class="section-title">Work Experience</h2>
-            
-            <div class="experience-card-animated">
-                <svg>
-                    <rect x="0" y="0" width="100%" height="100%"></rect>
-                </svg>
-                <div class="experience-card-content">
-                    <h3>Warehouse Associate</h3>
-                    <h4>Amazon Delivery Station</h4>
-                    
-                    <div class="experience-tags">
-                        <span class="experience-tag">Fast-Paced Environment</span>
-                        <span class="experience-tag">Sorting</span>
-                        <span class="experience-tag">Inducting</span>
-                        <span class="experience-tag">Picking-Stage</span>
-                        <span class="experience-tag">Package Handling</span>
-                        <span class="experience-tag">Quality Control</span>
-                        <span class="experience-tag">Team Collaboration</span>
+    <main>
+        <!-- Profile Section with Knuford-style layout -->
+        <section class="profile-section" id="profile">
+            <div class="container">
+                <div class="knuford-profile-container">
+                    <!-- Profile image - diagonal split layout -->
+                    <div class="profile-image-area">
+                        <img src="Parth Patel Profile image.jpeg" alt="Parth Patel - Professional Portrait" loading="eager">
+                        <div class="overlay-gradient"></div>
                     </div>
                     
-                    <div class="responsibilities">
-                        <ul>
-                            <li><strong>Sorting:</strong> Organize and categorize incoming and outgoing packages to ensure accurate delivery.</li>
-                            <li><strong>Inducting:</strong> Scan and place packages onto conveyors or designated areas for processing.</li>
-                            <li><strong>Picking & Staging:</strong> Retrieve and prepare customer orders for shipment, ensuring accuracy & efficiency.</li>
-                            <li><strong>Package Handling:</strong> Lift, move, and load/unload packages safely while following workplace safety protocols.</li>
-                            <li><strong>Quality Control:</strong> Inspect packages for damages or errors before shipment.</li>
-                            <li><strong>Team Collaboration:</strong> Work alongside co-workers and supervisors to meet daily operational targets.</li>
-                            <li><strong>Fast-Paced Environment:</strong> Maintain high productivity while adhering to safety and company guidelines.</li>
-                        </ul>
+                    <div class="profile-content">
+                        <h1 class="profile-name">PARTH PATEL</h1>
+                        <p class="profile-title">Computer Science Student</p>
+                        <div class="profile-objective">
+                            <h2>Objective</h2>
+                            <p>Enthusiastic Computer Science student with a strong passion for web development and a keen interest in creating interactive and responsive websites. Good in HTML, CSS, JavaScript, with basic knowledge of front-end frameworks and web design principles.</p>
+                            <p>Currently expanding my knowledge in backend development, database integration, and modern web technologies. Seeking a Web Development Internship to apply my technical skills and contribute to impactful projects.</p>
+                        </div>
+                        <div class="profile-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:parth459.a@gmail.com">parth459.a@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <a href="tel:+17742238113">+1 (774) 223-8113</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Canton, MA</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div class="experience-summary">
-                <p>Motivated and detail-oriented Warehouse Associate with hands-on experience in sorting, inducting, and picking-staging at Amazon Delivery Station. Adept at handling high-volume package processing, ensuring efficiency, accuracy, and compliance with safety standards. Strong ability to work in fast-paced environments, collaborate with team members, and contribute to seamless logistics operations. Passionate about optimizing workflow and maintaining high productivity to enhance customer satisfaction.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Download Section -->
-    <section class="download-section">
-        <div class="container">
-            <a href="./assets/ParthPatelCV.pdf" class="download-btn" download id="download-resume">
-                <i class="fas fa-download"></i> Download Resume PDF
-            </a>
-            <p class="download-hint">Click to save a copy of my resume</p>
-        </div>
-    </section>
+        <!-- Education Section -->
+        <section class="education-section" id="education">
+            <div class="container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-card-animated">
+                    <svg aria-hidden="true">
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="education-card-content">
+                        <div class="education-details">
+                            <h3>Bachelor of Computer Science</h3>
+                            <h4>University of Massachusetts Boston</h4>
+                            <p class="education-period">Present</p>
+                            <p class="education-location"><i class="fas fa-map-marker-alt"></i> Boston, U.S.A.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills-section" id="skills">
+            <div class="container">
+                <h2 class="section-title">Technical Skills</h2>
+                
+                <div class="skills-container">
+                    <!-- CS Languages Skills Card -->
+                    <div class="skills-card-animated">
+                        <svg aria-hidden="true">
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="skills-card-content">
+                            <h3>CS Languages</h3>
+                            <div class="skills-list">
+                                <span class="skill-tag">HTML</span>
+                                <span class="skill-tag">CSS</span>
+                                <span class="skill-tag">JavaScript</span>
+                                <span class="skill-tag">TypeScript</span>
+                                <span class="skill-tag">Python</span>
+                                <span class="skill-tag">Java</span>
+                                <span class="skill-tag">C/C++</span>
+                                <span class="skill-tag">C#</span>
+                                <span class="skill-tag">three.js</span>
+                                <span class="skill-tag">PHP</span>
+                                <span class="skill-tag">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Tools Skills Card -->
+                    <div class="skills-card-animated">
+                        <svg aria-hidden="true">
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="skills-card-content">
+                            <h3>Tools</h3>
+                            <div class="skills-list">
+                                <span class="skill-tag">Git</span>
+                                <span class="skill-tag">Linux</span>
+                                <span class="skill-tag">Figma</span>
+                                <span class="skill-tag">VM VirtualBox</span>
+                                <span class="skill-tag">VMware</span>
+                                <span class="skill-tag">WebGL</span>
+                                <span class="skill-tag">Overleaf / LATEX</span>
+                                <span class="skill-tag">GitHub</span>
+                                <span class="skill-tag">GitLab</span>
+                                <span class="skill-tag">Unity</span>
+                                <span class="skill-tag">MySQL</span>
+                                <span class="skill-tag">Arduino</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Languages Skills Card -->
+                    <div class="skills-card-animated">
+                        <svg aria-hidden="true">
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="skills-card-content">
+                            <h3>Languages</h3>
+                            <div class="skills-list">
+                                <span class="skill-tag">English</span>
+                                <span class="skill-tag">Gujarati</span>
+                                <span class="skill-tag">Hindi</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hobbies Skills Card -->
+                    <div class="skills-card-animated">
+                        <svg aria-hidden="true">
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="skills-card-content">
+                            <h3>Hobbies</h3>
+                            <div class="skills-list">
+                                <span class="skill-tag">Cricket</span>
+                                <span class="skill-tag">Web Development</span>
+                                <span class="skill-tag">Game Development</span>
+                                <span class="skill-tag">Open Source</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects-section" id="projects">
+            <div class="container">
+                <h2 class="section-title">Academic Projects</h2>
+                
+                <div class="project-card-animated">
+                    <svg aria-hidden="true">
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="project-card-content">
+                        <h3>HourWork</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                        </div>
+                        <div class="project-details">
+                            <p>Collaborated with colleagues to develop a web-based project called HourWork for study assistance.</p>
+                            <p>To develop HourWork we are using JavaScript, HTML, CSS, focusing on creating an intuitive user interface with responsive design.</p>
+                            <p>HourWork is a study tool for students and learners alike, featuring productivity tracking, customizable study sessions, and progress analytics.</p>
+                        </div>
+                        <a href="https://github.com/kylehackett99/HourWork" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="project-card-animated">
+                    <svg aria-hidden="true">
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="project-card-content">
+                        <h3>Personal Portfolio Website</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">HTML</span>
+                            <span class="project-tag">CSS</span>
+                            <span class="project-tag">JavaScript</span>
+                            <span class="project-tag">Responsive Design</span>
+                        </div>
+                        <div class="project-details">
+                            <p>Designed and developed a personal portfolio website to showcase my skills, projects, and experience.</p>
+                            <p>Implemented responsive design principles to ensure optimal viewing experience across various devices and screen sizes.</p>
+                            <p>Features include dark mode support, animated UI elements, and accessible navigation.</p>
+                        </div>
+                        <a href="https://github.com/parth-patel459/Parth-port" class="project-link" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i> View on GitHub
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience-section" id="experience">
+            <div class="container">
+                <h2 class="section-title">Work Experience</h2>
+                
+                <div class="experience-card-animated">
+                    <svg aria-hidden="true">
+                        <rect x="0" y="0" width="100%" height="100%"></rect>
+                    </svg>
+                    <div class="experience-card-content">
+                        <h3>Warehouse Associate</h3>
+                        <h4>Amazon Delivery Station</h4>
+                        
+                        <div class="experience-tags">
+                            <span class="experience-tag">Fast-Paced Environment</span>
+                            <span class="experience-tag">Sorting</span>
+                            <span class="experience-tag">Inducting</span>
+                            <span class="experience-tag">Picking-Stage</span>
+                            <span class="experience-tag">Package Handling</span>
+                            <span class="experience-tag">Quality Control</span>
+                            <span class="experience-tag">Team Collaboration</span>
+                        </div>
+                        
+                        <div class="responsibilities">
+                            <ul>
+                                <li><strong>Sorting:</strong> Organize and categorize incoming and outgoing packages to ensure accurate delivery.</li>
+                                <li><strong>Inducting:</strong> Scan and place packages onto conveyors or designated areas for processing.</li>
+                                <li><strong>Picking & Staging:</strong> Retrieve and prepare customer orders for shipment, ensuring accuracy & efficiency.</li>
+                                <li><strong>Package Handling:</strong> Lift, move, and load/unload packages safely while following workplace safety protocols.</li>
+                                <li><strong>Quality Control:</strong> Inspect packages for damages or errors before shipment.</li>
+                                <li><strong>Team Collaboration:</strong> Work alongside co-workers and supervisors to meet daily operational targets.</li>
+                                <li><strong>Fast-Paced Environment:</strong> Maintain high productivity while adhering to safety and company guidelines.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="experience-summary">
+                    <p>Motivated and detail-oriented Warehouse Associate with hands-on experience in sorting, inducting, and picking-staging at Amazon Delivery Station. Adept at handling high-volume package processing, ensuring efficiency, accuracy, and compliance with safety standards. Strong ability to work in fast-paced environments, collaborate with team members, and contribute to seamless logistics operations. Passionate about optimizing workflow and maintaining high productivity to enhance customer satisfaction.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Section -->
+        <section class="download-section">
+            <div class="container">
+                <div class="download-actions">
+                    <a href="./assets/ParthPatelCV.pdf" class="download-btn" download id="download-resume">
+                        <i class="fas fa-download"></i> Download Resume PDF
+                    </a>
+                    <button onclick="window.print()" class="print-btn">
+                        <i class="fas fa-print"></i> Print Resume
+                    </button>
+                </div>
+                <p class="download-hint">Click to save a copy of my resume</p>
+            </div>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer class="footer">
@@ -443,7 +468,7 @@
     <!-- Page Navigation Components -->
     
     <!-- Bottom Scroll Bar -->
-    <div class="bottom-scrollbar-container">
+    <div class="bottom-scrollbar-container" aria-hidden="true">
         <div class="scroll-indicator" id="scroll-indicator"></div>
         <div class="scroll-nav">
             <button class="scroll-nav-item" data-target="#profile">Profile</button>
@@ -462,33 +487,6 @@
 
     <!-- Main Script -->
     <script src="./resume-script.js"></script>
-    
-    <!-- Current year script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Update copyright year
-            const yearElements = document.querySelectorAll('#current-year');
-            const currentYear = new Date().getFullYear();
-            yearElements.forEach(element => {
-                if (element) element.textContent = currentYear.toString();
-            });
-            
-            // Add download tracking
-            const downloadBtn = document.getElementById('download-resume');
-            if (downloadBtn) {
-                downloadBtn.addEventListener('click', function() {
-                    console.log('Resume download initiated');
-                    
-                    // Visual feedback
-                    const originalText = this.innerHTML;
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
-                    
-                    setTimeout(() => {
-                        this.innerHTML = originalText;
-                    }, 2000);
-                });
-            }
-        });
-    </script>
 </body>
 </html>
+
