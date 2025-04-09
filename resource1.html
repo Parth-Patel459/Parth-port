@@ -49,8 +49,147 @@
             font-style: italic;
         }
     </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Responsive Design Patterns - Parth Patel">
+    <title>PARTH PATEL | Developer & Designer</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="./styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./favicon.png">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+</head>
 </head>
 <body>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <!-- Overlay for Sidebar -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo-container">
+                <div class="logo" id="logo">
+                    <svg id="logoSVG" viewBox="0 0 400 400" width="300" height="300">
+                        <!-- Background circle -->
+                        <circle cx="200" cy="200" r="180" fill="#f8f8f8" stroke="#e0e0e0" stroke-width="2" />
+                        
+                        <!-- Main unified letterform -->
+                        <g>
+                            <!-- Vertical stem (P, A, R, T, H) -->
+                            <path class="stem" d="M150,100 L150,300" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                            
+                            <!-- Horizontal crossbar (A, H, E, T) -->
+                            <path class="crossbar" d="M110,180 L240,180" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                            
+                            <!-- Top loop (P, R, P) -->
+                            <path class="top-loop" d="M150,100 L200,100 C260,100 260,180 200,180" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round" />
+                            
+                            <!-- Bottom curve (P, P, E, L) -->
+                            <path class="bottom-curve" d="M150,240 L200,240 C260,240 260,300 200,300 L150,300" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round" />
+                            
+                            <!-- Diagonal (A, R) -->
+                            <path class="diagonal" d="M175,180 L225,240" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                        </g>
+                        
+                        <!-- Separate period/dot -->
+                        <circle class="period" cx="280" cy="280" r="12" fill="#FF4500" />
+                        
+                        <!-- Letter highlights -->
+                        <text class="letter-highlight" x="135" y="90" text-anchor="middle">P</text>
+                        <text class="letter-highlight" x="170" y="90" text-anchor="middle">A</text>
+                        <text class="letter-highlight" x="210" y="90" text-anchor="middle">R</text>
+                        <text class="letter-highlight" x="240" y="150" text-anchor="middle">T</text>
+                        <text class="letter-highlight" x="240" y="210" text-anchor="middle">H</text>
+                        <text class="letter-highlight" x="150" y="330" text-anchor="middle">P</text>
+                        <text class="letter-highlight" x="180" y="330" text-anchor="middle">A</text>
+                        <text class="letter-highlight" x="210" y="330" text-anchor="middle">T</text>
+                        <text class="letter-highlight" x="240" y="330" text-anchor="middle">E</text>
+                        <text class="letter-highlight" x="270" y="330" text-anchor="middle">L</text>
+                        <text class="letter-highlight" x="295" y="285" text-anchor="middle">.</text>
+                    </svg>
+                </div>
+                
+                <div class="name-reveal">PARTH PATEL.</div>
+            </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="./index.html#home" class="nav-link active">Home</a>
+                <a href="./index.html#about" class="nav-link">About</a>
+                <a href="./index.html#projects" class="nav-link">Projects</a>
+                <a href="./index.html#blog" class="nav-link">Blog</a>
+                <a href="./index.html#resources" class="nav-link">Resources</a>
+                <a href="./index.html#contact" class="nav-link">Contact</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar for mobile -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn" aria-label="Close sidebar">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="sidebar-about">
+            <h3 class="title">PARTH PATEL</h3>
+            <p class="subtitle">Web Developer</p>
+        </div>
+        
+        <ul>
+            <li><a href="./index.html#home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="./index.html#about"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="./index.html#projects"><i class="fas fa-code"></i> Projects</a></li>
+            <li><a href="./index.html#blog"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="./index.html#resources"><i class="fas fa-bookmark"></i> Resources</a></li>
+            <li><a href="./index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+        <div class="sidebar-footer">
+            &copy; <span id="current-year">2025</span> PARTH PATEL
+        </div>
+    </div>
     <h1>🌐 Front-end Development Checklist</h1>
     
     <div class="section">
