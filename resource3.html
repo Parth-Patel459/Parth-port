@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Performance Toolkit</title>
+    <style>
+        :root {
+            --bg-primary: #f4f6f9;
+            --text-primary: #2c3e50;
+            --accent-color: #3498db;
+            --card-bg: #ffffff;
+            --border-color: #e0e6ed;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background-color: var(--bg-primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--accent-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .toolkit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-card h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .tool-card .category {
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .tool-card .description {
+            margin-bottom: 15px;
+        }
+
+        .tool-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .tool-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .tool-links a:hover {
+            color: darken(var(--accent-color), 10%);
+            text-decoration: underline;
+        }
+
+        .performance-tips {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .performance-tips h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+
+        .performance-tips ul {
+            list-style-type: none;
+        }
+
+        .performance-tips li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .performance-tips li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            margin-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .toolkit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚀 Web Performance Toolkit</h1>
+            <p>Essential Tools and Resources for Optimizing Web Application Performance</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="toolkit-grid">
+            <div class="tool-card">
+                <div class="category">Performance Measurement</div>
+                <h2>Google Lighthouse</h2>
+                <p class="description">Comprehensive auditing tool for web page performance, accessibility, progressive web apps, and more.</p>
+                <div class="tool-links">
+                    <a href="https://developers.google.com/web/tools/lighthouse" target="_blank">Learn More</a>
+                    <a href="#how-to-use">How to Use</a>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="category">Network Analysis</div>
+                <h2>Chrome DevTools Network Panel</h2>
+                <p class="description">Detailed network request waterfall, resource loading times, and bandwidth consumption analysis.</p>
+                <div class="tool-links">
+                    <a href="https://developers.google.com/web/tools/chrome-devtools/network" target="_blank">Learn More</a>
+                    <a href="#network-analysis">Analyze Network</a>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="category">Performance Profiling</div>
+                <h2>Chrome DevTools Performance Tab</h2>
+                <p class="description">Capture and analyze runtime performance, identify bottlenecks, and optimize JavaScript execution.</p>
+                <div class="tool-links">
+                    <a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance" target="_blank">Learn More</a>
+                    <a href="#performance-profiling">Profile Performance</a>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="category">Web Vitals</div>
+                <h2>Google Web Vitals</h2>
+                <p class="description">Unified guidance for critical user experience metrics: Loading, Interactivity, and Visual Stability.</p>
+                <div class="tool-links">
+                    <a href="https://web.dev/vitals/" target="_blank">Learn More</a>
+                    <a href="#web-vitals">Understand Vitals</a>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="category">Load Time Simulation</div>
+                <h2>WebPageTest</h2>
+                <p class="description">Advanced performance testing from multiple locations, browsers, and network conditions.</p>
+                <div class="tool-links">
+                    <a href="https://www.webpagetest.org/" target="_blank">Test Now</a>
+                    <a href="#load-testing">Performance Simulation</a>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="category">Bundle Analysis</div>
+                <h2>Webpack Bundle Analyzer</h2>
+                <p class="description">Visualize size of webpack output files with an interactive zoomable treemap.</p>
+                <div class="tool-links">
+                    <a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank">GitHub Repo</a>
+                    <a href="#bundle-size">Analyze Bundles</a>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="category">Resource Optimization</div>
+                <h2>ImageOptim</h2>
+                <p class="description">Compress images without losing quality, reducing load times and bandwidth usage.</p>
+                <div class="tool-links">
+                    <a href="https://imageoptim.com/mac" target="_blank">Download</a>
+                    <a href="#image-optimization">Optimize Images</a>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="category">JavaScript Profiling</div>
+                <h2>Chrome Memory Panel</h2>
+                <p class="description">Analyze memory consumption, detect memory leaks, and optimize JavaScript memory usage.</p>
+                <div class="tool-links">
+                    <a href="https://developers.google.com/web/tools/chrome-devtools/memory-problems" target="_blank">Learn More</a>
+                    <a href="#memory-profiling">Profile Memory</a>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="category">Monitoring</div>
+                <h2>New Relic Browser</h2>
+                <p class="description">Real-time performance monitoring, error tracking, and user experience insights.</p>
+                <div class="tool-links">
+                    <a href="https://newrelic.com/platform/browser-monitoring" target="_blank">Learn More</a>
+                    <a href="#real-time-monitoring">Monitor Performance</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="performance-tips">
+            <h2>🔧 Performance Optimization Tips</h2>
+            <ul>
+                <li>Minimize and compress JavaScript, CSS, and HTML</li>
+                <li>Implement lazy loading for images and components</li>
+                <li>Use browser caching and content delivery networks (CDNs)</li>
+                <li>Optimize images and use modern formats like WebP</li>
+                <li>Reduce server response times</li>
+                <li>Minimize render-blocking resources</li>
+                <li>Use code splitting and tree shaking</li>
+                <li>Implement efficient error handling and monitoring</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Web Performance Toolkit | Optimize, Analyze, Improve</p>
+    </footer>
+</body>
+</html>
