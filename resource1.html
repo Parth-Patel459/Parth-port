@@ -291,6 +291,59 @@
             Tip: Accessibility is not just a nice-to-have, it's a necessity for inclusive web design.
         </div>
     </div>
+    <div class="related-resources">
+        <h2>Related Resources</h2>
+        <div class="related-grid">
+            <a href="./resource5.html" class="related-link">
+                <div class="related-link-content">
+                    <h3>iOS Ethical Hacking Guide</h3>
+                    <p>Advanced techniques for iOS security research</p>
+                </div>
+            </a>
+            <a href="./index.html#resources" class="related-link">
+                <div class="related-link-content">
+                    <h3>All Resources</h3>
+                    <p>View complete resource collection</p>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    <div class="back-to-resources">
+        <a href="./index.html#resources" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Resources</a>
+    </div>
+       <!-- Bottom Scroll Bar -->
+       <div class="bottom-scrollbar-container">
+        <div class="scroll-indicator" id="scroll-indicator"></div>
+        <div class="scroll-nav">
+            <button class="scroll-nav-item" data-target="./index.html#home">Home</button>
+            <button class="scroll-nav-item" data-target="./index.html#about">About</button>
+            <button class="scroll-nav-item" data-target="./index.html#projects">Projects</button>
+            <button class="scroll-nav-item" data-target="./index.html#resources">Resources</button>
+            <button class="scroll-nav-item" data-target="./index.html#blog">Blog</button>
+            <button class="scroll-nav-item" data-target="./index.html#contact">Contact</button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Main Script -->
+    <script src="./script.js"></script>
+    
+    <!-- Current year script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update copyright year
+            const yearElements = document.querySelectorAll('#current-year');
+            const currentYear = new Date().getFullYear();
+            yearElements.forEach(element => {
+                if (element) element.textContent = currentYear.toString();
+            });
+        });
+    </script>
 
     <footer>
         <p>© 2025 Front-end Development Checklist</p>
