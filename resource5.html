@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="iOS Ethical Hacking & Security Research - Parth Patel">
+    <meta name="description" content="Responsive Design Patterns - Comprehensive guide by Ethan Marcotte - Parth Patel">
     <title>PARTH PATEL | Developer & Designer</title>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -65,21 +65,21 @@
             margin-bottom: 0.5rem;
         }
         
-        .security-notice {
-            background-color: rgba(220, 53, 69, 0.1);
-            border: 1px solid var(--error-color);
+        .info-notice {
+            background-color: rgba(13, 110, 253, 0.1);
+            border: 1px solid var(--primary-color);
             border-radius: var(--border-radius);
             padding: 15px;
             margin: 1.5rem 0;
         }
         
-        .security-notice h4 {
-            color: var(--error-color);
+        .info-notice h4 {
+            color: var(--primary-color);
             margin-top: 0;
         }
         
-        body.dark-mode .security-notice {
-            background-color: rgba(220, 53, 69, 0.15);
+        body.dark-mode .info-notice {
+            background-color: rgba(13, 110, 253, 0.15);
         }
         
         .related-resources {
@@ -94,6 +94,195 @@
             margin-top: 2rem;
             padding-top: 1rem;
             border-top: 1px solid var(--border-color);
+        }
+        
+        .pattern-example {
+            background-color: rgba(0, 0, 0, 0.03);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin: 1.5rem 0;
+            border: 1px solid var(--border-color);
+        }
+        
+        body.dark-mode .pattern-example {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .pros-cons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 1.5rem 0;
+        }
+        
+        .pros, .cons {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            border-radius: var(--border-radius);
+        }
+        
+        .pros {
+            background-color: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.5);
+        }
+        
+        .cons {
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.5);
+        }
+        
+        body.dark-mode .pros {
+            background-color: rgba(40, 167, 69, 0.15);
+        }
+        
+        body.dark-mode .cons {
+            background-color: rgba(220, 53, 69, 0.15);
+        }
+        
+        .pros h4, .cons h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .pros h4 {
+            color: #28a745;
+        }
+        
+        .cons h4 {
+            color: #dc3545;
+        }
+        
+        .pros ul, .cons ul {
+            padding-left: 25px;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 2rem 0;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 8px;
+            width: 2px;
+            background-color: var(--primary-color);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 4px;
+            width: 16px;
+            height: 16px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item h4 {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 8px;
+        }
+        
+        .resource-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+        
+        .resource-card-animated {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+        }
+        
+        body.dark-mode .resource-card-animated {
+            background-color: var(--dark-background-color);
+            border-color: var(--dark-border-color);
+        }
+        
+        .resource-card-animated:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .resource-card-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .resource-card-content h3 a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .resource-card-content h3 a:hover {
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .resource-card-content h3 a {
+            color: var(--dark-text-color);
+        }
+        
+        .resource-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            margin: 10px 0;
+        }
+        
+        /* SVG Animation Styles for Cards */
+        .resource-card-animated svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .resource-card-animated svg rect {
+            stroke: var(--primary-color);
+            stroke-width: 2;
+            stroke-dasharray: 800;
+            stroke-dashoffset: 800;
+            fill: transparent;
+        }
+        
+        .resource-card-animated:hover svg rect {
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
     </style>
 </head>
@@ -224,155 +413,343 @@
     </div>
 
     <!-- Content Section -->
-    <section id="ios-security" class="content-section" role="main" id="main-content">
-        <h1>iOS Ethical Hacking & Security Research</h1>
+    <section id="responsive-design" class="content-section" role="main" id="main-content">
+        <h1>Responsive Design Patterns</h1>
         
-        <div class="security-notice">
-            <h4><i class="fas fa-shield-alt"></i> Ethical Research Notice</h4>
+        <div class="info-notice">
+            <h4><i class="fas fa-info-circle"></i> About This Resource</h4>
             <p>
-                This resource is intended for educational purposes and ethical security research only. 
-                Always obtain proper authorization before conducting security tests on any system or device. 
-                Unauthorized testing may violate laws and terms of service.
+                Responsive web design is an approach to building websites that ensures they look and function well on a variety of devices and screen sizes. This resource provides comprehensive information about responsive design patterns and principles.
             </p>
         </div>
         
         <p>
-            Ethical hacking of iPhones is primarily focused on identifying vulnerabilities, strengthening security,
-            and ensuring data protection without violating privacy laws. Below, we will explore advanced iOS security assessments.
+            First coined by Ethan Marcotte in 2010, responsive web design has become a fundamental approach to creating flexible, user-friendly web experiences across all devices. This guide offers insights into modern responsive design techniques that remain essential to contemporary web development.
         </p>
         
-        <h2>A. Advanced iOS Security Architecture</h2>
-        <h3>1. Bootchain & Secure Boot</h3>
+        <h2>A. Understanding Fluid Grid Layouts</h2>
+        <h3>1. Principles of Fluid Grids</h3>
         <p>
-            Apple's security model consists of multiple layers to prevent unauthorized firmware installations. 
-            Features such as Boot ROM verification, iBoot integrity checks, and APFS Signed System Volume (SSV) 
-            contribute to a strong security foundation.
+            Fluid grids use relative units (percentages) instead of fixed pixels, allowing content to adapt seamlessly across different screen sizes. This approach ensures that layouts maintain their proportions regardless of the viewport dimensions.
         </p>
-        <h3>2. Secure Enclave & Hardware Security</h3>
-        <p>
-            The Secure Enclave Processor (SEP) is responsible for biometric authentication (Face ID & Touch ID), 
-            file encryption, and secure key management. It operates independently from the main processor, adding 
-            an extra layer of protection against unauthorized access.
-        </p>
+        <div class="pattern-example">
+            <pre><code class="language-css">.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.column {
+    float: left;
+    width: 33.33%; /* Fluid column width */
+    padding: 0 15px;
+}</code></pre>
+        </div>
         
-        <h2>B. Jailbreaking Techniques for Research</h2>
-        <h3>1. Popular Jailbreaking Methods</h3>
+        <div class="pros-cons">
+            <div class="pros">
+                <h4><i class="fas fa-check-circle"></i> Pros</h4>
+                <ul>
+                    <li>Highly flexible across various screen sizes</li>
+                    <li>Maintains consistent proportions between elements</li>
+                    <li>Reduces the need for multiple fixed layouts</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4><i class="fas fa-times-circle"></i> Cons</h4>
+                <ul>
+                    <li>Can be complex to implement initially</li>
+                    <li>Requires careful planning for extreme screen sizes</li>
+                    <li>May need additional media queries for optimal experience</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>B. Flexbox Layout Techniques</h2>
+        <h3>1. Core Flexbox Concepts</h3>
+        <p>
+            Flexbox is a CSS layout module that provides a more efficient way to distribute space and align items within a container. It's particularly useful for one-dimensional layouts (either rows or columns).
+        </p>
+        <div class="pattern-example">
+            <pre><code class="language-css">.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.item {
+    flex: 1 1 300px; /* grow | shrink | basis */
+    margin: 10px;
+}</code></pre>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h4><i class="fas fa-check-circle"></i> Pros</h4>
+                <ul>
+                    <li>Powerful alignment capabilities</li>
+                    <li>Simplified responsive layouts</li>
+                    <li>Minimal media query usage</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4><i class="fas fa-times-circle"></i> Cons</h4>
+                <ul>
+                    <li>Limited browser support for older versions</li>
+                    <li>Can be complex for beginners</li>
+                    <li>Debugging can be challenging</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>C. CSS Grid Layout System</h2>
+        <h3>1. Two-Dimensional Layout Control</h3>
+        <p>
+            CSS Grid provides powerful two-dimensional layout capabilities, allowing for precise control over both rows and columns simultaneously. This makes it ideal for complex page layouts.
+        </p>
+        <div class="pattern-example">
+            <pre><code class="language-css">.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h4><i class="fas fa-check-circle"></i> Pros</h4>
+                <ul>
+                    <li>Powerful two-dimensional layouts</li>
+                    <li>Minimal CSS for complex designs</li>
+                    <li>Responsive without media queries using auto-fit/auto-fill</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4><i class="fas fa-times-circle"></i> Cons</h4>
+                <ul>
+                    <li>Limited support in older browsers</li>
+                    <li>Steeper learning curve</li>
+                    <li>Can be overkill for simple layouts</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>D. Mobile-First Design Approach</h2>
+        <h3>1. Progressive Enhancement Strategy</h3>
+        <p>
+            Mobile-first design starts with creating layouts for small screens first, then progressively enhances the design for larger screens. This approach ensures optimal performance and user experience on mobile devices.
+        </p>
+        <div class="pattern-example">
+            <pre><code class="language-css">/* Base styles for mobile */
+.container {
+    width: 100%;
+    padding: 10px;
+}
+
+/* Progressively enhance for larger screens */
+@media (min-width: 768px) {
+    .container {
+        max-width: 750px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 970px;
+    }
+}</code></pre>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h4><i class="fas fa-check-circle"></i> Pros</h4>
+                <ul>
+                    <li>Prioritizes mobile user experience</li>
+                    <li>Improved performance with minimal initial CSS</li>
+                    <li>Forces content prioritization</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4><i class="fas fa-times-circle"></i> Cons</h4>
+                <ul>
+                    <li>May require more initial planning</li>
+                    <li>Can be challenging for complex desktop designs</li>
+                    <li>Potential content limitations</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>E. Responsive Image Techniques</h2>
+        <h3>1. Optimizing Images for Different Devices</h3>
+        <p>
+            Responsive images ensure that users download appropriately sized images based on their device capabilities, improving performance and user experience.
+        </p>
+        <div class="pattern-example">
+            <pre><code class="language-html">&lt;picture&gt;
+    &lt;source media="(max-width: 600px)" srcset="small.jpg"&gt;
+    &lt;source media="(max-width: 1200px)" srcset="medium.jpg"&gt;
+    &lt;img src="large.jpg" alt="Responsive Image"&gt;
+&lt;/picture&gt;
+
+/* Or using srcset */
+&lt;img src="default.jpg" 
+     srcset="small.jpg 500w, 
+             medium.jpg 1000w, 
+             large.jpg 1500w"
+     sizes="(max-width: 600px) 500px,
+            (max-width: 1200px) 1000px,
+            1500px"
+     alt="Responsive Image"&gt;</code></pre>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h4><i class="fas fa-check-circle"></i> Pros</h4>
+                <ul>
+                    <li>Improved performance through optimized file sizes</li>
+                    <li>Bandwidth optimization</li>
+                    <li>Better user experience across devices</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4><i class="fas fa-times-circle"></i> Cons</h4>
+                <ul>
+                    <li>More complex implementation</li>
+                    <li>Increased complexity in asset management</li>
+                    <li>Potential browser compatibility issues</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>F. Responsive Navigation Patterns</h2>
+        <h3>1. Adapting Navigation for Different Screen Sizes</h3>
+        <p>
+            Navigation menus need to adapt to different screen sizes, typically using hamburger menus or collapsible navigation on mobile devices while showing full menus on desktop.
+        </p>
+        <div class="pattern-example">
+            <pre><code class="language-css">.nav-toggle {
+    display: none; /* Hidden on desktop */
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none; /* Hide full menu */
+    }
+    
+    .nav-toggle {
+        display: block; /* Show hamburger */
+    }
+    
+    .nav-menu.active {
+        display: flex;
+        flex-direction: column;
+    }
+}</code></pre>
+        </div>
+        
+        <div class="pros-cons">
+            <div class="pros">
+                <h4><i class="fas fa-check-circle"></i> Pros</h4>
+                <ul>
+                    <li>Space-efficient on small screens</li>
+                    <li>Improved mobile usability</li>
+                    <li>Consistent navigation experience</li>
+                </ul>
+            </div>
+            <div class="cons">
+                <h4><i class="fas fa-times-circle"></i> Cons</h4>
+                <ul>
+                    <li>Additional JavaScript often required</li>
+                    <li>Can hide important navigation items</li>
+                    <li>Potential accessibility challenges</li>
+                </ul>
+            </div>
+        </div>
+        
+        <h2>G. Evolution of Responsive Design</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-year">2010</span>
+                <h4>Birth of Responsive Web Design</h4>
+                <p>Ethan Marcotte coins the term "Responsive Web Design" in his groundbreaking article for A List Apart, introducing the concept of fluid grids, flexible images, and media queries.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2011</span>
+                <h4>Mobile-First Approach</h4>
+                <p>Luke Wroblewski introduces the "Mobile First" concept, advocating for designing for mobile devices first, then progressively enhancing for larger screens.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2013-2014</span>
+                <h4>Rise of Frameworks</h4>
+                <p>Bootstrap and Foundation become popular, bringing responsive design patterns to the mainstream and standardizing responsive grid systems.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2015-2017</span>
+                <h4>Flexbox Adoption</h4>
+                <p>CSS Flexbox gains widespread browser support, offering more flexible layout options and reducing the complexity of responsive designs.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2017-2019</span>
+                <h4>CSS Grid Goes Mainstream</h4>
+                <p>CSS Grid Layout becomes widely supported, offering powerful 2D layout capabilities for responsive design.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-year">2020-Present</span>
+                <h4>Container Queries & Modern Techniques</h4>
+                <p>Introduction of container queries, subgrid, and other advanced responsive techniques that enhance component-based design approaches.</p>
+            </div>
+        </div>
+        
+        <h2>H. Best Practices for Responsive Design</h2>
+        <h3>1. Design Principles</h3>
         <ul>
-            <li><b>Checkra1n:</b> Uses the Checkm8 exploit (A5-A11 devices), which is a hardware vulnerability that Apple cannot patch via software updates.</li>
-            <li><b>Unc0ver:</b> Software-based jailbreak that exploits kernel vulnerabilities (iOS 11-14.3).</li>
-            <li><b>Taurine:</b> A kernel exploit-based jailbreak (iOS 14-14.8), developed by the Odyssey team.</li>
+            <li>Design systems with reusable components that adapt to different screen sizes</li>
+            <li>Use relative units (rem, em, %) instead of fixed pixels</li>
+            <li>Test designs across various devices and screen sizes</li>
+            <li>Prioritize content and functionality based on user needs</li>
+            <li>Consider touch interfaces and varying input methods</li>
         </ul>
-        <h3>2. Setting Up a Jailbroken iPhone for Security Research</h3>
-        <p>
-            After jailbreaking, install essential security testing tools:
-        </p>
-        <pre><code class="language-bash">apt-get install openssh cydia</code></pre>
-        <p>
-            Additionally, tools like Frida, Objection, and Cycript allow deeper app penetration testing.
-        </p>
         
-        <h2>C. Advanced Penetration Testing Techniques</h2>
-        <h3>1. Mobile App Security Testing (MAS)</h3>
-        <p>
-            Mobile application security testing involves assessing iOS apps for vulnerabilities using 
-            both static and dynamic analysis techniques.
-        </p>
-        <h3>2. Reverse Engineering iOS Apps</h3>
+        <h3>2. Performance Optimization</h3>
         <ul>
-            <li>Extract IPA files and analyze app binaries.</li>
-            <li>Decompile applications using tools like Hopper, Ghidra, and class-dump-z.</li>
-            <li>Analyze cryptographic implementations to detect weak encryption.</li>
-            <li>Use Frida to manipulate running applications and test for security flaws.</li>
-        </ul>
-        <h3>3. Zero-Day Exploit Research & Vulnerability Testing</h3>
-        <p>
-            Security researchers focus on identifying unknown vulnerabilities before they are exploited by attackers. 
-            Techniques include fuzz testing, static analysis, and runtime manipulation to detect flaws in Apple's security layers.
-        </p>
-        <h3>4. Secure Coding Practices for iOS Developers</h3>
-        <ul>
-            <li>Enforcing App Transport Security (ATS) to require HTTPS connections.</li>
-            <li>Using Keychain for secure storage of sensitive user data.</li>
-            <li>Implementing proper cryptographic APIs for data encryption.</li>
-            <h2>D. iOS Forensics & Incident Response</h2>
-        <h3>1. Extracting iOS Logs</h3>
-        <p>Use forensic tools to analyze authentication failures, crash reports, and network logs.</p>
-        <pre><code class="language-bash">log stream --predicate 'subsystem contains "security"'</code></pre>
-        <h3>2. Recovering Deleted Data</h3>
-        <p>Forensic tools such as UFED or iLEAPP can help retrieve deleted files, messages, and application data.</p>
-        <pre><code class="language-bash">fls -r -m / /dev/disk0s1</code></pre>
-        
-        <h2>E. iOS Malware Analysis & Defense Strategies</h2>
-        <h3>1. Identifying and Analyzing iOS Malware</h3>
-        
-        <p>iOS malware is rare but still exists, often targeting jailbroken devices. Analysis involves:</p>
-        
-        <ul>
-            <li>Examining app permissions and background activities.</li>
-            <li>Using reverse engineering tools to decompile malicious apps.</li>
-            <li>Intercepting network traffic to detect unusual data transmissions.</li>
-            <li>Monitoring system calls and API usage for suspicious behavior patterns.</li>
-            <li>Analyzing battery and resource consumption for signs of background malicious activities.</li>
-        </ul>
-        <h3>2. Strengthening iOS Defenses</h3>
-        <ul>
-            <li>Enforcing strict sandboxing policies for app isolation.</li>
-            <li>Using runtime integrity checks to prevent unauthorized modifications.</li>
-            <li>Applying regular software updates to patch security vulnerabilities.</li>
-            <li>Implementing app notarization and signature verification processes.</li>
-            <li>Utilizing threat intelligence to identify and block known malicious domains.</li>
+            <li>Optimize images and assets for different screen resolutions</li>
+            <li>Use modern CSS techniques to reduce code complexity</li>
+            <li>Implement lazy loading for off-screen content</li>
+            <li>Minimize HTTP requests and optimize asset delivery</li>
+            <li>Test performance on low-end devices and slow connections</li>
         </ul>
         
-        <h2>F. iOS Security Hardening Recommendations</h2>
-        <h3>1. User-Level Security Measures</h3>
-        <p>End users can take the following steps to improve iOS device security:</p>
+        <h3>3. Accessibility Considerations</h3>
         <ul>
-            <li>Keep iOS updated to the latest version available for your device.</li>
-            <li>Enable automatic updates for both iOS and installed applications.</li>
-            <li>Use strong, unique alphanumeric passcodes (at least 6 characters).</li>
-            <li>Enable two-factor authentication for Apple ID.</li>
-            <li>Review app permissions regularly and restrict unnecessary access.</li>
-            <li>Only download apps from the official App Store.</li>
-            <li>Use a secure VPN when connecting to public Wi-Fi networks.</li>
+            <li>Ensure content remains accessible across all screen sizes</li>
+            <li>Maintain appropriate touch target sizes for interactive elements</li>
+            <li>Preserve logical reading order in responsive layouts</li>
+            <li>Test keyboard navigation in all viewport sizes</li>
+            <li>Ensure sufficient color contrast regardless of device</li>
         </ul>
         
-        <h3>2. Enterprise Security Configurations</h3>
-        <p>Organizations can implement the following measures to secure iOS devices in corporate environments:</p>
+        <h2>I. Tools and Resources for Responsive Design</h2>
+        <h3>1. Design and Development Tools</h3>
         <ul>
-            <li>Use Mobile Device Management (MDM) solutions to enforce security policies.</li>
-            <li>Implement app allowlisting to control which apps can be installed.</li>
-            <li>Configure per-app VPN for secure access to corporate resources.</li>
-            <li>Enable device supervision for enhanced management capabilities.</li>
-            <li>Create separation between personal and work data using managed Apple IDs.</li>
-            <li>Perform regular security assessments and compliance checks.</li>
+            <li><strong>Browser DevTools:</strong> Built-in responsive design mode for testing different screen sizes</li>
+            <li><strong>Responsive Design Frameworks:</strong> Bootstrap, Foundation, Tailwind CSS</li>
+            <li><strong>Online Testing Services:</strong> BrowserStack, Responsively App, Sizzy</li>
+            <li><strong>CSS Preprocessors:</strong> Sass, Less for managing responsive breakpoints</li>
         </ul>
         
-        <h2>G. Apple Bug Bounty & Ethical Disclosure</h2>
-        <p>
-            Apple offers rewards for ethical hackers who responsibly disclose vulnerabilities. High-value payouts 
-            are offered for zero-click attacks, lockscreen bypasses, and iCloud account takeovers.
-        </p>
-        <p>The Apple Security Bounty program pays up to:</p>
+        <h3>2. Recommended Learning Resources</h3>
         <ul>
-            <li>$1,000,000 for zero-click kernel code execution with persistence and kernel PAC bypass.</li>
-            <li>$500,000 for network attack with zero-click kernel code execution.</li>
-            <li>$250,000 for user-installed app attacks with unauthorized access to sensitive data.</li>
-            <li>$100,000 for unauthorized access to sensitive data in sandboxed processes.</li>
-            <li>$100,000 for bypassing physical access protections like the lock screen.</li>
-        </ul>
-        <p>For more details, visit <a href="https://security.apple.com" target="_blank" rel="noopener noreferrer">Apple Security Bounty</a>.</p>
-        
-        <h2>H. Ethical Considerations and Legal Framework</h2>
-        <p>
-            When conducting iOS security research, always operate within ethical and legal boundaries:
-        </p>
-        <ul>
-            <li>Only test on devices you own or have explicit permission to test.</li>
-            <li>Follow responsible disclosure practices by reporting vulnerabilities to Apple before public disclosure.</li>
-            <li>Comply with local and international computer security laws.</li>
-            <li>Never access or extract private user data during research.</li>
-            <li>Document all testing methodologies and findings for transparency.</li>
-            <li>Consider the potential impact of your research on user privacy and security.</li>
+            <li><strong>Books:</strong> "Responsive Web Design" by Ethan Marcotte</li>
+            <li><strong>Websites:</strong> Mozilla Developer Network (MDN), CSS-Tricks, Smashing Magazine</li>
+            <li><strong>YouTube Channels:</strong> Kevin Powell, Layout Land, Google Chrome Developers</li>
+            <li><strong>Interactive Tutorials:</strong> Frontend Masters, CSS Grid Garden, Flexbox Froggy</li>
         </ul>
         
         <div class="related-resources">
@@ -383,11 +760,11 @@
                         <rect x="0" y="0" width="100%" height="100%"></rect>
                     </svg>
                     <div class="resource-card-content">
-                        <h3><a href="./resource4.html">Responsive Design Patterns</a></h3>
-                        <p>Learn about modern responsive design patterns and principles for creating adaptable web interfaces.</p>
-                        <span class="resource-tag">Web Development</span>
+                        <h3><a href="./resource5.html">iOS Ethical Hacking Guide</a></h3>
+                        <p>Advanced techniques for iOS security research and ethical penetration testing.</p>
+                        <span class="resource-tag">Security</span>
                         <div class="buttons has-addons">
-                            <a href="./resource4.html" class="button" title="View Guide"><i class="fas fa-globe"></i> Guide</a>
+                            <a href="./resource5.html" class="button" title="View Guide"><i class="fas fa-globe"></i> Guide</a>
                         </div>
                     </div>
                 </div>
@@ -398,7 +775,7 @@
                     </svg>
                     <div class="resource-card-content">
                         <h3><a href="./index.html#resources">More Resources</a></h3>
-                        <p>Explore the complete collection of resources for developers and security researchers.</p>
+                        <p>Explore the complete collection of web development and design resources.</p>
                         <span class="resource-tag">Collection</span>
                         <div class="buttons has-addons">
                             <a href="./index.html#resources" class="button" title="View Resources"><i class="fas fa-bookmark"></i> Browse</a>
@@ -410,7 +787,7 @@
         
         <div class="resource-navigation">
             <a href="./index.html#resources" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Resources</a>
-            <a href="./resource4.html" class="btn btn-outline">Next Resource <i class="fas fa-arrow-right"></i></a>
+            <a href="./resource5.html" class="btn btn-outline">Next Resource <i class="fas fa-arrow-right"></i></a>
         </div>
     </section>
 
@@ -437,7 +814,8 @@
     
     <!-- Prism.js for code highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-html.min.js"></script>
     
     <!-- Current year script -->
     <script>
