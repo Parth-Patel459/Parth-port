@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Comprehensive guide to responsive web design patterns and techniques by Ethan Marcotte - Parth Patel">
-    <meta name="keywords" content="responsive design, web development, mobile-first, CSS grid, flexbox, fluid layouts">
+    <meta name="description" content="Responsive Design Patterns - Comprehensive guide by Ethan Marcotte">
     <title>Responsive Design Patterns | PARTH PATEL</title>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -16,6 +15,406 @@
     <!-- Preload critical fonts -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    <style>
+        /* Page-specific styles */
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .pattern-card-animated {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            height: 100%;
+        }
+        
+        .pattern-card-animated:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .code-example {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 6px;
+            padding: 15px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: var(--font-monospace);
+            font-size: 0.85rem;
+        }
+        
+        body.dark-mode .code-example {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .pattern-meta {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .pattern-tag {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        
+        /* Timeline styles */
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+            padding-left: 40px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 10px;
+            width: 2px;
+            height: 100%;
+            background-color: var(--primary-color);
+            opacity: 0.5;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .timeline-item.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .timeline-point {
+            position: absolute;
+            left: -40px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            border: 3px solid var(--background-color);
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+        }
+        
+        body.dark-mode .timeline-point {
+            border-color: var(--dark-background-color);
+        }
+        
+        .timeline-content {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+        }
+        
+        body.dark-mode .timeline-content {
+            background-color: var(--dark-background-color);
+            border-color: var(--dark-border-color);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .timeline-content h4 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+        
+        /* Feedback buttons */
+        .resource-feedback {
+            margin: 40px 0;
+            text-align: center;
+            padding: 20px;
+            background-color: var(--background-secondary);
+            border-radius: var(--border-radius);
+        }
+        
+        body.dark-mode .resource-feedback {
+            background-color: var(--dark-background-secondary);
+        }
+        
+        .feedback-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .feedback-btn {
+            background-color: var(--background-color);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        body.dark-mode .feedback-btn {
+            background-color: var(--dark-background-color);
+            border-color: var(--dark-border-color);
+            color: var(--dark-text-color);
+        }
+        
+        .feedback-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .feedback-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        /* Feature list */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feature-list li i {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        /* Related resources */
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .related-link {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: block;
+        }
+        
+        body.dark-mode .related-link {
+            background-color: var(--dark-background-color);
+            border-color: var(--dark-border-color);
+        }
+        
+        .related-link:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--box-shadow-hover);
+        }
+        
+        .related-link-content {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .resource-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .related-link h3 {
+            color: var(--text-color);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        body.dark-mode .related-link h3 {
+            color: var(--dark-text-color);
+        }
+        
+        .related-link p {
+            color: var(--text-color-light);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+        
+        body.dark-mode .related-link p {
+            color: var(--dark-text-color-light);
+        }
+        
+        .view-all {
+            border: 1px dashed var(--border-color);
+        }
+        
+        /* Resource content styling */
+        .resource-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        
+        .resource-cta {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+            margin: 40px 0;
+            padding: 25px;
+            background-color: var(--background-secondary);
+            border-radius: var(--border-radius);
+        }
+        
+        body.dark-mode .resource-cta {
+            background-color: var(--dark-background-secondary);
+        }
+        
+        .resource-info {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .resource-info p {
+            margin-bottom: 8px;
+        }
+        
+        .resource-info p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .back-to-resources {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        /* Pros and cons section */
+        .pros-cons-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .pros-section, .cons-section {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+        }
+        
+        body.dark-mode .pros-section, 
+        body.dark-mode .cons-section {
+            background-color: var(--dark-background-color);
+            border-color: var(--dark-border-color);
+        }
+        
+        .pros-section h3, .cons-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .pros-section h3 i {
+            color: #28a745;
+        }
+        
+        .cons-section h3 i {
+            color: #dc3545;
+        }
+        
+        .pros-cons-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .pros-cons-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        body.dark-mode .pros-cons-list li {
+            border-color: var(--dark-border-color);
+        }
+        
+        .pros-cons-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .pros-section .pros-cons-list li i {
+            color: #28a745;
+            margin-top: 3px;
+        }
+        
+        .cons-section .pros-cons-list li i {
+            color: #dc3545;
+            margin-top: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .pattern-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                padding-left: 30px;
+            }
+            
+            .timeline-point {
+                left: -30px;
+                width: 16px;
+                height: 16px;
+            }
+            
+            .pros-cons-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Skip to content for accessibility -->
@@ -75,19 +474,6 @@
                         
                         <!-- Separate period/dot -->
                         <circle class="period" cx="280" cy="280" r="12" fill="#FF4500" />
-                        
-                        <!-- Letter highlights -->
-                        <text class="letter-highlight" x="135" y="90" text-anchor="middle">P</text>
-                        <text class="letter-highlight" x="170" y="90" text-anchor="middle">A</text>
-                        <text class="letter-highlight" x="210" y="90" text-anchor="middle">R</text>
-                        <text class="letter-highlight" x="240" y="150" text-anchor="middle">T</text>
-                        <text class="letter-highlight" x="240" y="210" text-anchor="middle">H</text>
-                        <text class="letter-highlight" x="150" y="330" text-anchor="middle">P</text>
-                        <text class="letter-highlight" x="180" y="330" text-anchor="middle">A</text>
-                        <text class="letter-highlight" x="210" y="330" text-anchor="middle">T</text>
-                        <text class="letter-highlight" x="240" y="330" text-anchor="middle">E</text>
-                        <text class="letter-highlight" x="270" y="330" text-anchor="middle">L</text>
-                        <text class="letter-highlight" x="295" y="285" text-anchor="middle">.</text>
                     </svg>
                 </div>
                 
@@ -149,11 +535,9 @@
     <section id="responsive-design" class="content-section" role="main" id="main-content">
         <div class="container">
             <h1 class="section-title">Responsive Design Patterns</h1>
-            <p class="section-subtitle">A comprehensive guide to responsive web design techniques by Ethan Marcotte</p>
+            <p class="section-subtitle">Responsive web design is an approach to building websites that ensures they look and function well on a variety of devices and screen sizes. This resource provides comprehensive information about responsive design patterns and principles.</p>
             
             <div class="resource-content">
-                <p>Responsive web design is an approach to building websites that ensures they look and function well on a variety of devices and screen sizes. This resource provides comprehensive information about responsive design patterns and principles.</p>
-                
                 <div class="resource-cta">
                     <a href="https://ethanmarcotte.com/books/responsive-design-patterns-and-principles/full/chap01/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                         Visit Full Resource <i class="fas fa-external-link-alt"></i>
@@ -166,8 +550,21 @@
                     </div>
                 </div>
                 
+                <div class="resource-highlights">
+                    <h2>Key Topics Covered</h2>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Fluid Layouts and Proportional Thinking</li>
+                        <li><i class="fas fa-check-circle"></i> Responsive Navigation Patterns</li>
+                        <li><i class="fas fa-check-circle"></i> Media Queries and Breakpoints</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile-First Design Approach</li>
+                        <li><i class="fas fa-check-circle"></i> Content Prioritization Techniques</li>
+                        <li><i class="fas fa-check-circle"></i> Responsive Images and Media</li>
+                        <li><i class="fas fa-check-circle"></i> Performance Optimization for Different Devices</li>
+                    </ul>
+                </div>
+                
                 <div class="pattern-showcase">
-                    <h2>Key Design Patterns</h2>
+                    <h2>Featured Design Patterns</h2>
                     <div class="pattern-grid">
                         <div class="pattern-card-animated">
                             <svg>
@@ -188,6 +585,67 @@
     width: 33.33%; /* Fluid column width */
     padding: 0 15px;
 }</pre>
+                                </div>
+                                <div class="pros-cons-container">
+                                    <div class="pros-section">
+                                        <h3><i class="fas fa-check-circle"></i> Pros</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-check"></i> Highly flexible</li>
+                                            <li><i class="fas fa-check"></i> Adapts to different screen sizes</li>
+                                            <li><i class="fas fa-check"></i> Consistent layout across devices</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons-section">
+                                        <h3><i class="fas fa-times-circle"></i> Cons</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-times"></i> Can be complex to implement</li>
+                                            <li><i class="fas fa-times"></i> Requires careful planning</li>
+                                            <li><i class="fas fa-times"></i> Performance overhead</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pattern-meta">
+                                    <span class="pattern-tag">Layout</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pattern-card-animated">
+                            <svg>
+                                <rect x="0" y="0" width="100%" height="100%"></rect>
+                            </svg>
+                            <div class="pattern-card-content">
+                                <h3><i class="fas fa-arrows-left-right-to-line"></i> Flexbox Layout</h3>
+                                <p>A powerful CSS layout module that provides flexible and efficient ways to distribute space and align content in complex responsive designs.</p>
+                                <div class="code-example">
+                                    <pre>.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.item {
+    flex: 1 1 300px; /* grow | shrink | basis */
+    margin: 10px;
+}</pre>
+                                </div>
+                                <div class="pros-cons-container">
+                                    <div class="pros-section">
+                                        <h3><i class="fas fa-check-circle"></i> Pros</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-check"></i> Powerful alignment capabilities</li>
+                                            <li><i class="fas fa-check"></i> Simplified responsive layouts</li>
+                                            <li><i class="fas fa-check"></i> Minimal media query usage</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons-section">
+                                        <h3><i class="fas fa-times-circle"></i> Cons</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-times"></i> Limited browser support for older versions</li>
+                                            <li><i class="fas fa-times"></i> Can be complex for beginners</li>
+                                            <li><i class="fas fa-times"></i> Debugging can be challenging</li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="pattern-meta">
                                     <span class="pattern-tag">Layout</span>
@@ -214,6 +672,24 @@
         grid-template-columns: 1fr;
     }
 }</pre>
+                                </div>
+                                <div class="pros-cons-container">
+                                    <div class="pros-section">
+                                        <h3><i class="fas fa-check-circle"></i> Pros</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-check"></i> Powerful two-dimensional layouts</li>
+                                            <li><i class="fas fa-check"></i> Minimal CSS for complex designs</li>
+                                            <li><i class="fas fa-check"></i> Responsive without media queries</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons-section">
+                                        <h3><i class="fas fa-times-circle"></i> Cons</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-times"></i> Limited support in older browsers</li>
+                                            <li><i class="fas fa-times"></i> Steeper learning curve</li>
+                                            <li><i class="fas fa-times"></i> Can be overkill for simple layouts</li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div class="pattern-meta">
                                     <span class="pattern-tag">Layout</span>
@@ -243,331 +719,25 @@
     }
 }</pre>
                                 </div>
+                                <div class="pros-cons-container">
+                                    <div class="pros-section">
+                                        <h3><i class="fas fa-check-circle"></i> Pros</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-check"></i> Prioritizes mobile user experience</li>
+                                            <li><i class="fas fa-check"></i> Improved performance</li>
+                                            <li><i class="fas fa-check"></i> Simpler responsive design</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons-section">
+                                        <h3><i class="fas fa-times-circle"></i> Cons</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-times"></i> May require more initial planning</li>
+                                            <li><i class="fas fa-times"></i> Can be challenging for complex designs</li>
+                                            <li><i class="fas fa-times"></i> Potential content limitations</li>
+                                        </ul>
+                                    </div>
+                                </div>
                                 <div class="pattern-meta">
                                     <span class="pattern-tag">Strategy</span>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div class="pattern-card-animated">
-                            <svg>
-                                <rect x="0" y="0" width="100%" height="100%"></rect>
-                            </svg>
-                            <div class="pattern-card-content">
-                                <h3><i class="fas fa-image"></i> Responsive Images</h3>
-                                <p>Techniques for serving appropriate image sizes and resolutions based on device characteristics, improving performance and user experience.</p>
-                                <div class="code-example">
-                                    <pre>&lt;picture&gt;
-    &lt;source media="(max-width: 600px)" srcset="small.jpg"&gt;
-    &lt;source media="(max-width: 1200px)" srcset="medium.jpg"&gt;
-    &lt;img src="large.jpg" alt="Responsive Image"&gt;
-&lt;/picture&gt;</pre>
-                                </div>
-                                <div class="pattern-meta">
-                                    <span class="pattern-tag">Media</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="pattern-card-animated">
-                            <svg>
-                                <rect x="0" y="0" width="100%" height="100%"></rect>
-                            </svg>
-                            <div class="pattern-card-content">
-                                <h3><i class="fas fa-bars"></i> Responsive Navigation</h3>
-                                <p>Design patterns for navigation menus that adapt to different screen sizes, typically using hamburger menus or collapsible navigation on mobile devices.</p>
-                                <div class="code-example">
-                                    <pre>.nav-toggle {
-    display: none; /* Hidden on desktop */
-}
-
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none; /* Hide full menu */
-    }
-    
-    .nav-toggle {
-        display: block; /* Show hamburger */
-    }
-}</pre>
-                                </div>
-                                <div class="pattern-meta">
-                                    <span class="pattern-tag">Navigation</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="pattern-card-animated">
-                            <svg>
-                                <rect x="0" y="0" width="100%" height="100%"></rect>
-                            </svg>
-                            <div class="pattern-card-content">
-                                <h3><i class="fas fa-arrows-left-right-to-line"></i> Flexbox Layout</h3>
-                                <p>A powerful CSS layout module that provides flexible and efficient ways to distribute space and align content in complex responsive designs.</p>
-                                <div class="code-example">
-                                    <pre>.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.item {
-    flex: 1 1 300px; /* grow | shrink | basis */
-    margin: 10px;
-}</pre>
-                                </div>
-                                <div class="pattern-meta">
-                                    <span class="pattern-tag">Layout</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="resource-highlights">
-                    <h2>Key Topics Covered</h2>
-                    <ul class="feature-list">
-                        <li><i class="fas fa-check-circle"></i> Fluid Layouts and Proportional Thinking</li>
-                        <li><i class="fas fa-check-circle"></i> Responsive Navigation Patterns</li>
-                        <li><i class="fas fa-check-circle"></i> Media Queries and Breakpoints</li>
-                        <li><i class="fas fa-check-circle"></i> Mobile-First Design Approach</li>
-                        <li><i class="fas fa-check-circle"></i> Content Prioritization Techniques</li>
-                        <li><i class="fas fa-check-circle"></i> Responsive Images and Media</li>
-                        <li><i class="fas fa-check-circle"></i> Performance Optimization for Different Devices</li>
-                    </ul>
-                </div>
-                
-                <div class="timeline-section">
-                    <h2>Evolution of Responsive Design</h2>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-point"></div>
-                            <div class="timeline-content">
-                                <h3>2010</h3>
-                                <h4>Birth of Responsive Web Design</h4>
-                                <p>Ethan Marcotte coins the term "Responsive Web Design" in his groundbreaking article for A List Apart, introducing the concept of fluid grids, flexible images, and media queries.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-point"></div>
-                            <div class="timeline-content">
-                                <h3>2011</h3>
-                                <h4>Mobile-First Approach</h4>
-                                <p>Luke Wroblewski introduces the "Mobile First" concept, advocating for designing for mobile devices first, then progressively enhancing for larger screens.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-point"></div>
-                            <div class="timeline-content">
-                                <h3>2013-2014</h3>
-                                <h4>Rise of Frameworks</h4>
-                                <p>Bootstrap and Foundation become popular, bringing responsive design patterns to the mainstream and standardizing responsive grid systems.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-point"></div>
-                            <div class="timeline-content">
-                                <h3>2015-2017</h3>
-                                <h4>Flexbox Adoption</h4>
-                                <p>CSS Flexbox gains widespread browser support, offering more flexible layout options and reducing the complexity of responsive designs.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-point"></div>
-                            <div class="timeline-content">
-                                <h3>2018-Present</h3>
-                                <h4>CSS Grid & Modern Techniques</h4>
-                                <p>CSS Grid Layout and container queries are introduced, offering even more powerful tools for responsive design with fewer compromises.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="resource-preview">
-                    <h2>Why This Resource Is Valuable</h2>
-                    <p>Ethan Marcotte, who coined the term "responsive web design" in 2010, provides authoritative information about implementing responsive design in modern websites. This resource is beneficial for:</p>
-                    
-                    <ul class="benefit-list">
-                        <li><i class="fas fa-laptop-code"></i> <strong>Web developers</strong> looking to improve their responsive development skills</li>
-                        <li><i class="fas fa-paint-brush"></i> <strong>Designers</strong> seeking to understand how layouts adapt across devices</li>
-                        <li><i class="fas fa-globe"></i> <strong>Anyone creating websites</strong> that need to work effectively on mobile, tablet, and desktop</li>
-                    </ul>
-                    
-                    <p>The principles and patterns covered in this resource remain fundamental to modern web development, even as new technologies emerge.</p>
-                </div>
-                
-                <div class="related-resources">
-                    <h2>Related Resources</h2>
-                    <div class="related-grid">
-                        <a href="./resource5.html" class="related-link">
-                            <div class="related-link-content">
-                                <i class="fas fa-shield-alt resource-icon"></i>
-                                <h3>iOS Ethical Hacking Guide</h3>
-                                <p>Advanced techniques for iOS security research</p>
-                            </div>
-                        </a>
-                        <a href="#" class="related-link">
-                            <div class="related-link-content">
-                                <i class="fas fa-palette resource-icon"></i>
-                                <h3>UI Design Principles</h3>
-                                <p>Essential principles for creating effective user interfaces</p>
-                            </div>
-                        </a>
-                        <a href="./index.html#resources" class="related-link view-all">
-                            <div class="related-link-content">
-                                <i class="fas fa-th-list resource-icon"></i>
-                                <h3>All Resources</h3>
-                                <p>View complete resource collection</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="resource-feedback">
-                    <h3>Was this resource helpful?</h3>
-                    <div class="feedback-buttons">
-                        <button class="feedback-btn" id="feedback-yes"><i class="fas fa-thumbs-up"></i> Yes</button>
-                        <button class="feedback-btn" id="feedback-no"><i class="fas fa-thumbs-down"></i> No</button>
-                    </div>
-                </div>
-                
-                <div class="back-to-resources">
-                    <a href="./index.html#resources" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Resources</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h3>Parth Patel</h3>
-                    <p>Web Developer & Designer</p>
-                </div>
-                
-                <div class="footer-links">
-                    <div class="footer-links-column">
-                        <h4>Navigation</h4>
-                        <ul>
-                            <li><a href="./index.html#home">Home</a></li>
-                            <li><a href="./index.html#about">About</a></li>
-                            <li><a href="./index.html#projects">Projects</a></li>
-                            <li><a href="./index.html#blog">Blog</a></li>
-                            <li><a href="./index.html#resources">Resources</a></li>
-                            <li><a href="./index.html#contact">Contact</a></li>
-                            <li><a href="./resume.html">Resume</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-links-column">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">UI/UX Design</a></li>
-                            <li><a href="#">Mobile Apps</a></li>
-                            <li><a href="#">Consulting</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-links-column">
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Cookie Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <div class="copyright">
-                    &copy; <span id="current-year">2025</span> Parth Patel. All Rights Reserved.
-                </div>
-                
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                    <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
-                    <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                </div>
-                
-                <div class="back-to-top">
-                    <a href="#main-content" aria-label="Back to top"><i class="fas fa-arrow-up"></i></a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bottom Scroll Bar -->
-    <div class="bottom-scrollbar-container">
-        <div class="scroll-indicator" id="scroll-indicator"></div>
-        <div class="scroll-nav">
-            <button class="scroll-nav-item" data-target="./index.html#home">Home</button>
-            <button class="scroll-nav-item" data-target="./index.html#about">About</button>
-            <button class="scroll-nav-item" data-target="./index.html#projects">Projects</button>
-            <button class="scroll-nav-item" data-target="./index.html#resources">Resources</button>
-            <button class="scroll-nav-item" data-target="./index.html#blog">Blog</button>
-            <button class="scroll-nav-item" data-target="./index.html#contact">Contact</button>
-        </div>
-    </div>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Main Script -->
-    <script src="./script.js"></script>
-    
-    <!-- Page-specific script -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Feedback functionality
-            const feedbackYes = document.getElementById('feedback-yes');
-            const feedbackNo = document.getElementById('feedback-no');
-            
-            if (feedbackYes) {
-                feedbackYes.addEventListener('click', function() {
-                    this.classList.add('active');
-                    if (feedbackNo) feedbackNo.classList.remove('active');
-                    alert('Thank you for your feedback! We\'re glad this resource was helpful.');
-                });
-            }
-            
-            if (feedbackNo) {
-                feedbackNo.addEventListener('click', function() {
-                    this.classList.add('active');
-                    if (feedbackYes) feedbackYes.classList.remove('active');
-                    alert('Thank you for your feedback. We\'ll work on improving our resources.');
-                });
-            }
-            
-            // Animation for timeline items
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            
-            if (timelineItems.length > 0 && 'IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('active');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.2 });
-                
-                timelineItems.forEach(item => {
-                    observer.observe(item);
-                });
-            } else {
-                // Fallback for browsers without IntersectionObserver
-                timelineItems.forEach(item => {
-                    item.classList.add('active');
-                });
-            }
-        });
-    </script>
-</body>
-</html>
