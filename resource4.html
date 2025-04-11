@@ -740,4 +740,255 @@
                                 <div class="pattern-meta">
                                     <span class="pattern-tag">Strategy</span>
                                 </div>
+                                </div>
                             </div>
+                        </div>
+                        
+                        <div class="pattern-card-animated">
+                            <svg>
+                                <rect x="0" y="0" width="100%" height="100%"></rect>
+                            </svg>
+                            <div class="pattern-card-content">
+                                <h3><i class="fas fa-image"></i> Responsive Images</h3>
+                                <p>Techniques for serving appropriate image sizes and resolutions based on device characteristics, improving performance and user experience.</p>
+                                <div class="code-example">
+                                    <pre>&lt;picture&gt;
+    &lt;source media="(max-width: 600px)" srcset="small.jpg"&gt;
+    &lt;source media="(max-width: 1200px)" srcset="medium.jpg"&gt;
+    &lt;img src="large.jpg" alt="Responsive Image"&gt;
+&lt;/picture&gt;</pre>
+                                </div>
+                                <div class="pros-cons-container">
+                                    <div class="pros-section">
+                                        <h3><i class="fas fa-check-circle"></i> Pros</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-check"></i> Improved performance</li>
+                                            <li><i class="fas fa-check"></i> Bandwidth optimization</li>
+                                            <li><i class="fas fa-check"></i> Better user experience</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons-section">
+                                        <h3><i class="fas fa-times-circle"></i> Cons</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-times"></i> More complex implementation</li>
+                                            <li><i class="fas fa-times"></i> Increased complexity in asset management</li>
+                                            <li><i class="fas fa-times"></i> Potential browser compatibility issues</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pattern-meta">
+                                    <span class="pattern-tag">Media</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pattern-card-animated">
+                            <svg>
+                                <rect x="0" y="0" width="100%" height="100%"></rect>
+                            </svg>
+                            <div class="pattern-card-content">
+                                <h3><i class="fas fa-bars"></i> Responsive Navigation</h3>
+                                <p>Design patterns for navigation menus that adapt to different screen sizes, typically using hamburger menus or collapsible navigation on mobile devices.</p>
+                                <div class="code-example">
+                                    <pre>.nav-toggle {
+    display: none; /* Hidden on desktop */
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none; /* Hide full menu */
+    }
+    
+    .nav-toggle {
+        display: block; /* Show hamburger */
+    }
+}</pre>
+                                </div>
+                                <div class="pros-cons-container">
+                                    <div class="pros-section">
+                                        <h3><i class="fas fa-check-circle"></i> Pros</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-check"></i> Space-efficient on small screens</li>
+                                            <li><i class="fas fa-check"></i> Improved mobile usability</li>
+                                            <li><i class="fas fa-check"></i> Consistent navigation experience</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cons-section">
+                                        <h3><i class="fas fa-times-circle"></i> Cons</h3>
+                                        <ul class="pros-cons-list">
+                                            <li><i class="fas fa-times"></i> Additional JavaScript required</li>
+                                            <li><i class="fas fa-times"></i> Can hide important navigation items</li>
+                                            <li><i class="fas fa-times"></i> Potential accessibility challenges</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="pattern-meta">
+                                    <span class="pattern-tag">Navigation</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-section">
+                    <h2>Evolution of Responsive Design</h2>
+                    <div class="timeline">
+                        <div class="timeline-item active">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h3>2010</h3>
+                                <h4>Birth of Responsive Web Design</h4>
+                                <p>Ethan Marcotte coins the term "Responsive Web Design" in his groundbreaking article for A List Apart, introducing the concept of fluid grids, flexible images, and media queries.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item active">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h3>2011</h3>
+                                <h4>Mobile-First Approach</h4>
+                                <p>Luke Wroblewski introduces the "Mobile First" concept, advocating for designing for mobile devices first, then progressively enhancing for larger screens.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item active">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h3>2013-2014</h3>
+                                <h4>Rise of Frameworks</h4>
+                                <p>Bootstrap and Foundation become popular, bringing responsive design patterns to the mainstream and standardizing responsive grid systems.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item active">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h3>2015-2017</h3>
+                                <h4>Flexbox Adoption</h4>
+                                <p>CSS Flexbox gains widespread browser support, offering more flexible layout options and reducing the complexity of responsive designs.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item active">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h3>2017-2019</h3>
+                                <h4>CSS Grid Goes Mainstream</h4>
+                                <p>CSS Grid Layout becomes widely supported, offering powerful 2D layout capabilities for complex responsive designs with minimal code.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item active">
+                            <div class="timeline-point"></div>
+                            <div class="timeline-content">
+                                <h3>2020-Present</h3>
+                                <h4>Container Queries & Modern Techniques</h4>
+                                <p>Introduction of container queries, subgrid, and other advanced responsive techniques that enhance component-based design approaches.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="resource-preview">
+                    <h2>Why This Resource Is Valuable</h2>
+                    <p>Ethan Marcotte, who coined the term "responsive web design" in 2010, provides authoritative information about implementing responsive design in modern websites. This resource is beneficial for:</p>
+                    
+                    <ul class="benefit-list">
+                        <li><i class="fas fa-laptop-code"></i> <strong>Web developers</strong> looking to improve their responsive development skills</li>
+                        <li><i class="fas fa-paint-brush"></i> <strong>Designers</strong> seeking to understand how layouts adapt across devices</li>
+                        <li><i class="fas fa-globe"></i> <strong>Anyone creating websites</strong> that need to work effectively on mobile, tablet, and desktop</li>
+                    </ul>
+                    
+                    <p>The principles and patterns covered in this resource remain fundamental to modern web development, even as new technologies emerge.</p>
+                </div>
+                
+                <div class="resource-feedback">
+                    <h3>Was this resource helpful?</h3>
+                    <div class="feedback-buttons">
+                        <button class="feedback-btn" id="feedback-yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                        <button class="feedback-btn" id="feedback-no"><i class="fas fa-thumbs-down"></i> No</button>
+                    </div>
+                </div>
+                
+                <div class="related-resources">
+                    <h2>Related Resources</h2>
+                    <div class="related-grid">
+                        <a href="./resource5.html" class="related-link">
+                            <div class="related-link-content">
+                                <i class="fas fa-shield-alt resource-icon"></i>
+                                <h3>iOS Ethical Hacking Guide</h3>
+                                <p>Advanced techniques for iOS security research</p>
+                            </div>
+                        </a>
+                        <a href="#" class="related-link">
+                            <div class="related-link-content">
+                                <i class="fas fa-palette resource-icon"></i>
+                                <h3>UI Design Principles</h3>
+                                <p>Essential principles for creating effective user interfaces</p>
+                            </div>
+                        </a>
+                        <a href="./index.html#resources" class="related-link view-all">
+                            <div class="related-link-content">
+                                <i class="fas fa-th-list resource-icon"></i>
+                                <h3>All Resources</h3>
+                                <p>View complete resource collection</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="back-to-resources">
+                    <a href="./index.html#resources" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Resources</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Scroll Bar -->
+    <div class="bottom-scrollbar-container">
+        <div class="scroll-indicator" id="scroll-indicator"></div>
+        <div class="scroll-nav">
+            <button class="scroll-nav-item" data-target="./index.html#home">Home</button>
+            <button class="scroll-nav-item" data-target="./index.html#about">About</button>
+            <button class="scroll-nav-item" data-target="./index.html#projects">Projects</button>
+            <button class="scroll-nav-item" data-target="./index.html#resources">Resources</button>
+            <button class="scroll-nav-item" data-target="./index.html#blog">Blog</button>
+            <button class="scroll-nav-item" data-target="./index.html#contact">Contact</button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Main Script -->
+    <script src="./script.js"></script>
+    
+    <!-- Page-specific script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Feedback functionality
+            const feedbackYes = document.getElementById('feedback-yes');
+            const feedbackNo = document.getElementById('feedback-no');
+            
+            if (feedbackYes) {
+                feedbackYes.addEventListener('click', function() {
+                    this.classList.add('active');
+                    if (feedbackNo) feedbackNo.classList.remove('active');
+                    alert('Thank you for your feedback! We\'re glad this resource was helpful.');
+                });
+            }
+            
+            if (feedbackNo) {
+                feedbackNo.addEventListener('click', function() {
+                    this.classList.add('active');
+                    if (feedbackYes) feedbackYes.classList.remove('active');
+                    alert('Thank you for your feedback. We\'ll work on improving our resources.');
+                });
+            }
+            
+            // Make sure timeline items are visible
+            const timelineItems = document.querySelectorAll('.timeline-item');
+            timelineItems.forEach(item => {
+                item.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
