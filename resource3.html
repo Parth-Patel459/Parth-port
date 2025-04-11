@@ -169,6 +169,88 @@
             top: 0;
         }
         
+        /* Hover tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tooltip .tooltip-content {
+            visibility: hidden;
+            width: 200px;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            text-align: center;
+            border-radius: var(--border-radius);
+            padding: 10px;
+            position: absolute;
+            z-index: 10;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s, transform 0.3s;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+            pointer-events: none;
+            font-weight: normal;
+            font-size: 0.9rem;
+        }
+        
+        body.dark-mode .tooltip .tooltip-content {
+            background-color: var(--dark-background-color);
+            color: var(--dark-text-color);
+            border-color: var(--dark-border-color);
+        }
+        
+        .tooltip .tooltip-content::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -8px;
+            border-width: 8px;
+            border-style: solid;
+            border-color: var(--border-color) transparent transparent transparent;
+        }
+        
+        body.dark-mode .tooltip .tooltip-content::after {
+            border-color: var(--dark-border-color) transparent transparent transparent;
+        }
+        
+        .tooltip:hover .tooltip-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateX(-50%) translateY(-5px);
+        }
+        
+        /* Feedback tooltips */
+        .feedback-btn.tooltip .tooltip-content {
+            width: 150px;
+        }
+        
+        /* Related resources tooltips */
+        .related-link.tooltip .tooltip-content {
+            width: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: left;
+        }
+        
+        .related-link.tooltip:hover .tooltip-content {
+            transform: translateX(-50%) translateY(-5px);
+        }
+        
+        .related-link.tooltip .tooltip-content h3 {
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+        
+        .related-link.tooltip .tooltip-content p {
+            margin: 0;
+        }
+        
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .toolkit-grid {
@@ -177,6 +259,10 @@
             
             .best-practices ul {
                 grid-template-columns: 1fr;
+            }
+            
+            .tooltip .tooltip-content {
+                display: none; /* Disable tooltips on mobile */
             }
         }
     </style>
@@ -457,34 +543,52 @@
                 <div class="resource-feedback">
                     <h3>Was this toolkit helpful?</h3>
                     <div class="feedback-buttons">
-                        <button class="feedback-btn" id="feedback-yes"><i class="fas fa-thumbs-up"></i> Yes</button>
-                        <button class="feedback-btn" id="feedback-no"><i class="fas fa-thumbs-down"></i> No</button>
+                        <button class="feedback-btn tooltip" id="feedback-yes">
+                            <i class="fas fa-thumbs-up"></i> Yes
+                            <span class="tooltip-content">Click to indicate this toolkit was helpful to you</span>
+                        </button>
+                        <button class="feedback-btn tooltip" id="feedback-no">
+                            <i class="fas fa-thumbs-down"></i> No
+                            <span class="tooltip-content">Click to indicate this toolkit could be improved</span>
+                        </button>
                     </div>
                 </div>
                 
                 <div class="related-resources">
                     <h2>Related Resources</h2>
                     <div class="related-grid">
-                        <a href="./resource4.html" class="related-link">
+                        <a href="./resource4.html" class="related-link tooltip">
                             <div class="related-link-content">
                                 <i class="fas fa-table-cells resource-icon"></i>
                                 <h3>Responsive Design Patterns</h3>
                                 <p>Comprehensive guide to responsive web design techniques</p>
                             </div>
+                            <span class="tooltip-content">
+                                <h3>Responsive Design Patterns</h3>
+                                <p>Comprehensive guide to responsive web design techniques</p>
+                            </span>
                         </a>
-                        <a href="./resource5.html" class="related-link">
+                        <a href="./resource5.html" class="related-link tooltip">
                             <div class="related-link-content">
                                 <i class="fas fa-shield-alt resource-icon"></i>
                                 <h3>iOS Ethical Hacking Guide</h3>
                                 <p>Advanced techniques for iOS security research</p>
                             </div>
+                            <span class="tooltip-content">
+                                <h3>iOS Ethical Hacking Guide</h3>
+                                <p>Advanced techniques for iOS security research</p>
+                            </span>
                         </a>
-                        <a href="./index.html#resources" class="related-link view-all">
+                        <a href="./index.html#resources" class="related-link view-all tooltip">
                             <div class="related-link-content">
                                 <i class="fas fa-th-list resource-icon"></i>
                                 <h3>All Resources</h3>
                                 <p>View complete resource collection</p>
                             </div>
+                            <span class="tooltip-content">
+                                <h3>All Resources</h3>
+                                <p>View complete resource collection</p>
+                            </span>
                         </a>
                     </div>
                 </div>
