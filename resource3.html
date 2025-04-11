@@ -3,270 +3,543 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Performance Toolkit</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Responsive Design Patterns Toolkit - Comprehensive collection of adaptive web design techniques">
+    <title>Responsive Design Patterns Toolkit | PARTH PATEL</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="./styles.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./favicon.png">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
     <style>
-        :root {
-            --bg-primary: #f4f6f9;
-            --text-primary: #2c3e50;
-            --accent-color: #3498db;
-            --card-bg: #ffffff;
-            --border-color: #e0e6ed;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            line-height: 1.6;
-            color: var(--text-primary);
-            background-color: var(--bg-primary);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background-color: var(--accent-color);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
+        /* Toolkit-specific styles */
         .toolkit-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            gap: 30px;
+            margin: 40px 0;
         }
-
+        
         .tool-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            position: relative;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-color);
+            padding: 25px;
+            height: 100%;
         }
-
+        
         .tool-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-10px);
+            box-shadow: var(--box-shadow-hover);
         }
-
+        
         .tool-card h2 {
-            color: var(--accent-color);
+            color: var(--primary-color);
             margin-bottom: 15px;
-            border-bottom: 2px solid var(--accent-color);
+            border-bottom: 2px solid var(--primary-color);
             padding-bottom: 10px;
+            font-size: 1.4rem;
         }
-
+        
         .tool-card .category {
             font-weight: bold;
-            color: #666;
+            color: var(--text-color-light);
             margin-bottom: 10px;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
         }
-
+        
+        body.dark-mode .tool-card .category {
+            color: var(--dark-text-color-light);
+        }
+        
         .tool-card .description {
             margin-bottom: 15px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        body.dark-mode .tool-card .description {
+            color: var(--dark-text-color);
         }
 
+        .tool-card svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .tool-card svg rect {
+            stroke: var(--primary-color);
+            stroke-width: 2;
+            stroke-dasharray: 800;
+            stroke-dashoffset: 800;
+            transition: stroke-dashoffset 0.6s cubic-bezier(0.25, 0.1, 0.25, 1);
+            fill: transparent;
+        }
+        
+        .tool-card:hover svg rect {
+            stroke-dashoffset: 0;
+        }
+        
         .tool-links {
             display: flex;
             justify-content: space-between;
-            margin-top: 15px;
-        }
-
-        .tool-links a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s ease;
-        }
-
-        .tool-links a:hover {
-            color: darken(var(--accent-color), 10%);
-            text-decoration: underline;
-        }
-
-        .performance-tips {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 30px;
-        }
-
-        .performance-tips h2 {
-            color: var(--accent-color);
-            margin-bottom: 15px;
-            border-bottom: 2px solid var(--accent-color);
-            padding-bottom: 10px;
-        }
-
-        .performance-tips ul {
-            list-style-type: none;
-        }
-
-        .performance-tips li {
-            margin-bottom: 10px;
-            padding-left: 25px;
+            margin-top: 20px;
             position: relative;
+            z-index: 2;
         }
-
-        .performance-tips li::before {
-            content: '⚡';
+        
+        .tool-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .tool-links a:hover {
+            transform: translateY(-2px);
+        }
+        
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .best-practices {
+            background-color: var(--background-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 40px 0;
+            box-shadow: var(--box-shadow);
+            border: 1px solid var(--border-color);
+        }
+        
+        body.dark-mode .best-practices {
+            background-color: var(--dark-background-color);
+            border-color: var(--dark-border-color);
+        }
+        
+        .best-practices h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        
+        .best-practices ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+        
+        .best-practices li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .best-practices li::before {
+            content: '📱';
             position: absolute;
             left: 0;
             top: 0;
         }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: var(--accent-color);
-            color: white;
-            margin-top: 30px;
-        }
-
+        
+        /* Responsive adjustments */
         @media (max-width: 768px) {
             .toolkit-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .best-practices ul {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>🚀 Web Performance Toolkit</h1>
-            <p>Essential Tools and Resources for Optimizing Web Application Performance</p>
-        </div>
-    </header>
+    <!-- Skip to content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <!-- Overlay for Sidebar -->
+    <div class="overlay" id="overlay"></div>
 
-    <div class="container">
-        <div class="toolkit-grid">
-            <div class="tool-card">
-                <div class="category">Performance Measurement</div>
-                <h2>Google Lighthouse</h2>
-                <p class="description">Comprehensive auditing tool for web page performance, accessibility, progressive web apps, and more.</p>
-                <div class="tool-links">
-                    <a href="https://developers.google.com/web/tools/lighthouse" target="_blank">Learn More</a>
-                    <a href="#how-to-use">How to Use</a>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo-container">
+                <div class="logo" id="logo">
+                    <svg id="logoSVG" viewBox="0 0 400 400" width="300" height="300">
+                        <!-- Background circle -->
+                        <circle cx="200" cy="200" r="180" fill="#f8f8f8" stroke="#e0e0e0" stroke-width="2" />
+                        
+                        <!-- Main unified letterform -->
+                        <g>
+                            <!-- Vertical stem (P, A, R, T, H) -->
+                            <path class="stem" d="M150,100 L150,300" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                            
+                            <!-- Horizontal crossbar (A, H, E, T) -->
+                            <path class="crossbar" d="M110,180 L240,180" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                            
+                            <!-- Top loop (P, R, P) -->
+                            <path class="top-loop" d="M150,100 L200,100 C260,100 260,180 200,180" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round" />
+                            
+                            <!-- Bottom curve (P, P, E, L) -->
+                            <path class="bottom-curve" d="M150,240 L200,240 C260,240 260,300 200,300 L150,300" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" 
+                                  stroke-linejoin="round" />
+                            
+                            <!-- Diagonal (A, R) -->
+                            <path class="diagonal" d="M175,180 L225,240" 
+                                  fill="none" 
+                                  stroke="#FF4500" 
+                                  stroke-width="12" 
+                                  stroke-linecap="round" />
+                        </g>
+                        
+                        <!-- Separate period/dot -->
+                        <circle class="period" cx="280" cy="280" r="12" fill="#FF4500" />
+                    </svg>
                 </div>
+                
+                <div class="name-reveal">PARTH PATEL.</div>
             </div>
-
-            <div class="tool-card">
-                <div class="category">Network Analysis</div>
-                <h2>Chrome DevTools Network Panel</h2>
-                <p class="description">Detailed network request waterfall, resource loading times, and bandwidth consumption analysis.</p>
-                <div class="tool-links">
-                    <a href="https://developers.google.com/web/tools/chrome-devtools/network" target="_blank">Learn More</a>
-                    <a href="#network-analysis">Analyze Network</a>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="category">Performance Profiling</div>
-                <h2>Chrome DevTools Performance Tab</h2>
-                <p class="description">Capture and analyze runtime performance, identify bottlenecks, and optimize JavaScript execution.</p>
-                <div class="tool-links">
-                    <a href="https://developers.google.com/web/tools/chrome-devtools/evaluate-performance" target="_blank">Learn More</a>
-                    <a href="#performance-profiling">Profile Performance</a>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="category">Web Vitals</div>
-                <h2>Google Web Vitals</h2>
-                <p class="description">Unified guidance for critical user experience metrics: Loading, Interactivity, and Visual Stability.</p>
-                <div class="tool-links">
-                    <a href="https://web.dev/vitals/" target="_blank">Learn More</a>
-                    <a href="#web-vitals">Understand Vitals</a>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="category">Load Time Simulation</div>
-                <h2>WebPageTest</h2>
-                <p class="description">Advanced performance testing from multiple locations, browsers, and network conditions.</p>
-                <div class="tool-links">
-                    <a href="https://www.webpagetest.org/" target="_blank">Test Now</a>
-                    <a href="#load-testing">Performance Simulation</a>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="category">Bundle Analysis</div>
-                <h2>Webpack Bundle Analyzer</h2>
-                <p class="description">Visualize size of webpack output files with an interactive zoomable treemap.</p>
-                <div class="tool-links">
-                    <a href="https://github.com/webpack-contrib/webpack-bundle-analyzer" target="_blank">GitHub Repo</a>
-                    <a href="#bundle-size">Analyze Bundles</a>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="category">Resource Optimization</div>
-                <h2>ImageOptim</h2>
-                <p class="description">Compress images without losing quality, reducing load times and bandwidth usage.</p>
-                <div class="tool-links">
-                    <a href="https://imageoptim.com/mac" target="_blank">Download</a>
-                    <a href="#image-optimization">Optimize Images</a>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="category">JavaScript Profiling</div>
-                <h2>Chrome Memory Panel</h2>
-                <p class="description">Analyze memory consumption, detect memory leaks, and optimize JavaScript memory usage.</p>
-                <div class="tool-links">
-                    <a href="https://developers.google.com/web/tools/chrome-devtools/memory-problems" target="_blank">Learn More</a>
-                    <a href="#memory-profiling">Profile Memory</a>
-                </div>
-            </div>
-
-            <div class="tool-card">
-                <div class="category">Monitoring</div>
-                <h2>New Relic Browser</h2>
-                <p class="description">Real-time performance monitoring, error tracking, and user experience insights.</p>
-                <div class="tool-links">
-                    <a href="https://newrelic.com/platform/browser-monitoring" target="_blank">Learn More</a>
-                    <a href="#real-time-monitoring">Monitor Performance</a>
-                </div>
+            
+            <div class="nav-links" id="nav-links">
+                <a href="./index.html#home" class="nav-link">Home</a>
+                <a href="./index.html#about" class="nav-link">About</a>
+                <a href="./index.html#projects" class="nav-link">Projects</a>
+                <a href="./index.html#blog" class="nav-link">Blog</a>
+                <a href="./index.html#resources" class="nav-link active">Resources</a>
+                <a href="./index.html#contact" class="nav-link">Contact</a>
+                <a href="./resume.html" class="nav-link">Resume</a>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-btn" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
+    </nav>
 
-        <div class="performance-tips">
-            <h2>🔧 Performance Optimization Tips</h2>
-            <ul>
-                <li>Minimize and compress JavaScript, CSS, and HTML</li>
-                <li>Implement lazy loading for images and components</li>
-                <li>Use browser caching and content delivery networks (CDNs)</li>
-                <li>Optimize images and use modern formats like WebP</li>
-                <li>Reduce server response times</li>
-                <li>Minimize render-blocking resources</li>
-                <li>Use code splitting and tree shaking</li>
-                <li>Implement efficient error handling and monitoring</li>
-            </ul>
+    <!-- Sidebar for mobile -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" id="close-btn" aria-label="Close sidebar">
+            <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="sidebar-about">
+            <h3 class="title">PARTH PATEL</h3>
+            <p class="subtitle">Web Developer</p>
+        </div>
+        
+        <ul>
+            <li><a href="./index.html#home"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="./index.html#about"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="./index.html#projects"><i class="fas fa-code"></i> Projects</a></li>
+            <li><a href="./index.html#blog"><i class="fas fa-blog"></i> Blog</a></li>
+            <li><a href="./index.html#resources" class="active"><i class="fas fa-bookmark"></i> Resources</a></li>
+            <li><a href="./index.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+            <li><a href="./resume.html"><i class="fas fa-file-alt"></i> Resume</a></li>
+        </ul>
+        
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/parth-patel-b48290353/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.github.com/Parth-Patel459" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+            <a href="https://www.x.com/ParthPa41787942" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/csmp_2025" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+        <div class="sidebar-footer">
+            &copy; <span id="current-year">2025</span> PARTH PATEL
         </div>
     </div>
 
-    <footer>
-        <p>© 2025 Web Performance Toolkit | Optimize, Analyze, Improve</p>
-    </footer>
+    <!-- Content Section -->
+    <section id="toolkit" class="content-section" role="main" id="main-content">
+        <div class="container">
+            <h1 class="section-title">Responsive Design Patterns Toolkit</h1>
+            <p class="section-subtitle">Essential Patterns and Resources for Creating Adaptive Web Experiences</p>
+            
+            <div class="resource-content">
+                <div class="toolkit-grid">
+                    <div class="tool-card">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="card-content">
+                            <div class="category">Layout Pattern</div>
+                            <h2>Fluid Grid Layout</h2>
+                            <p class="description">A flexible grid system that uses relative units (percentages) instead of fixed pixels, allowing content to adapt seamlessly across different screen sizes.</p>
+                            <div class="tool-links">
+                                <a href="https://css-tricks.com/dont-overthink-it-grids/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Learn More</a>
+                                <a href="#fluid-grid-examples"><i class="fas fa-code"></i> View Examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="card-content">
+                            <div class="category">Layout Pattern</div>
+                            <h2>Flexbox Layout</h2>
+                            <p class="description">A powerful CSS layout module that provides flexible and efficient ways to distribute space and align content in complex responsive designs.</p>
+                            <div class="tool-links">
+                                <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Learn More</a>
+                                <a href="#flexbox-examples"><i class="fas fa-code"></i> View Examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="card-content">
+                            <div class="category">Layout Pattern</div>
+                            <h2>CSS Grid Layout</h2>
+                            <p class="description">A two-dimensional layout system that allows for complex, responsive designs with precise control over rows and columns.</p>
+                            <div class="tool-links">
+                                <a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Learn More</a>
+                                <a href="#grid-examples"><i class="fas fa-code"></i> View Examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="card-content">
+                            <div class="category">Design Approach</div>
+                            <h2>Mobile-First Design</h2>
+                            <p class="description">A design strategy that starts with mobile design and progressively enhances the layout for larger screens, ensuring optimal performance on mobile devices.</p>
+                            <div class="tool-links">
+                                <a href="https://www.lukew.com/ff/entry.asp?933" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Learn More</a>
+                                <a href="#mobile-first-examples"><i class="fas fa-code"></i> View Examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="card-content">
+                            <div class="category">Media Handling</div>
+                            <h2>Responsive Images</h2>
+                            <p class="description">Techniques for serving appropriate image sizes and resolutions based on device characteristics, improving performance and user experience.</p>
+                            <div class="tool-links">
+                                <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Learn More</a>
+                                <a href="#responsive-images-examples"><i class="fas fa-code"></i> View Examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="card-content">
+                            <div class="category">Navigation Pattern</div>
+                            <h2>Responsive Navigation</h2>
+                            <p class="description">Design patterns for navigation menus that adapt to different screen sizes, typically using hamburger menus or collapsible navigation on mobile devices.</p>
+                            <div class="tool-links">
+                                <a href="https://bradfrost.com/blog/post/complex-navigation-patterns-for-responsive-design/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Learn More</a>
+                                <a href="#navigation-examples"><i class="fas fa-code"></i> View Examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="card-content">
+                            <div class="category">Typography Pattern</div>
+                            <h2>Responsive Typography</h2>
+                            <p class="description">Techniques for scaling text and maintaining readability across various screen sizes using fluid typography and viewport-relative units.</p>
+                            <div class="tool-links">
+                                <a href="https://css-tricks.com/simplified-fluid-typography/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Learn More</a>
+                                <a href="#typography-examples"><i class="fas fa-code"></i> View Examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="card-content">
+                            <div class="category">Layout Adaptation</div>
+                            <h2>Content Choreography</h2>
+                            <p class="description">The practice of adapting not just layout but also the order, visibility, and arrangement of content to suit different screen sizes and contexts.</p>
+                            <div class="tool-links">
+                                <a href="https://trentwalton.com/2011/07/14/content-choreography/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Learn More</a>
+                                <a href="#choreography-examples"><i class="fas fa-code"></i> View Examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tool-card">
+                        <svg>
+                            <rect x="0" y="0" width="100%" height="100%"></rect>
+                        </svg>
+                        <div class="card-content">
+                            <div class="category">Adaptation Strategy</div>
+                            <h2>Breakpoint Management</h2>
+                            <p class="description">Strategies for defining and managing breakpoints in responsive layouts, focusing on content needs rather than specific devices.</p>
+                            <div class="tool-links">
+                                <a href="https://www.smashingmagazine.com/2018/02/media-queries-responsive-design-2018/" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Learn More</a>
+                                <a href="#breakpoint-examples"><i class="fas fa-code"></i> View Examples</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="best-practices">
+                    <h2><i class="fas fa-mobile-alt"></i> Responsive Design Best Practices</h2>
+                    <ul>
+                        <li>Use relative units (%, em, rem) instead of fixed pixels</li>
+                        <li>Prioritize content and functionality for mobile users</li>
+                        <li>Test designs across multiple devices and screen orientations</li>
+                        <li>Optimize images and media for different screen resolutions</li>
+                        <li>Ensure touch targets are adequately sized for mobile users</li>
+                        <li>Implement responsive typography with appropriate scaling</li>
+                        <li>Consider performance implications, especially for mobile users</li>
+                        <li>Maintain accessibility across all screen sizes and devices</li>
+                    </ul>
+                </div>
+                
+                <div class="resource-feedback">
+                    <h3>Was this toolkit helpful?</h3>
+                    <div class="feedback-buttons">
+                        <button class="feedback-btn" id="feedback-yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                        <button class="feedback-btn" id="feedback-no"><i class="fas fa-thumbs-down"></i> No</button>
+                    </div>
+                </div>
+                
+                <div class="related-resources">
+                    <h2>Related Resources</h2>
+                    <div class="related-grid">
+                        <a href="./resource4.html" class="related-link">
+                            <div class="related-link-content">
+                                <i class="fas fa-table-cells resource-icon"></i>
+                                <h3>Responsive Design Patterns</h3>
+                                <p>Comprehensive guide to responsive web design techniques</p>
+                            </div>
+                        </a>
+                        <a href="./resource5.html" class="related-link">
+                            <div class="related-link-content">
+                                <i class="fas fa-shield-alt resource-icon"></i>
+                                <h3>iOS Ethical Hacking Guide</h3>
+                                <p>Advanced techniques for iOS security research</p>
+                            </div>
+                        </a>
+                        <a href="./index.html#resources" class="related-link view-all">
+                            <div class="related-link-content">
+                                <i class="fas fa-th-list resource-icon"></i>
+                                <h3>All Resources</h3>
+                                <p>View complete resource collection</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="back-to-resources">
+                    <a href="./index.html#resources" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back to Resources</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bottom Scroll Bar -->
+    <div class="bottom-scrollbar-container">
+        <div class="scroll-indicator" id="scroll-indicator"></div>
+        <div class="scroll-nav">
+            <button class="scroll-nav-item" data-target="./index.html#home">Home</button>
+            <button class="scroll-nav-item" data-target="./index.html#about">About</button>
+            <button class="scroll-nav-item" data-target="./index.html#projects">Projects</button>
+            <button class="scroll-nav-item" data-target="./index.html#resources">Resources</button>
+            <button class="scroll-nav-item" data-target="./index.html#blog">Blog</button>
+            <button class="scroll-nav-item" data-target="./index.html#contact">Contact</button>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Main Script -->
+    <script src="./script.js"></script>
+    
+    <!-- Page-specific script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Feedback functionality
+            const feedbackYes = document.getElementById('feedback-yes');
+            const feedbackNo = document.getElementById('feedback-no');
+            
+            if (feedbackYes) {
+                feedbackYes.addEventListener('click', function() {
+                    this.classList.add('active');
+                    if (feedbackNo) feedbackNo.classList.remove('active');
+                    alert('Thank you for your feedback! We\'re glad this toolkit was helpful.');
+                });
+            }
+            
+            if (feedbackNo) {
+                feedbackNo.addEventListener('click', function() {
+                    this.classList.add('active');
+                    if (feedbackYes) feedbackYes.classList.remove('active');
+                    alert('Thank you for your feedback. We\'ll work on improving our resources.');
+                });
+            }
+        });
+    </script>
 </body>
 </html>
