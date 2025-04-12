@@ -4,19 +4,451 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Parth Patel - Web Developer & Designer Portfolio">
+    <meta name="description" content="Parth Patel - Creative Web Developer & UI/UX Designer Portfolio showcasing innovative projects and resources">
+    <meta name="keywords" content="web developer, UI/UX designer, portfolio, front-end, programming, Parth Patel">
+    <meta name="author" content="Parth Patel">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Parth Patel | Creative Developer & Designer">
+    <meta property="og:description" content="Portfolio of a passionate web developer specializing in responsive design and user experience">
+    <meta property="og:image" content="./assets/profile-preview.jpg">
+    <meta property="og:type" content="website">
+
     <title>PARTH PATEL | Developer & Designer</title>
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="./styles.css">
+    
     <!-- Favicon -->
     <link rel="shortcut icon" href="./favicon.png">
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png">
+    
     <!-- Preload critical fonts and resources -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/webfonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="./assets/hero-background.jpg" as="image">
+    <link rel="preload" href="./styles.css" as="style">
+    <link rel="preload" href="./script.js" as="script">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=PT+Sans:wght@400;700&family=Roboto:wght@300;400;500&display=swap">
+    
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="./styles.css">
+    
+    <!-- Custom animations -->
+    <style>
+        /* Preloader Animation */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+        }
+        
+        body.dark-mode .preloader {
+            background-color: #222;
+        }
+        
+        .preloader.fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .preloader-content {
+            text-align: center;
+        }
+        
+        .preloader-logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+        }
+        
+        .preloader-path {
+            stroke-dasharray: 1500;
+            stroke-dashoffset: 1500;
+            animation: preloaderDraw 2s ease forwards;
+        }
+        
+        @keyframes preloaderDraw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+        
+        .preloader p {
+            font-size: 16px;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            margin-top: 20px;
+            font-weight: 500;
+            opacity: 0;
+            animation: fadeIn 0.5s ease 1.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Page transitions */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary-color);
+            transform: translateY(100%);
+            z-index: 9990;
+            pointer-events: none;
+            opacity: 0.9;
+        }
+        
+        .page-transition.active {
+            animation: pageTransition 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+        }
+        
+        @keyframes pageTransition {
+            0% {
+                transform: translateY(100%);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        
+        /* Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -60px;
+            left: 0;
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            z-index: 9999;
+            transition: top 0.3s;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        
+        .skip-link:focus {
+            top: 0;
+        }
+        
+        /* Enhanced animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stagger-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .stagger-item.active {
+            animation: staggerFade 0.5s ease forwards;
+        }
+        
+        @keyframes staggerFade {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Enhanced card animations */
+        .enhanced-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                        box-shadow 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        
+        .enhanced-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 50%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .enhanced-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255, 69, 0, 0), rgba(255, 69, 0, 0.1), rgba(255, 69, 0, 0));
+            transform: rotate(30deg);
+            transition: transform 0.7s ease-in-out;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .enhanced-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .enhanced-card:hover::before {
+            opacity: 1;
+        }
+        
+        .enhanced-card:hover::after {
+            transform: rotate(30deg) translate(50%, 50%);
+        }
+        
+        /* Button animation */
+        .animated-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+        
+        .animated-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+        
+        .animated-btn:hover::before {
+            left: 100%;
+        }
+        
+        .animated-btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+            transition-delay: 0.2s;
+        }
+        
+        .animated-btn:hover::after {
+            left: 100%;
+        }
+        
+        /* Floating animation */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Reveal border animation */
+        .reveal-border {
+            position: relative;
+        }
+        
+        .reveal-border::before,
+        .reveal-border::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.4s ease;
+        }
+        
+        .reveal-border::before {
+            top: 0;
+            left: 0;
+        }
+        
+        .reveal-border::after {
+            bottom: 0;
+            right: 0;
+        }
+        
+        .reveal-border:hover::before,
+        .reveal-border:hover::after {
+            width: 100%;
+        }
+        
+        /* Text reveal animation */
+        .text-reveal {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        
+        .text-reveal span {
+            display: block;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .text-reveal.active span {
+            transform: translateY(0);
+        }
+        
+        /* 3D Card Tilt Effect */
+        .tilt-card {
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+        
+        .tilt-card:hover {
+            transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+        }
+        
+        .tilt-card::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, 
+                        rgba(255, 255, 255, 0.2) 0%, 
+                        rgba(255, 255, 255, 0) 60%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        
+        .tilt-card:hover::before {
+            opacity: 1;
+        }
+        
+        /* Enhanced cursor effect for links */
+        a, button {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        a:focus, button:focus {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 4px;
+        }
+        
+        /* Layered shadow effect */
+        .shadow-card {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+        
+        .shadow-card:hover {
+            box-shadow: 
+                0 5px 15px rgba(0, 0, 0, 0.05),
+                0 15px 35px rgba(0, 0, 0, 0.1),
+                0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero section enhancements */
+        .hero-enhanced {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-enhanced::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, 
+                        rgba(0, 0, 0, 0.4) 0%, 
+                        rgba(0, 0, 0, 0.7) 100%);
+            z-index: 1;
+        }
+        
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
+    
+    <!-- Security headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 </head>
 <body>
+
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="preloader-content">
+            <svg class="preloader-logo" viewBox="0 0 400 400" width="120" height="120">
+                <circle cx="200" cy="200" r="180" fill="none" stroke="#FF4500" stroke-width="5" />
+                <path class="preloader-path" d="M150,100 L150,300 M110,180 L240,180 M150,100 L200,100 C260,100 260,180 200,180 M150,240 L200,240 C260,240 260,300 200,300 L150,300 M175,180 L225,240" 
+                      fill="none" 
+                      stroke="#FF4500" 
+                      stroke-width="8" 
+                      stroke-linecap="round" 
+                      stroke-linejoin="round" />
+            </svg>
+            <p>LOADING PORTFOLIO</p>
+        </div>
+    </div>
+    
+    <!-- Page transition overlay -->
+    <div class="page-transition" id="pageTransition"></div>
+
     <!-- Overlay for sidebar -->
     <div class="overlay" id="overlay"></div>
 
@@ -141,16 +573,17 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="hero" id="home" data-backgrounds="shot4.mp4">
-        <div class="hero-content">
-            <h1>PARTH PATEL</h1>
+    <section class="hero hero-enhanced" id="home" data-backgrounds="shot4.mp4">
+        <div class="hero-particles" id="particles-container"></div>
+        <div class="hero-content fade-up">
+            <div class="text-reveal active"><span><h1>PARTH PATEL</h1></span></div>
             <p id="typewriter">Creative Web Developer & UI/UX Designer</p>
             <div class="hero-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-outline">Contact Me</a>
+                <a href="#projects" class="btn btn-primary animated-btn">View My Work</a>
+                <a href="#contact" class="btn btn-outline animated-btn">Contact Me</a>
             </div>
         </div>
-        <div class="hero-scroll-indicator">
+        <div class="hero-scroll-indicator floating">
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
@@ -3533,17 +3966,7 @@
                 </div>
             </div>
             
-            <div class="resource-card-animated foundation beginner intermediate advanced">
-                <svg>
-                    <rect x                    <h3><a href="https://www.amazon.com/Modern-PHP-Features-Good-Practices/dp/1491905018/" target="_blank" rel="noopener noreferrer">Modern PHP</a></h3>
-                    <p>Guide to modern PHP development covering best practices, namespaces, traits, generators, and more for web development.</p>
-                    <span class="resource-tag">PHP (Scripting)</span>
-                    <div class="buttons has-addons">
-                        <a href="https://www.amazon.com/Modern-PHP-Features-Good-Practices/dp/1491905018/" class="button" title="Amazon" target="_blank" rel="noopener noreferrer"><i class="fas fa-shopping-cart"></i> Buy</a>
-                        <a href="https://www.oreilly.com/library/view/modern-php/9781491905173/" class="button" title="O'Reilly" target="_blank" rel="noopener noreferrer"><i class="fas fa-book"></i> Publisher</a>
-                    </div>
-                </div>
-            </div>
+           
             
             <div class="resource-card-animated scripting advanced">
                 <svg>
@@ -3895,10 +4318,15 @@
                     <p>Bjarne Stroustrup's concise guide to modern C++, covering C++17/20 features, templates, lambdas, and concurrency for experienced programmers.</p>
                     <span class="resource-tag">C++ (Advanced)</span>
                     <div class="buttons has-addons">
-                        <a href="https://www.amazon.com/Tour-C-Bjarne-Stroustrup/dp/0134997832/" class="button" title="Amazon" target="_blank" rel="noopener noreferrer"><i class="fas fa-shopping-cart"></i> Buy</a>
-                        <a href="<!-- Programming Languages Resources Section -->
-<section class="resources-section" id="programming-languages">
-    <div class="container">
+                        <a href="https://www.amazon.com/Tour-C-Bjarne-Stroustrup/dp/0134997832/" class="button" title="Amazon" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-shopping-cart"></i> Buy
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+        <section class="resources-section" id="programming-languages"div class="container">
         <h2 class="section-title">Programming Languages Resources</h2>
         <p class="section-subtitle">Comprehensive collection of resources covering all programming paradigms from machine code to high-level languages</p>
         
