@@ -416,6 +416,180 @@
             pointer-events: none;
             z-index: 0;
         }
+
+        /* Newsfeed specific styles */
+        .feed-container {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin: 30px 0;
+        }
+        
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .feed-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .feed-filters {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .filter-dropdown {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+        
+        .feed-search {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+        
+        .feed-search input {
+            width: 100%;
+            padding: 10px 15px 10px 40px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            background-color: #f5f5f5;
+        }
+        
+        .feed-search i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #888;
+        }
+        
+        .feed-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .feed-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .feed-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feed-card-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .feed-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .feed-card:hover .feed-card-image img {
+            transform: scale(1.05);
+        }
+        
+        .feed-card-content {
+            padding: 15px;
+        }
+        
+        .feed-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .feed-card-source {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .feed-card-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: #444;
+            margin-bottom: 15px;
+        }
+        
+        .feed-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid #eee;
+        }
+        
+        .feed-card-metrics {
+            display: flex;
+            gap: 12px;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .feed-card-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .feed-card-actions button {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .feed-card-actions button:hover {
+            color: #FF4500;
+        }
+        
+        @media (max-width: 768px) {
+            .feed-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .feed-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .feed-search {
+                max-width: 100%;
+            }
+        }
     </style>
     
     <!-- Security headers -->
@@ -713,6 +887,200 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech News Feed Section -->
+    <section class="tech-news-section" id="tech-news">
+        <div class="container">
+            <h2 class="section-title">Technology News Feed</h2>
+            <p class="section-subtitle">Stay updated with the latest industry news and developments</p>
+            
+            <div class="feed-container">
+                <div class="feed-header">
+                    <h3 class="feed-title">
+                        <i class="fas fa-rss"></i>
+                        Newsfeed
+                    </h3>
+                    
+                    <div class="feed-filters">
+                        <div class="filter-dropdown">
+                            <span>Unread</span>
+                            <span>(24)</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        
+                        <button class="filter-btn">
+                            <i class="fas fa-filter"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="feed-search">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search in articles">
+                    </div>
+                    
+                    <div class="feed-view-controls">
+                        <button class="view-btn active" aria-label="Card view">
+                            <i class="fas fa-th-large"></i>
+                        </button>
+                        <button class="view-btn" aria-label="List view">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="feed-cards">
+                    <!-- Feed Card 1 -->
+                    <div class="feed-card">
+                        <div class="feed-card-image">
+                            <img src="./assets/article1.jpg" alt="TikTok Smart+">
+                        </div>
+                        <div class="feed-card-content">
+                            <div class="feed-card-source">
+                                <span>Digiday</span>
+                                <span>4h ago</span>
+                            </div>
+                            <h3 class="feed-card-title">As TikTok rolls out Smart+, marketers grapple with its advertising puzzle</h3>
+                            <p class="feed-card-desc">Social media marketers are adapting to TikTok's evolving advertising platform with mixed results.</p>
+                            <div class="feed-card-footer">
+                                <div class="feed-card-metrics">
+                                    <span><i class="fas fa-eye"></i> 55</span>
+                                    <span><i class="fas fa-share-alt"></i> 12</span>
+                                </div>
+                                <div class="feed-card-actions">
+                                    <button aria-label="Save"><i class="far fa-bookmark"></i></button>
+                                    <button aria-label="More options"><i class="fas fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feed Card 2 -->
+                    <div class="feed-card">
+                        <div class="feed-card-image">
+                            <img src="./assets/article2.jpg" alt="Lego Media">
+                        </div>
+                        <div class="feed-card-content">
+                            <div class="feed-card-source">
+                                <span>Digiday</span>
+                                <span>4h ago</span>
+                            </div>
+                            <h3 class="feed-card-title">Lego considers bringing more media in-house after appointing Publicis One</h3>
+                            <p class="feed-card-desc">Lego is evaluating its media strategy with a potential shift toward more in-house capabilities.</p>
+                            <div class="feed-card-footer">
+                                <div class="feed-card-metrics">
+                                    <span><i class="fas fa-eye"></i> 25</span>
+                                    <span><i class="fas fa-share-alt"></i> 8</span>
+                                </div>
+                                <div class="feed-card-actions">
+                                    <button aria-label="Save"><i class="far fa-bookmark"></i></button>
+                                    <button aria-label="More options"><i class="fas fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feed Card 3 -->
+                    <div class="feed-card">
+                        <div class="feed-card-image">
+                            <img src="./assets/article3.jpg" alt="Zaha Hadid Architecture">
+                        </div>
+                        <div class="feed-card-content">
+                            <div class="feed-card-source">
+                                <span>DesignBoom</span>
+                                <span>1d ago</span>
+                            </div>
+                            <h3 class="feed-card-title">Zaha Hadid Architects designs cultural center dedicated to music and literature</h3>
+                            <p class="feed-card-desc">The renowned architectural firm unveils plans for an innovative cultural space focused on the arts.</p>
+                            <div class="feed-card-footer">
+                                <div class="feed-card-metrics">
+                                    <span><i class="fas fa-eye"></i> 30</span>
+                                    <span><i class="fas fa-share-alt"></i> 14</span>
+                                </div>
+                                <div class="feed-card-actions">
+                                    <button aria-label="Save"><i class="far fa-bookmark"></i></button>
+                                    <button aria-label="More options"><i class="fas fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Feed Card 4 -->
+                    <div class="feed-card">
+                        <div class="feed-card-image">
+                            <img src="./assets/article4.jpg" alt="AI-powered Adobe">
+                        </div>
+                        <div class="feed-card-content">
+                            <div class="feed-card-source">
+                                <span>NVIDIA</span>
+                                <span>1d ago</span>
+                            </div>
+                            <h3 class="feed-card-title">MAXimum AI: RTX-Accelerated Adobe AI-Powered Features Speed Up Creative Workflows</h3>
+                            <p class="feed-card-desc">NVIDIA's RTX technology accelerates Adobe's AI features, dramatically improving performance for creative professionals.</p>
+                            <div class="feed-card-footer">
+                                <div class="feed-card-metrics">
+                                    <span><i class="fas fa-eye"></i> 42</span>
+                                    <span><i class="fas fa-share-alt"></i> 23</span>
+                                </div>
+                                <div class="feed-card-actions">
+                                    <button aria-label="Save"><i class="far fa-bookmark"></i></button>
+                                    <button aria-label="More options"><i class="fas fa-ellipsis-h"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feed-pagination">
+                    <button class="pagination-prev disabled"><i class="fas fa-chevron-left"></i></button>
+                    <span class="pagination-info">Page 1 of 4</span>
+                    <button class="pagination-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+            
+            <!-- Trending Topics -->
+            <div class="trending-topics">
+                <h3>Trending Topics</h3>
+                <div class="topics-grid">
+                    <a href="#" class="topic-card">
+                        <i class="fas fa-brain"></i>
+                        <span>Generative AI</span>
+                    </a>
+                    <a href="#" class="topic-card">
+                        <i class="fas fa-mobile-alt"></i>
+                        <span>Responsive Design</span>
+                    </a>
+                    <a href="#" class="topic-card">
+                        <i class="fas fa-universal-access"></i>
+                        <span>Accessibility</span>
+                    </a>
+                    <a href="#" class="topic-card">
+                        <i class="fas fa-palette"></i>
+                        <span>UI/UX Trends</span>
+                    </a>
+                    <a href="#" class="topic-card">
+                        <i class="fas fa-vr-cardboard"></i>
+                        <span>WebXR</span>
+                    </a>
+                    <a href="#" class="topic-card">
+                        <i class="fas fa-server"></i>
+                        <span>Serverless</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- RSS Feed Subscription -->
+            <div class="news-subscription">
+                <h3>Stay Updated</h3>
+                <p>Subscribe to receive daily technology news updates directly in your inbox</p>
+                <form action="#" method="POST" class="subscription-form">
+                    <div class="form-group">
+                        <input type="email" placeholder="Enter your email" required class="form-input">
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -5094,7 +5462,1239 @@
                 element.textContent = currentYear;
             });
         });
+        document.addEventListener('DOMContentLoaded', function() {
+        // Preloader
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            window.addEventListener('load', function() {
+                preloader.classList.add('fade-out');
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                }, 500);
+            });
+        }
+        
+        // Particle animation for hero section
+        const particlesContainer = document.getElementById('particles-container');
+        if (particlesContainer) {
+            const createParticles = () => {
+                // Clear existing particles
+                particlesContainer.innerHTML = '';
+                const particleCount = Math.min(Math.floor(window.innerWidth / 10), 100);
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random properties
+                    const size = Math.random() * 3 + 1;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.opacity = Math.random() * 0.5 + 0.3;
+                    
+                    // Random position
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    // Animation
+                    const duration = Math.random() * 40 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    particle.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            };
+            
+            createParticles();
+            window.addEventListener('resize', createParticles);
+        }
+        
+        // Scroll animations
+        const fadeElements = document.querySelectorAll('.fade-up');
+        const staggerItems = document.querySelectorAll('.stagger-item');
+        
+        const handleScrollAnimations = () => {
+            // Fade up animations
+            fadeElements.forEach((element, index) => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+            
+            // Stagger animations
+            const visibleStaggerItems = Array.from(staggerItems).filter(item => {
+                const itemTop = item.getBoundingClientRect().top;
+                const itemVisible = 150;
+                return itemTop < window.innerHeight - itemVisible;
+            });
+            
+            visibleStaggerItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('active');
+                }, 100 * index);
+            });
+        };
+        
+        window.addEventListener('scroll', handleScrollAnimations);
+        // Initial check
+        setTimeout(handleScrollAnimations, 100);
+        
+        // Update current year
+        const yearElements = document.querySelectorAll('#current-year, #sidebar-year');
+        const currentYear = new Date().getFullYear();
+        yearElements.forEach(element => {
+            element.textContent = currentYear;
+        });
+        
+        // Enhanced form animations
+        const formInputs = document.querySelectorAll('.animated-input');
+        formInputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('input-focus');
+            });
+            
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('input-focus');
+                if (this.value.trim() !== '') {
+                    this.classList.add('has-content');
+                } else {
+                    this.classList.remove('has-content');
+                }
+            });
+            
+            // Check initial state
+            if (input.value.trim() !== '') {
+                input.classList.add('has-content');
+            }
+        });
+        
+        // Form validation and submission
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Validate form
+                let isValid = true;
+                const requiredInputs = contactForm.querySelectorAll('[required]');
+                
+                requiredInputs.forEach(input => {
+                    if (!input.checkValidity()) {
+                        isValid = false;
+                        input.classList.add('input-error');
+                        input.parentElement.classList.add('error');
+                        
+                        // Add or update error message
+                        let errorMessage = input.parentElement.querySelector('.error-message');
+                        if (!errorMessage) {
+                            errorMessage = document.createElement('span');
+                            errorMessage.className = 'error-message';
+                            input.parentElement.appendChild(errorMessage);
+                        }
+                        
+                        if (input.validity.valueMissing) {
+                            errorMessage.textContent = 'This field is required';
+                        } else if (input.validity.typeMismatch && input.type === 'email') {
+                            errorMessage.textContent = 'Please enter a valid email address';
+                        } else {
+                            errorMessage.textContent = input.validationMessage;
+                        }
+                    } else {
+                        input.classList.remove('input-error');
+                        input.parentElement.classList.remove('error');
+                        
+                        // Remove error message if it exists
+                        const errorMessage = input.parentElement.querySelector('.error-message');
+                        if (errorMessage) {
+                            errorMessage.remove();
+                        }
+                    }
+                });
+                
+                if (!isValid) {
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const btnText = submitBtn.querySelector('.btn-text');
+                const loadingSpinner = submitBtn.querySelector('.loading-spinner');
+                
+                submitBtn.disabled = true;
+                btnText.style.opacity = '0';
+                loadingSpinner.style.display = 'inline-block';
+                
+                // Formspree submission
+                const formData = new FormData(contactForm);
+                
+                fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Success
+                    contactForm.reset();
+                    
+                    // Create success message
+                    const successMessage = document.createElement('div');
+                    successMessage.className = 'success-message';
+                    successMessage.innerHTML = `
+                        <div class="success-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="success-content">
+                            <h4>Message Sent!</h4>
+                            <p>Your message has been sent successfully. I'll get back to you soon!</p>
+                        </div>
+                        <button class="close-message" aria-label="Close message">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    
+                    // Add after form
+                    contactForm.parentNode.appendChild(successMessage);
+                    
+                    // Animate success message
+                    setTimeout(() => {
+                        successMessage.classList.add('active');
+                    }, 10);
+                    
+                    // Close button functionality
+                    const closeBtn = successMessage.querySelector('.close-message');
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', () => {
+                            successMessage.classList.remove('active');
+                            setTimeout(() => {
+                                successMessage.remove();
+                            }, 300);
+                        });
+                    }
+                    
+                    // Auto-hide after 5 seconds
+                    setTimeout(() => {
+                        if (successMessage.parentNode) {
+                            successMessage.classList.remove('active');
+                            setTimeout(() => {
+                                if (successMessage.parentNode) {
+                                    successMessage.remove();
+                                }
+                            }, 300);
+                        }
+                    }, 5000);
+                })
+                .catch(error => {
+                    // Error
+                    console.error('Error:', error);
+                    
+                    // Create error message
+                    const errorContainer = document.createElement('div');
+                    errorContainer.className = 'error-container';
+                    errorContainer.innerHTML = `
+                        <div class="error-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="error-content">
+                            <h4>Message Not Sent</h4>
+                            <p>There was a problem sending your message. Please try again later or contact me directly at parth459.a@gmail.com</p>
+                        </div>
+                        <button class="close-message" aria-label="Close message">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    
+                    // Add after form
+                    contactForm.parentNode.appendChild(errorContainer);
+                    
+                    // Close button functionality
+                    const closeBtn = errorContainer.querySelector('.close-message');
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', () => {
+                            errorContainer.remove();
+                        });
+                    }
+                    
+                    // Auto-remove after 8 seconds
+                    setTimeout(() => {
+                        if (errorContainer.parentNode) {
+                            errorContainer.remove();
+                        }
+                    }, 8000);
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    btnText.style.opacity = '1';
+                    loadingSpinner.style.display = 'none';
+                });
+            });
+            
+            // Real-time validation
+            const inputs = contactForm.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    if (this.hasAttribute('required')) {
+                        if (this.checkValidity()) {
+                            this.classList.remove('input-error');
+                            this.parentElement.classList.remove('error');
+                            
+                            // Remove error message if it exists
+                            const errorMessage = this.parentElement.querySelector('.error-message');
+                            if (errorMessage) {
+                                errorMessage.remove();
+                            }
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Enhanced image loading with blur-up effect
+        const imageElements = document.querySelectorAll('img[data-src]');
+        if (imageElements.length > 0) {
+            const loadImage = (img) => {
+                const src = img.getAttribute('data-src');
+                if (!src) return;
+                
+                const tempImg = new Image();
+                tempImg.onload = () => {
+                    img.src = src;
+                    img.classList.add('img-loaded');
+                    img.removeAttribute('data-src');
+                };
+                tempImg.onerror = () => {
+                    img.src = './assets/image-placeholder.jpg';
+                    img.classList.add('img-error');
+                    img.removeAttribute('data-src');
+                };
+                tempImg.src = src;
+            };
+            
+            // Check if Intersection Observer is supported
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            loadImage(entry.target);
+                            imageObserver.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    rootMargin: '50px 0px',
+                    threshold: 0.01
+                });
+                
+                imageElements.forEach(img => {
+                    imageObserver.observe(img);
+                });
+            } else {
+                // Fallback for browsers that don't support Intersection Observer
+                imageElements.forEach(img => {
+                    loadImage(img);
+                });
+            }
+        }
+        
+        // 3D Tilt Effect for cards
+        const tiltCards = document.querySelectorAll('.tilt-card');
+        if (tiltCards.length > 0) {
+            tiltCards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const cardRect = card.getBoundingClientRect();
+                    const cardCenterX = cardRect.left + cardRect.width / 2;
+                    const cardCenterY = cardRect.top + cardRect.height / 2;
+                    const mouseX = e.clientX - cardCenterX;
+                    const mouseY = e.clientY - cardCenterY;
+                    
+                    // Calculate rotation based on mouse position
+                    const rotateY = 15 * (mouseX / (cardRect.width / 2));
+                    const rotateX = -15 * (mouseY / (cardRect.height / 2));
+                    
+                    // Apply transform
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    // Reset transform
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+                });
+            });
+        }
+        
+        // Smooth scroll for anchor links
+        const smoothScrollLinks = document.querySelectorAll('a[href^="#"]:not([href="#"])');
+        smoothScrollLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Get height of sticky header for offset
+                    const navbar = document.querySelector('.navbar');
+                    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+                    
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close sidebar if open
+                    const sidebar = document.getElementById('sidebar');
+                    if (sidebar && sidebar.classList.contains('active')) {
+                        const overlay = document.getElementById('overlay');
+                        sidebar.classList.remove('active');
+                        if (overlay) overlay.classList.remove('active');
+                    }
+                    
+                    // Update URL hash without scrolling
+                    history.pushState(null, null, targetId);
+                }
+            });
+        });
+        
+        // Scroll indicator
+        const scrollIndicator = document.getElementById('scroll-indicator');
+        if (scrollIndicator) {
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrollPercentage = (scrollTop / scrollHeight) * 100;
+                
+                scrollIndicator.style.width = `${scrollPercentage}%`;
+            });
+        }
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('active');
+                } else {
+                    backToTopBtn.classList.remove('active');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+        
+        // Sidebar toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const closeBtn = document.getElementById('close-btn');
+        
+        if (navToggle && sidebar && overlay) {
+            const toggleSidebar = () => {
+                sidebar.classList.toggle('active');
+                overlay.classList.toggle('active');
+                
+                if (sidebar.classList.contains('active')) {
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Animate stagger items
+                    const staggerItems = sidebar.querySelectorAll('.stagger-item');
+                    staggerItems.forEach((item, index) => {
+                        setTimeout(() => {
+                            item.classList.add('active');
+                        }, 100 * index);
+                    });
+                } else {
+                    document.body.style.overflow = '';
+                    
+                    // Reset stagger animations
+                    const staggerItems = sidebar.querySelectorAll('.stagger-item');
+                    staggerItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                }
+            };
+            
+            navToggle.addEventListener('click', toggleSidebar);
+            
+            if (closeBtn) {
+                closeBtn.addEventListener('click', toggleSidebar);
+            }
+            
+            overlay.addEventListener('click', toggleSidebar);
+            
+            // Close sidebar with Escape key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                    toggleSidebar();
+                }
+            });
+        }
+        
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            const toggleTheme = () => {
+                document.body.classList.toggle('dark-mode');
+                
+                // Update icon
+                const icon = themeToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-moon');
+                    icon.classList.toggle('fa-sun');
+                }
+                
+                // Store preference in localStorage
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            };
+            
+            themeToggle.addEventListener('click', toggleTheme);
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                
+                // Update icon
+                const icon = themeToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                }
+            }
+        }
+        
+        // Active section highlighting based on scroll
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const scrollNavItems = document.querySelectorAll('.scroll-nav-item');
+        
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY + 100;
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                const sectionId = section.getAttribute('id');
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                    // Update nav links
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${sectionId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                    
+                    // Update scroll nav items
+                    scrollNavItems.forEach(item => {
+                        item.classList.remove('active');
+                        if (item.getAttribute('data-target') === `#${sectionId}`) {
+                            item.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+        
+        // Filter functionality for projects
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const filteredItems = document.querySelectorAll('.project-card-animated, .resource-card-animated');
+        
+        if (filterButtons.length > 0 && filteredItems.length > 0) {
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-pressed', 'false');
+                    });
+                    
+                    this.classList.add('active');
+                    this.setAttribute('aria-pressed', 'true');
+                    
+                    // Filter items
+                    filteredItems.forEach(item => {
+                        if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                            item.style.display = 'block';
+                            setTimeout(() => {
+                                item.style.opacity = '1';
+                                item.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            item.style.opacity = '0';
+                            item.style.transform = 'translateY(20px)';
+                            
+                            setTimeout(() => {
+                                item.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+        }
+        
+        // Typewriter effect
+        const typewriterElement = document.getElementById('typewriter');
+        if (typewriterElement) {
+            const text = typewriterElement.textContent;
+            typewriterElement.textContent = '';
+            
+            let charIndex = 0;
+            const typeSpeed = 80; // Speed in milliseconds
+            
+            const typeWriter = () => {
+                if (charIndex < text.length) {
+                    typewriterElement.textContent += text.charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, typeSpeed);
+                } else {
+                    // Add blinking cursor class when done
+                    typewriterElement.classList.add('typewriter-done');
+                }
+            };
+            
+            // Start typewriter effect after a short delay
+            setTimeout(typeWriter, 1000);
+        }
+        
+        // Logo animation
+        const logoElement = document.getElementById('logo');
+        if (logoElement) {
+            const animateLogo = () => {
+                const stem = document.querySelector('.stem');
+                const crossbar = document.querySelector('.crossbar');
+                const topLoop = document.querySelector('.top-loop');
+                const bottomCurve = document.querySelector('.bottom-curve');
+                const diagonal = document.querySelector('.diagonal');
+                const period = document.querySelector('.period');
+                
+                if (!stem || !crossbar || !topLoop || !bottomCurve || !diagonal || !period) return;
+                
+                // Reset animations
+                [stem, crossbar, topLoop, bottomCurve, diagonal].forEach(el => {
+                    el.style.strokeDasharray = '1000';
+                    el.style.strokeDashoffset = '1000';
+                    el.style.animation = 'none';
+                });
+                
+                period.style.opacity = '0';
+                
+                // Force reflow
+                void stem.offsetWidth;
+                
+                // Animate each part sequentially
+                stem.style.animation = 'draw 1s forwards';
+                
+                setTimeout(() => {
+                    crossbar.style.animation = 'draw 0.8s forwards';
+                }, 800);
+                
+                setTimeout(() => {
+                    topLoop.style.animation = 'draw 0.8s forwards';
+                }, 1600);
+                
+                setTimeout(() => {
+                    bottomCurve.style.animation = 'draw 0.8s forwards';
+                }, 2400);
+                
+                setTimeout(() => {
+                    diagonal.style.animation = 'draw 0.8s forwards';
+                }, 3200);
+                
+                setTimeout(() => {
+                    period.style.opacity = '1';
+                    period.style.animation = 'fadeIn 0.5s forwards';
+                }, 4000);
+            };
+            
+            // Initial animation
+            setTimeout(animateLogo, 1000);
+            
+            // Add click handler to replay animation
+            logoElement.addEventListener('click', animateLogo);
+        }
+    });
     </script>
+    
+    <!-- Additional animations script -->
+    <script>
+    // Page transition functionality
+    window.addEventListener('beforeunload', function() {
+        const pageTransition = document.getElementById('pageTransition');
+        if (pageTransition) {
+            pageTransition.classList.add('active');
+        }
+    });
+    
+    // Custom cursor effect (optional)
+    document.addEventListener('DOMContentLoaded', function() {
+        // Only initialize on desktop
+        if (window.innerWidth > 768 && !('ontouchstart' in document.documentElement)) {
+            const cursor = document.createElement('div');
+            cursor.classList.add('custom-cursor');
+            document.body.appendChild(cursor);
+            
+            const cursorDot = document.createElement('div');
+            cursorDot.classList.add('cursor-dot');
+            document.body.appendChild(cursorDot);
+            
+            document.addEventListener('mousemove', function(e) {
+                cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+                cursorDot.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+            });
+            
+            document.addEventListener('mousedown', function() {
+                cursor.classList.add('cursor-down');
+            });
+            
+            document.addEventListener('mouseup', function() {
+                cursor.classList.remove('cursor-down');
+            });
+            
+            // Hover effect for links and buttons
+            const interactiveElements = document.querySelectorAll('a, button, .enhanced-card, input, textarea, .profile-social a, .contact-social a');
+            interactiveElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    cursor.classList.add('cursor-hover');
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    cursor.classList.remove('cursor-hover');
+                });
+            });
+            
+            // Text hover effect
+            const textElements = document.querySelectorAll('h1, h2, h3, h4, h5, h6, p');
+            textElements.forEach(element => {
+                element.addEventListener('mouseenter', function() {
+                    cursor.classList.add('cursor-text');
+                });
+                
+                element.addEventListener('mouseleave', function() {
+                    cursor.classList.remove('cursor-text');
+                });
+            });
+        }
+    });
+    
+    // Handle resize events - debounced for performance
+    const debounce = (func, delay) => {
+        let timeoutId;
+        return function(...args) {
+            if (timeoutId) {
+                clearTimeout(timeoutId);
+            }
+            timeoutId = setTimeout(() => {
+                func.apply(this, args);
+            }, delay);
+        };
+    };
+    
+    // Debounced resize event handler
+    const handleResize = debounce(() => {
+        // Recalculate any dimension-dependent features here
+        
+        // Recreate particles if needed
+        const particlesContainer = document.getElementById('particles-container');
+        if (particlesContainer && typeof createParticles === 'function') {
+            createParticles();
+        }
+        
+        // Update any responsive elements that need JavaScript assistance
+        const enhancedCards = document.querySelectorAll('.enhanced-card');
+        if (enhancedCards.length > 0) {
+            enhancedCards.forEach(card => {
+                // Reset any transforms that might be stuck
+                card.style.transform = '';
+            });
+        }
+    }, 200);
+    
+    window.addEventListener('resize', handleResize);
+    
+    // Keyboard accessibility
+    document.addEventListener('keydown', function(e) {
+        // Tab trap for modals if needed
+        if (e.key === 'Tab') {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar && sidebar.classList.contains('active')) {
+                const focusableElements = sidebar.querySelectorAll('a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+                if (focusableElements.length) {
+                    const firstElement = focusableElements[0];
+                    const lastElement = focusableElements[focusableElements.length - 1];
+                    
+                    // If shift+tab on first element, move to last element
+                    if (e.shiftKey && document.activeElement === firstElement) {
+                        e.preventDefault();
+                        lastElement.focus();
+                    } 
+                    // If tab on last element, move to first element
+                    else if (!e.shiftKey && document.activeElement === lastElement) {
+                        e.preventDefault();
+                        firstElement.focus();
+                    }
+                }
+            }
+        }
+    });
+    
+    // Improved scroll performance with requestAnimationFrame
+    let ticking = false;
+    
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                // Update scroll indicator
+                const scrollIndicator = document.getElementById('scroll-indicator');
+                if (scrollIndicator) {
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+                    
+                    scrollIndicator.style.width = `${scrollPercentage}%`;
+                }
+                
+                // Back to top button visibility
+                const backToTopBtn = document.getElementById('back-to-top');
+                if (backToTopBtn) {
+                    if (window.pageYOffset > 300) {
+                        backToTopBtn.classList.add('active');
+                    } else {
+                        backToTopBtn.classList.remove('active');
+                    }
+                }
+                
+                // Parallax effect for hero section (subtle)
+                const heroSection = document.querySelector('.hero');
+                if (heroSection) {
+                    const scrollPosition = window.pageYOffset;
+                    if (scrollPosition < window.innerHeight) {
+                        const parallaxOffset = scrollPosition * 0.4;
+                        heroSection.style.backgroundPositionY = `calc(50% + ${parallaxOffset}px)`;
+                    }
+                }
+                
+                ticking = false;
+            });
+            
+            ticking = true;
+        }
+    });
+    
+    // Enhanced animations for project cards
+    const projectCards = document.querySelectorAll('.project-card-animated');
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            const image = this.querySelector('.project-image img');
+            if (image) {
+                image.style.transform = 'scale(1.1)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            const image = this.querySelector('.project-image img');
+            if (image) {
+                image.style.transform = '';
+            }
+        });
+    });
+    
+    // Service Worker registration for offline support
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function(err) {
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+    </script>
+
+    <!-- Add styles for custom cursor and enhanced form elements -->
+    <style>
+    /* Custom cursor styles */
+    @media (min-width: 769px) {
+        body.custom-cursor {
+            cursor: none;
+        }
+        
+        .custom-cursor {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 10, 10, 0.5);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: width 0.3s, height 0.3s, border-color 0.3s, background-color 0.3s, transform 0.1s;
+            mix-blend-mode: difference;
+        }
+        
+        .cursor-dot {
+            position: fixed;
+            width: 8px;
+            height: 8px;
+            background-color: var(--primary-color);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            transition: transform 0.15s ease;
+        }
+        
+        .cursor-hover {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(77, 55, 47, 0.06);
+            border-color: var(--primary-color);
+            mix-blend-mode: normal;
+        }
+        
+        .cursor-down {
+            width: 30px;
+            height: 30px;
+            background-color: rgba(255, 10, 10, 0.3);
+        }
+        
+        .cursor-text {
+            width: 5px;
+            height: 30px;
+            border-radius: 0;
+            background-color: var(--primary-color);
+            border: none;
+            mix-blend-mode: normal;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .custom-cursor,
+        .cursor-dot {
+            display: none !important;
+        }
+    }
+    
+    /* Enhanced form styling */
+    .animated-input {
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .form-group {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .form-group::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--primary-color);
+        transition: width 0.4s ease;
+    }
+    
+    .input-focus::after {
+        width: 100%;
+    }
+    
+    .form-label {
+        transition: transform 0.3s ease, color 0.3s ease, font-size 0.3s ease;
+    }
+    
+    .input-focus .form-label {
+        color: var(--primary-color);
+    }
+    
+    /* Success/error message animations */
+    .success-message,
+    .error-container {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    
+    .success-message.active,
+    .error-container.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Loading spinner style */
+    .loading-spinner {
+        display: none;
+        margin-left: 10px;
+    }
+    
+    /* Image transition effects */
+    img {
+        opacity: 0.8;
+        filter: blur(2px);
+        transition: opacity 0.5s ease, filter 0.5s ease;
+    }
+    
+    img.img-loaded {
+        opacity: 1;
+        filter: blur(0);
+    }
+    
+    /* Enhance focus styles for better accessibility */
+    :focus {
+        outline: none;
+    }
+    
+    :focus-visible {
+        outline: 2px solid var(--primary-color);
+        outline-offset: 4px;
+    }
+    
+    /* Reduced motion media query */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+    
+    /* Additional Animations */
+    @keyframes draw {
+        to {
+            stroke-dashoffset: 0;
+        }
+    }
+    
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.05);
+            opacity: 0.8;
+        }
+    }
+    
+    /* Input error styling */
+    .input-error {
+        border-color: var(--error-color) !important;
+    }
+    
+    .error-message {
+        color: var(--error-color);
+        font-size: 0.85rem;
+        margin-top: 5px;
+    }
+    
+    /* Success message styling */
+    .success-message {
+        display: flex;
+        padding: 20px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--success-color);
+        border-radius: var(--border-radius);
+        margin-top: 20px;
+        align-items: center;
+        position: relative;
+    }
+    
+    .success-icon {
+        font-size: 2rem;
+        margin-right: 15px;
+        color: var(--success-color);
+    }
+    
+    .success-content {
+        flex: 1;
+    }
+    
+    .success-content h4 {
+        margin-bottom: 5px;
+    }
+    
+    .close-message {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: none;
+        border: none;
+        font-size: 1rem;
+        color: inherit;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+    }
+    
+    .close-message:hover {
+        opacity: 1;
+    }
+    
+    /* Error container styling */
+    .error-container {
+        display: flex;
+        padding: 20px;
+        background-color: rgba(96, 18, 29, 0.067);
+        border: 1px solid var(--error-color);
+        border-radius: var(--border-radius);
+        margin-top: 20px;
+        align-items: center;
+        position: relative;
+    }
+    
+    .error-icon {
+        font-size: 2rem;
+        margin-right: 15px;
+        color: var(--error-color);
+    }
+    
+    .error-content {
+        flex: 1;
+    }
+    
+    .error-content h4 {
+        margin-bottom: 5px;
+    }
+    
+    /* Dark mode adjustments */
+    body.dark-mode .success-message {
+        background-color: rgba(40, 167, 69, 0.15);
+        border-color: rgba(40, 167, 69, 0.4);
+    }
+    
+    body.dark-mode .error-container {
+        background-color: rgba(220, 53, 69, 0.15);
+        border-color: rgba(220, 53, 69, 0.4);
+    }
+    
+    /* Print styles */
+    @media print {
+        .navbar,
+        .sidebar,
+        .overlay,
+        .preloader,
+        .page-transition,
+        .bottom-scrollbar-container,
+        #back-to-top,
+        .footer,
+        .filter-buttons,
+        .form-group button,
+        .contact-social,
+        .hero-scroll-indicator {
+            display: none !important;
+        }
+        
+        body {
+            background-color: white !important;
+            color: black !important;
+        }
+        
+        .container {
+            width: 100% !important;
+            max-width: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        
+        a {
+            text-decoration: none !important;
+            color: black !important;
+        }
+        
+        img {
+            max-width: 100% !important;
+            page-break-inside: avoid;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            page-break-after: avoid;
+            page-break-inside: avoid;
+        }
+        
+        section {
+            page-break-inside: avoid;
+            break-inside: avoid;
+        }
+        
+        .project-card-animated,
+        .blog-card-animated,
+        .resource-card-animated,
+        .contact-item-animated,
+        .profile-card-animated {
+            box-shadow: none !important;
+            border: 1px solid #ddd !important;
+            break-inside: avoid;
+        }
+    }
+    
+    /* Additional responsive enhancements */
+    @media (max-width: 576px) {
+        .hero h1 {
+            font-size: 2.2rem;
+        }
+        
+        .about-heading {
+            font-size: 2.2rem;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+        }
+        
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .contact-info-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .profile-card-animated,
+        .project-card-animated,
+        .blog-card-animated,
+        .resource-card-animated {
+            transform: none !important;
+        }
+    }
+    
+    /* Progressive enhancement for modern browsers */
+    @supports (backdrop-filter: blur(10px)) {
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        body.dark-mode .navbar.scrolled {
+            background-color: rgba(34, 34, 34, 0.8);
+        }
+    }
+    </style>
 </body>
 </html>
 
