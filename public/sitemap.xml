@@ -1,0 +1,53 @@
+/* sitemap.xml */
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <!-- Homepage -->
+    <url>
+        <loc>https://parthpatel.com/</loc>
+        <lastmod>2024-04-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://parthpatel.com/assets/images/profile.jpg</image:loc>
+            <image:title>Parth Patel - Developer & Designer</image:title>
+        </image:image>
+    </url>
+
+    <!-- Resume Page -->
+    <url>
+        <loc>https://parthpatel.com/resume</loc>
+        <lastmod>2024-04-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Projects Page -->
+    <url>
+        <loc>https://parthpatel.com/projects</loc>
+        <lastmod>2024-04-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Contact Page -->
+    <url>
+        <loc>https://parthpatel.com/contact</loc>
+        <lastmod>2024-04-12</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.7</priority>
+    </url>
+
+    <!-- Blog Page -->
+    <url>
+        <loc>https://parthpatel.com/blog</loc>
+        <lastmod>2024-04-12</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
+</urlset>

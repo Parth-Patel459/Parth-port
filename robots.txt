@@ -1,4 +1,0 @@
-/* robots.txt */
-User-agent: *
-Allow: /
-Sitemap: https://parth-patel459.github.io/sitemap.xml

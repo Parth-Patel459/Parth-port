@@ -1,75 +1,108 @@
-Parth Patel - Personal Portfolio Website
-A modern, responsive portfolio website showcasing Parth Patel's work, skills, and professional experience.
-Live Demo
-http://parth-patel459.github.io/Parth-port/
-Description
-This portfolio website provides a comprehensive showcase of Parth Patel's skills, projects, resume, and resources. The website features a clean, modern design with smooth animations and a focus on accessibility and user experience.
-Technologies Used
+# News Aggregator
 
-HTML5 - Semantic markup for improved accessibility and SEO
-CSS3 - Custom styling with CSS variables, animations, and responsive design
-JavaScript - Interactive elements, dark mode toggle, form validation
-Formspree - Backend for the contact form functionality
-Prism.js - Syntax highlighting for code blocks in resource pages
+A modern news aggregator application that fetches and displays news articles from various sources using the NewsAPI.
 
-Features
+## Features
 
-Responsive Design - Adapts seamlessly to various screen sizes and devices
-Dark Mode Toggle - User preference-based theme switching with local storage persistence
-Project Showcase - Interactive cards displaying portfolio projects
-Interactive Resume - Professional resume with downloadable PDF option
-Contact Form - Functional contact form with validation and feedback
-Blog Section - Articles and insights about web development
-Resources Library - Educational resources on web development and security topics
-Accessibility Support - ARIA attributes, keyboard navigation, and screen reader compatibility
-Print-Friendly Pages - Optimized resume layout for printing
+- Real-time news updates
+- Multiple news categories
+- Customizable news sources
+- Offline support
+- Dark mode
+- Responsive design
+- Push notifications
+- Article saving and reading history
 
-Key Sections
+## Prerequisites
 
-Home - Introduction and hero section
-About - Professional background and personal information
-Projects - Portfolio of completed projects with filtering options
-Blog - Articles and insights
-Resources - Educational materials and guides
-Contact - Contact form and information
-Resume - Detailed resume with download option
+- Node.js (v14 or higher)
+- npm (v6 or higher)
+- NewsAPI key (get it from [newsapi.org](https://newsapi.org))
 
-Performance Optimizations
+## Installation
 
-Font preloading for improved load times
-Lazy loading for images
-Optimized SVG animations
-Throttled scroll events for smoother performance
-Responsive image loading for mobile devices
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/news-aggregator.git
+cd news-aggregator
+```
 
-Accessibility Features
+2. Install dependencies:
+```bash
+npm install
+```
 
-Semantic HTML structure
-ARIA attributes for interactive elements
-Keyboard navigation support
-Skip to content links
-High contrast mode support
-Reduced motion option for animations
+3. Create a `.env` file in the root directory and add your NewsAPI key:
+```
+VITE_NEWS_API_KEY=your_api_key_here
+```
 
-Browser Compatibility
+4. Start the development server:
+```bash
+npm run dev
+```
 
-Chrome, Firefox, Safari, Edge (latest versions)
-IE11 support with fallbacks
-Mobile browsers (iOS Safari, Chrome for Android)
+5. Build for production:
+```bash
+npm run build
+```
 
-Setup and Installation
+## Project Structure
 
-Clone the repository
-Copygit clone https://github.com/parth-patel459/Parth-port.git
+```
+news-aggregator/
+├── public/                 # Static files
+│   ├── news-aggregator/    # News aggregator app
+│   ├── assets/            # Images, icons, etc.
+│   └── manifest.json      # PWA manifest
+├── src/
+│   ├── js/               # JavaScript files
+│   │   ├── config/      # Configuration files
+│   │   ├── services/    # Service files
+│   │   └── utils/       # Utility functions
+│   └── css/             # CSS files
+├── dist/                # Build output
+├── package.json         # Project dependencies
+└── vite.config.js       # Vite configuration
+```
 
-Navigate to the project directory
-Copycd Parth-port
+## API Integration
 
-Open index.html in your browser to view the website locally
+The application uses the NewsAPI to fetch news articles. Make sure to:
 
-Contact
-For questions, feedback, or inquiries, please reach out through the contact form on the website or directly via email at parth459.a@gmail.com.
-License
-MIT License - Feel free to use this code for your own projects.
+1. Sign up for a NewsAPI account at [newsapi.org](https://newsapi.org)
+2. Get your API key
+3. Add it to the `.env` file
 
-© 2025 Parth Patel. All Rights Reserved.
+## Service Worker
+
+The application includes a service worker for:
+- Offline functionality
+- Caching of static assets
+- Background sync
+- Push notifications
+
+## Testing
+
+Run tests using:
+```bash
+npm test
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [NewsAPI](https://newsapi.org) for providing the news data
+- [Font Awesome](https://fontawesome.com) for icons
+- [Vite](https://vitejs.dev) for the build tool 

@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Stay updated with the latest news from around the world. Customizable news feed with multiple categories and sources.">
+    <title>News Aggregator | Stay Informed</title>
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://formspree.io" crossorigin>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../dist/css/news-aggregator.min.css" as="style">
+    <link rel="preload" href="../dist/js/news-aggregator.min.js" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../dist/css/news-aggregator.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="../assets/icons/icon-192x192.png">
+    
+    <!-- Add image decoding attribute for better image loading -->
+    <script>
+    // Add decoding attributes to images
+    document.addEventListener('DOMContentLoaded', function() {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            if (!img.hasAttribute('decoding')) {
+                img.setAttribute('decoding', 'async');
+            }
+            if (!img.hasAttribute('loading') && !img.classList.contains('profile-image')) {
+                img.setAttribute('loading', 'lazy');
+            }
+        });
+    });
+    </script>
+    
+    <!-- Optimize Font Awesome Loading -->
+    <script>
+    // Only load fontawesome icons that are being used
+    document.addEventListener('DOMContentLoaded', function() {
+        const fontAwesomeLink = document.querySelector('link[href*="font-awesome"]');
+        if (fontAwesomeLink) {
+            // Change to a more specific stylesheet that only includes the icons you use
+            fontAwesomeLink.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/fontawesome.min.css";
+            
+            // Append only the styles for solid and brands icons
+            const solidLink = document.createElement('link');
+            solidLink.rel = "stylesheet";
+            solidLink.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/solid.min.css";
+            
+            const brandsLink = document.createElement('link');
+            brandsLink.rel = "stylesheet";
+            brandsLink.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/brands.min.css";
+            
+            document.head.appendChild(solidLink);
+            document.head.appendChild(brandsLink);
+        }
+    });
+    </script>
+</head>
+<body>
+    <!-- Particles Container -->
+    <div id="particles-container"></div>
+
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>News Aggregator</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" class="nav-item active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-fire"></i> Trending</a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-globe"></i> World</a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-chart-line"></i> Business</a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-flask"></i> Science</a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-futbol"></i> Sports</a></li>
+                    <li><a href="#" class="nav-item"><i class="fas fa-music"></i> Entertainment</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <img src="../assets/images/user-avatar.jpg" alt="User Profile">
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="main-header">
+                <div class="header-left">
+                    <h1>Latest News</h1>
+                </div>
+                <div class="header-right">
+                    <div class="search-bar">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Search news...">
+                    </div>
+                    <div class="view-options">
+                        <button aria-label="Grid View"><i class="fas fa-th-large"></i></button>
+                        <button aria-label="List View"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="search-results-count"></div>
+
+            <div id="news-grid" class="news-grid">
+                <!-- News items will be dynamically inserted here -->
+            </div>
+
+            <div class="load-more">
+                <button class="load-more-btn">Load More Articles</button>
+            </div>
+
+            <!-- Contact Form Section -->
+            <section class="contact-section">
+                <h2>Contact Us</h2>
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/xpwpjewz" method="POST" id="contact-form" novalidate aria-live="polite">
+                        <!-- Hidden honeypot field to prevent spam -->
+                        <input type="text" name="_gotcha" style="display:none" />
+                        
+                        <!-- Add redirect URL -->
+                        <input type="hidden" name="_next" value="https://parth-patel459.github.io/thanks.html" />
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Name <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="name" name="name" class="form-input" required autocomplete="name">
+                                    <span class="validation-icon"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <input type="email" id="email" name="email" class="form-input" required autocomplete="email">
+                                    <span class="validation-icon"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="subject" class="form-label">Subject</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="subject" name="subject" class="form-input" autocomplete="off">
+                                    <span class="validation-icon"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <label for="message" class="form-label">Message <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
+                                    <span class="validation-icon"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group full-width">
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="btn-text">Send Message</span>
+                                    <span class="loading-spinner"><i class="fas fa-spinner fa-spin"></i></span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Success message will be dynamically inserted here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator"></div>
+
+    <!-- JavaScript -->
+    <script src="../dist/js/news-aggregator.min.js"></script>
+    <script>
+        // Form handling
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fix for contact form
+            const contactForm = document.getElementById('contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    
+                    // Validate form
+                    let isValid = true;
+                    const requiredInputs = contactForm.querySelectorAll('[required]');
+                    
+                    requiredInputs.forEach(input => {
+                        if (!input.checkValidity()) {
+                            isValid = false;
+                            input.classList.add('input-error');
+                            input.parentElement.parentElement.classList.add('error');
+                            
+                            // Add or update error message
+                            let errorMessage = input.parentElement.parentElement.querySelector('.error-message');
+                            if (!errorMessage) {
+                                errorMessage = document.createElement('span');
+                                errorMessage.className = 'error-message';
+                                input.parentElement.parentElement.appendChild(errorMessage);
+                            }
+                            
+                            if (input.validity.valueMissing) {
+                                errorMessage.textContent = 'This field is required';
+                            } else if (input.validity.typeMismatch && input.type === 'email') {
+                                errorMessage.textContent = 'Please enter a valid email address';
+                            } else {
+                                errorMessage.textContent = input.validationMessage;
+                            }
+                        } else {
+                            input.classList.remove('input-error');
+                            input.parentElement.parentElement.classList.remove('error');
+                            
+                            // Remove error message if it exists
+                            const errorMessage = input.parentElement.parentElement.querySelector('.error-message');
+                            if (errorMessage) {
+                                errorMessage.remove();
+                            }
+                        }
+                    });
+                    
+                    if (!isValid) {
+                        return;
+                    }
+                    
+                    // Show loading state
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    const btnText = submitBtn.querySelector('.btn-text');
+                    const loadingSpinner = submitBtn.querySelector('.loading-spinner');
+                    
+                    submitBtn.disabled = true;
+                    btnText.style.opacity = '0';
+                    loadingSpinner.style.display = 'inline-block';
+                    
+                    // Formspree submission
+                    const formData = new FormData(contactForm);
+                    
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        // Success
+                        contactForm.reset();
+                        
+                        // Create success message
+                        const successMessage = document.createElement('div');
+                        successMessage.className = 'success-message';
+                        successMessage.innerHTML = `
+                            <div class="success-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="success-content">
+                                <h4>Message Sent!</h4>
+                                <p>Your message has been sent successfully. I'll get back to you soon!</p>
+                            </div>
+                            <button class="close-message" aria-label="Close message">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        `;
+                        
+                        // Add after form
+                        contactForm.parentNode.appendChild(successMessage);
+                        
+                        // Animate success message
+                        setTimeout(() => {
+                            successMessage.classList.add('active');
+                        }, 10);
+                        
+                        // Close button functionality
+                        const closeBtn = successMessage.querySelector('.close-message');
+                        if (closeBtn) {
+                            closeBtn.addEventListener('click', () => {
+                                successMessage.classList.remove('active');
+                                setTimeout(() => {
+                                    successMessage.remove();
+                                }, 300);
+                            });
+                        }
+                        
+                        // Auto-hide after 5 seconds
+                        setTimeout(() => {
+                            if (successMessage.parentNode) {
+                                successMessage.classList.remove('active');
+                                setTimeout(() => {
+                                    if (successMessage.parentNode) {
+                                        successMessage.remove();
+                                    }
+                                }, 300);
+                            }
+                        }, 5000);
+                    })
+                    .catch(error => {
+                        // Error
+                        console.error('Error:', error);
+                        
+                        // Create error message
+                        const errorContainer = document.createElement('div');
+                        errorContainer.className = 'error-container';
+                        errorContainer.innerHTML = `
+                            <div class="error-icon">
+                                <i class="fas fa-exclamation-circle"></i>
+                            </div>
+                            <div class="error-content">
+                                <h4>Message Not Sent</h4>
+                                <p>There was a problem sending your message. Please try again later or contact me directly at parth459.a@gmail.com</p>
+                            </div>
+                            <button class="close-message" aria-label="Close message">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        `;
+                        
+                        // Add after form
+                        contactForm.parentNode.appendChild(errorContainer);
+                        
+                        // Close button functionality
+                        const closeBtn = errorContainer.querySelector('.close-message');
+                        if (closeBtn) {
+                            closeBtn.addEventListener('click', () => {
+                                errorContainer.remove();
+                            });
+                        }
+                        
+                        // Auto-remove after 8 seconds
+                        setTimeout(() => {
+                            if (errorContainer.parentNode) {
+                                errorContainer.remove();
+                            }
+                        }, 8000);
+                    })
+                    .finally(() => {
+                        // Reset button state
+                        submitBtn.disabled = false;
+                        btnText.style.opacity = '1';
+                        loadingSpinner.style.display = 'none';
+                    });
+                });
+                
+                // Real-time validation
+                const inputs = contactForm.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    input.addEventListener('input', function() {
+                        if (this.hasAttribute('required')) {
+                            if (this.checkValidity()) {
+                                this.classList.remove('input-error');
+                                this.parentElement.parentElement.classList.remove('error');
+                                
+                                // Remove error message if it exists
+                                const errorMessage = this.parentElement.parentElement.querySelector('.error-message');
+                                if (errorMessage) {
+                                    errorMessage.remove();
+                                }
+                            }
+                        }
+                    });
+                });
+            }
+        });
+
+        // Create particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles-container');
+            if (particlesContainer) {
+                // Clear existing particles
+                particlesContainer.innerHTML = '';
+                const particleCount = Math.min(Math.floor(window.innerWidth / 10), 100);
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('particle');
+                    
+                    // Random properties
+                    const size = Math.random() * 3 + 1;
+                    particle.style.width = `${size}px`;
+                    particle.style.height = `${size}px`;
+                    particle.style.opacity = Math.random() * 0.5 + 0.3;
+                    
+                    // Random position
+                    particle.style.left = `${Math.random() * 100}%`;
+                    particle.style.top = `${Math.random() * 100}%`;
+                    
+                    // Animation
+                    const duration = Math.random() * 40 + 10;
+                    const delay = Math.random() * 5;
+                    
+                    particle.style.animation = `floating ${duration}s ease-in-out ${delay}s infinite`;
+                    
+                    particlesContainer.appendChild(particle);
+                }
+            }
+        }
+
+        // Initialize particles
+        createParticles();
+        window.addEventListener('resize', createParticles);
+    </script>
+</body>
+</html> 
